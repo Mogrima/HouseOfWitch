@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<section class="catalog">
+  <h2 class="catalog__section-header section-header">Популярное</h2>
+  <div class="catalog__wrapper">
+    {% for post in posts %}
+    <figure class="catalog__item">
+      <figcaption class="catalog__title">{{post.title}}</figcaption>
+        {% if post.photo %}
+        <img alt="изображение {{post.title}}"
+        height="347" src="{{post.photo.url}}" width="258" class="catalog__image">
+        {% else %}
+        <img alt="изображение {{post.title}}"
+        height="347" src="#" width="258" class="catalog__image">
+        {% endif %}
+        <a href="#" class="button catalog__button">Открыть</a>
+    </figure>
+  </div>
+</section>
+{% endfor %}
+{% endblock %}
