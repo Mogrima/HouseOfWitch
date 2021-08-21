@@ -1,0 +1,22 @@
+// обновленные стандартные стили
+
+@import "utils/fonts";
+@import "utils/vars";
+@import "utils/reset";
+
+@import "common/main";
+// Заголовок
+@import "common/header";
+@import "common/title";
+@import "common/footer";
+// Контролы
+@import "common/controls";
+// Линки
+@import "common/link";
+// Кнопки
+@import "common/buttons";
+// Меню
+@import "common/nav";
+// Таблица
+@import "common/table";
+@import "common/catalog.scss";

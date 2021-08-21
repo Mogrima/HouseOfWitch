@@ -1,0 +1,23 @@
+.catalog {
+  width: 1246px;
+  margin: 0 auto;
+}
+
+.catalog__section-header {
+  margin-bottom: 26px;
+  padding-top: 60px;
+}
+
+.catalog__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.catalog__item {
+  width: 354px;
+  height: 378px;
+  margin-bottom: 50px;
+  background-image: url("../img/catalog-border.png");
+  background-repeat: no-repeat;
+}

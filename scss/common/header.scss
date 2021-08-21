@@ -1,0 +1,54 @@
+.header {
+  background-image: url("../img/bg-header2.png");
+  background-repeat: no-repeat;
+}
+
+.header__top {
+  display: flex;
+  justify-content: space-between;
+  padding: 36px 86px 0 23px;
+}
+
+.header__logo {
+  padding-top: 56px;
+}
+
+.cart {
+  margin-left: auto;
+}
+
+.user-menu {
+  display: flex;
+  // justify-content: space-between;
+  flex-wrap: wrap;
+  width: 444px;
+  margin-left: 36px;
+  padding-top: 7px;
+  font-size: 26px;
+}
+
+.user-menu__item {
+  &:last-child {
+    margin-left: 30px;
+  }
+  a {
+    color: $default-color;
+    text-shadow:0px 1px 0 rgb(0,0,0),0px -1px 0 rgb(0,0,0),1px 0px 0 rgb(0,0,0),-1px 0px 0 rgb(0,0,0),1px 1px 0 rgb(0,0,0),1px -1px 0 rgb(0,0,0),-1px 1px 0 rgb(0,0,0),-1px -1px 0 rgb(0,0,0),0px 2px 0 rgb(0,0,0),0px -2px 0 rgb(0,0,0),2px 0px 0 rgb(0,0,0),-2px 0px 0 rgb(0,0,0),2px 2px 0 rgb(0,0,0),2px -2px 0 rgb(0,0,0),-2px 2px 0 rgb(0,0,0),-2px -2px 0 rgb(0,0,0),0px 3px 0 rgb(0,0,0),0px -3px 0 rgb(0,0,0),3px 0px 0 rgb(0,0,0),-3px 0px 0 rgb(0,0,0),3px 3px 0 rgb(0,0,0),3px -3px 0 rgb(0,0,0),-3px 3px 0 rgb(0,0,0),-3px -3px 0 rgb(0,0,0);
+  }
+}
+
+.header__bottom {
+  padding-bottom: 131px;
+}
+
+.header__title {
+  padding-top: 278px;
+}
+
+
+@media(min-width: 1586px) {
+  .header {
+    width: 1586px;
+    margin: 0 auto;
+  }
+}

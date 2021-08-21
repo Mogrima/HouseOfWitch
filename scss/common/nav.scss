@@ -1,0 +1,22 @@
+.nav__list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav__item {
+  a {
+    font-size: 42px;
+    line-height: 1.5;
+    color: $default-color;
+  }
+}
+
+@media(min-width: 1586px) {
+  .nav {
+    width: 1586px;
+  }
+  .nav__list {
+    width: 1156px;
+    margin: 0 auto;
+  }
+}

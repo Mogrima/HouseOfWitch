@@ -1,0 +1,36 @@
+.footer {
+  margin: 0 auto;
+  margin-top: -20px;
+  background-image: url('../img/graveBottom.png');
+  background-repeat: no-repeat;
+}
+
+.footer__wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 71px;
+}
+
+.social {
+  display: flex;
+}
+
+.social__item {
+  width: 79px;
+  height: 81px;
+
+  &--vk{
+    background-image: url("../img/icon-vk.png");
+  }
+
+  &--inst{
+    margin-left: 33px;
+    background-image: url("../img/icon-inst.png");
+  }
+}
+
+@media(min-width: 1586px) {
+  .footer {
+    width: 1509px;
+  }
+}
