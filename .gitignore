@@ -9,7 +9,7 @@ media
 .DS_Store
 node_modules
 /dist
-static/
+# static/
 
 
 # local env files

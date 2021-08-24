@@ -21,7 +21,7 @@ class ShopHome(ListView):
         context = super().get_context_data(**kwargs)
         context['cat_selected'] = 0
         context['menu'] = menu
-        # context['title'] = 'Главная страница'
+        context['title'] = 'Главная страница'
         return context
 
     def get_queryset(self):
