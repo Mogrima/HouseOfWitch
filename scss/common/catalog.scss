@@ -15,9 +15,36 @@
 }
 
 .catalog__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 354px;
   height: 378px;
   margin-bottom: 50px;
-  background-image: url("../img/catalog-border.png");
+  // background-image: url("../img/catalog-border.png");
   background-repeat: no-repeat;
+
+  &::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    background-image: url("../img/catalog-border.png");
+  }
+}
+
+.catalog__title {
+  display: none;
+}
+
+.catalog__image {
+  width: 354px;
+  height: 378px;
+  object-fit: cover;
 }
