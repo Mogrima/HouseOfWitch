@@ -10,52 +10,56 @@
 	<title>{{title}}</title>
 </head>
 <body>
-  <header class="header">
-    <div class="header__top"><a href="./" class="header__logo logo"><img src="{% static 'shop/img/logo.png' %}"
-          width="127" height="124" alt="Логотип магазина Дом Лесной Ведьмы"></a>
-      <div class="cart"><a href="#" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}" width="78"
-            height="69" alt="корзина"></a></div>
-      <ul class="user-menu">
-        <li class="user-menu__item"><a href="#">Вход</a></li>
-        <li class="user-menu__item"><a href="#">Регистрация</a></li>
-      </ul>
-    </div>
-    <div class="header__bottom">
-      <h1 class="header__title title"><span>Дом</span> лесной ведьмы</h1>
-    </div>
-  </header>
-  <main>
-    <div class="substrate">
-      <nav class="nav">
-        <ul class="nav__list">
-        {% block mainmenu %}
-          {% for m in menu %}
-          <li class="nav__item" ><a href="{% url m.url_name %}">{{m.title}}</a></li>
-          {% endfor %}
-        {% endblock mainmenu %}
+  <div class="wrapper">
+    <div class="wrapper-content">
+      <header class="header">
+        <div class="header__top"><a href="./" class="header__logo logo"><img src="{% static 'shop/img/logo.png' %}"
+              width="127" height="124" alt="Логотип магазина Дом Лесной Ведьмы"></a>
+          <div class="cart"><a href="#" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}" width="78"
+                height="69" alt="корзина"></a></div>
+          <ul class="user-menu">
+            <li class="user-menu__item"><a href="#">Вход</a></li>
+            <li class="user-menu__item"><a href="#">Регистрация</a></li>
+          </ul>
+        </div>
+        <div class="header__bottom">
+          <h1 class="header__title title"><span>Дом</span> лесной ведьмы</h1>
+        </div>
+      </header>
+      <main>
+        <div class="substrate">
+          <nav class="nav">
+            <ul class="nav__list">
+            {% block mainmenu %}
+              {% for m in menu %}
+              <li class="nav__item" ><a href="{% url m.url_name %}">{{m.title}}</a></li>
+              {% endfor %}
+            {% endblock mainmenu %}
+            </ul>
+          </nav>
+      <!-- Хлебные крошки -->
+      {% block breadcrumbs %}
+      {% endblock %}
+    
+    <!-- Блок контента -->
+    {% block content %}
+    {% endblock %}
+      </div>
+    </main>
+    <!-- Конец блока контента -->
+    
+    <footer class="footer">
+      <div class="footer__wrapper">
+        <ul class="social">
+          <li class="social__item social__item--vk"><a href="#"><span class="visually-hidden">Вконтакте</span></a>
+          </li>
+          <li class="social__item social__item--inst"><a href="#"><span class="visually-hidden">Инстиграмм</span></a>
+          </li>
         </ul>
-      </nav>
-	<!-- Хлебные крошки -->
-	{% block breadcrumbs %}
-	{% endblock %}
-
-<!-- Блок контента -->
-{% block content %}
-{% endblock %}
+        <p class="footer__copyright">Copyrignt 2021. Все права защищены</p>
+      </div>
+    </footer>
+    </div>
   </div>
-</main>
-<!-- Конец блока контента -->
-
-<footer class="footer">
-  <div class="footer__wrapper">
-    <ul class="social">
-      <li class="social__item social__item--vk"><a href="#"><span class="visually-hidden">Вконтакте</span></a>
-      </li>
-      <li class="social__item social__item--inst"><a href="#"><span class="visually-hidden">Инстиграмм</span></a>
-      </li>
-    </ul>
-    <p class="footer__copyright">Copyrignt 2021. Все права защищены</p>
-  </div>
-</footer>
 </body>
 </html>
