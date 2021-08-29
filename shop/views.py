@@ -5,23 +5,17 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 
 from .models import *
+from  .utils import *
 
-menu = [{'title': "Каталог", 'url_name': 'home'},
-        {'title': "О нас", 'url_name': 'about'},
-        {'title': "Статьи", 'url_name': 'article'},
-        
-]
-
-class ShopHome(ListView):
+class ShopHome(DataMixin, ListView):
     model = Goods
     template_name = 'shop/index.html'
     context_object_name = 'posts'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['cat_selected'] = 0
-        context['menu'] = menu
-        context['title'] = 'Главная страница'
+        c_def = self.get_user_context(title="Главная страница")
+        context = dict(list(context.items()) + list(c_def.items()))
         return context
 
     def get_queryset(self):
@@ -40,22 +34,22 @@ def pageNotFound(request, exception):
     return HttpResponseNotFound("<h1>Страница не найдена.</h1>")
 
 
-class ShowArticle(ListView):
+class ShowArticle(DataMixin, ListView):
     model = Article
     template_name = 'shop/article.html'
     context_object_name = 'posts'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = menu
-        context['title'] = 'Статьи'
+        c_def = self.get_user_context(title="Статьи")
+        context = dict(list(context.items()) + list(c_def.items()))
         return context
 
  
 def login(request):
     return HttpResponse("Авторизация")
 
-class ShowGoods(DetailView):
+class ShowGoods(DataMixin, DetailView):
     model = Goods
     template_name = 'shop/goods.html'
     slug_url_kwarg = 'post_slug'
@@ -63,12 +57,12 @@ class ShowGoods(DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = context['post']
-        context['menu'] = menu
+        c_def = self.get_user_context(title=context['post'])
+        context = dict(list(context.items()) + list(c_def.items()))
         return context
 
 
-class GoodsCategory(ListView):
+class GoodsCategory(DataMixin, ListView):
     model = Goods
     template_name = 'shop/index.html'
     context_object_name = 'posts'
@@ -76,9 +70,9 @@ class GoodsCategory(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Категория - ' + str(context['posts'][0].cat)
-        context['menu'] = menu
-        context['cat_selected'] = context['posts'][0].cat_id
+        c_def = self.get_user_context(title='Категория - ' + str(context['posts'][0].cat),
+                                      cat_selected=context['posts'][0].cat_id)
+        context = dict(list(context.items()) + list(c_def.items()))
         return context
  
     def get_queryset(self):
