@@ -48,7 +48,7 @@ class ShowArticle(DataMixin, ListView):
 
  
 def login(request):
-    return HttpResponse("Авторизация")
+    return render(request, 'shop/login.html', {'menu': menu, 'title': 'Авторизация'})
 
 class ShowGoods(DataMixin, DetailView):
     model = Goods

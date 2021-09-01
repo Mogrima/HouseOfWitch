@@ -1,18 +1,18 @@
 label {
   display: block;
-  font-size: 16px;
+  font-size: 32px;
+  color: $mainFontColor;
   margin-bottom: 10px;
-  text-align: center;
 }
 input {
-  padding: 16px 26px;
+  width: 365px;
+  padding: 20px 26px;
   margin-bottom: 30px;
-  border-radius: 20px;
+  background-color: $input-color;
+  border-radius: 4px;
+  border-color: $input-color;
 }
 textarea {
   padding: 30px 27px;
   border-radius: 14px;
-}
-input, textarea {
-  width: 100%;
 }
