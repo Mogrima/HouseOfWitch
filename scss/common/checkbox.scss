@@ -1,0 +1,64 @@
+.checkbox {
+  height: 0;
+  width: 0;
+  padding: 10px;
+}
+
+.checkbox + .checkbox__name {
+  position: relative;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  font-size: 21px;
+  line-height: 30px;
+  color: $mainFontColor;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.23, 1);
+  cursor: pointer;
+}
+
+.checkbox + .checkbox__name > .checkbox__indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 14px;
+  width: 56px;
+  height: 51px;
+  background: transparent;
+  border: 3px solid $deep-main-color;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+
+.checkbox + .checkbox__name:hover,
+.checkbox:focus + .checkbox__name,
+.checkbox:checked + .checkbox__name {
+  color: $mainFontColor;
+}
+
+.checkbox + .checkbox__name:hover > .checkbox__indicator {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.checkbox:checked + .checkbox__name > .checkbox__indicator {
+  border: 2px solid $deep-main-color;
+  background-color: $deep-main-color;
+  animation: shrink-bounce 200ms cubic-bezier(0.4, 0, 0.23, 1);
+}
+
+.checkbox:checked + .checkbox__name > .checkbox__indicator::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 7px;
+  width: 34px;
+  height: 39px;
+  background-image: url("../img/arrow-check.png");
+  transform-origin: 0% 100%;
+  animation: moveFromTop 300ms ease-in-out;
+}
+
+.checkbox:disabled + .checkbox__name {
+  color: $mainFontColor;
+  opacity: 0.5;
+}
