@@ -1,17 +1,22 @@
-.login__wrapper {
+.login {
   width: 984px;
-  margin: 0 auto;
-  margin-top: 100px;
-  padding-bottom: 110px;
-  background-image: url("../img/bg-login.png");
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: #a651d8;
+  border: 1px solid #9228cf;
+}
+
+.login__wrapper {
+  margin: 76px;
+  background-color: #e8f186;
+  // background-image: url("../img/bg-login.png");
+  // background-size: cover;
+  // background-repeat: no-repeat;
 }
 
 .login__form {
-  width: 400px;
+  width: 570px;
   margin: 0 auto;
-  padding-top: 105px;
+  padding-top: 55px;
+  padding-bottom: 50px;
 }
 
 .login__label {

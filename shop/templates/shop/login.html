@@ -10,6 +10,35 @@
         <input id="login-name" class="login__input" type="text" name="username" maxlength="20" required>
       </p>
       <p class="login__input-wrapper">
+        <label for="useremail" class="login__label">Электронная почта</label>
+        <input id="useremail" class="login__input" type="email" name="useremail" maxlength="20" required>
+      </p>
+      <p class="login__input-wrapper">
+        <label for="login-pass" class="login__label">Пароль</label>
+        <input id="login-pass" class="login__input" type="password" name="password" maxlength="20" required>
+      </p>
+      <p class="login__input-wrapper">
+        <label for="userpass2" class="login__label">Повторите пароль</label>
+        <input id="userpass2" class="login__input" type="password" name="userpass2" maxlength="20" required>
+      </p>
+      <div class="login__info">
+      <input id="login-remember" class="checkbox login__info-checkbox" type="checkbox" name="remember"> <label for="login-remember" class="checkbox__name login__checkbox-name"><span class="checkbox__indicator login__checkbox-indicator"></span>Запомните меня</label>
+    </div>
+      <button class="button login__button" type="submit" value="enter" name="submit">Зарегистрироваться</button>
+    </form>
+    <!-- <a class="login__info login__info--last link link--modal" href="login.php">Если форма работает некорректно</a>
+     <button class="close login__close-log">Закрыть</button> -->
+  </div>
+</section>
+<section class="login">
+  <div class="login__wrapper">
+    <h2 class="visually-hidden">Здесь можно авторизоваться</h2>
+    <form id="login__form" class="login__form" method="POST" action="#">
+      <p class="login__input-wrapper">
+        <label for="login-name" class="login__label">Логин</label>
+        <input id="login-name" class="login__input" type="text" name="username" maxlength="20" required>
+      </p>
+      <p class="login__input-wrapper">
         <label for="login-pass" class="login__label">Пароль</label>
         <input id="login-pass" class="login__input" type="password" name="password" maxlength="20" required>
       </p>
