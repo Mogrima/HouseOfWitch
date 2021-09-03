@@ -26,6 +26,9 @@ class ShopHome(DataMixin, ListView):
 def about(request):
     return render(request, 'shop/about.html', {'menu': menu, 'title': 'О нас'})
 
+def catalog(request):
+    return render(request, 'shop/catalog.html', {'menu': menu, 'title': 'Каталог'})
+
 
 def categories(request, catid):
     return HttpResponse(f"<h1>Товары по категориям</h1><p>{catid}</p>")
