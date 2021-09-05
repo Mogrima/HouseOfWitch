@@ -77,9 +77,13 @@ input[type="checkbox"].visually-hidden {
   }
 }
 
+.wrapper__container {
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
 .substrate {
   margin: 0 auto;
-  padding-bottom: 592px;
   // background-color: $substrate-color;
   background-image: url('../img/substate.png');
   background-repeat: no-repeat;

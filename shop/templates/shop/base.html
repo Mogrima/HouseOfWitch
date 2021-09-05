@@ -66,8 +66,10 @@
       {% endblock %}
     
     <!-- Блок контента -->
+    <div class="wrapper__container">
     {% block content %}
     {% endblock %}
+    </div>
     {% if page_obj.has_other_pages %}
     <nav>
         <ul>
