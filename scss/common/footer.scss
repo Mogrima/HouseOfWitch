@@ -30,13 +30,13 @@
   }
 }
 
-@media(min-width: 1586px) {
+@media(min-width: $lgwidth) {
   .footer {
     width: 1509px;
   }
 }
 
-@media(max-width: 1586px) {
+@media(max-width: $lgwidth) {
   .footer {
     width: 1200px;
     

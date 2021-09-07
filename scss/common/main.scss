@@ -88,18 +88,18 @@ input[type="checkbox"].visually-hidden {
 }
 
 .section-header {
-  font-size: 42px;
+  font-size: $titleSizeLG;
   color: $default-color;
   text-align: center;
 }
 
-@media(min-width: 1586px) {
+@media(min-width: $lgwidth) {
   .substrate {
-    width: 1586px;
+    width: $lgwidth;
   }
 }
 
-@media(max-width: 1586px) {
+@media(max-width: $lgwidth) {
   .wrapper {
     // background-color: hotpink;
   }
@@ -110,6 +110,6 @@ input[type="checkbox"].visually-hidden {
   }
 
   .section-header {
-    font-size: 32px;
+    font-size: $titleSize;
   }
 }

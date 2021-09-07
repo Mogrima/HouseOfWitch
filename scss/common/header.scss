@@ -46,14 +46,14 @@
 }
 
 
-@media(min-width: 1586px) {
+@media(min-width: $lgwidth) {
   .header {
-    width: 1586px;
+    width: $lgwidth;
     margin: 0 auto;
   }
 }
 
-@media(max-width: 1586px) {
+@media(max-width: $lgwidth) {
   .header {
     width: 1200px;
     margin: 0 auto;

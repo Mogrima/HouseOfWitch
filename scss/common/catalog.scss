@@ -47,7 +47,7 @@
   object-fit: cover;
 }
 
-@media(max-width: 1586px) {
+@media(max-width: $lgwidth) {
   .catalog {
     width: 900px;
   }

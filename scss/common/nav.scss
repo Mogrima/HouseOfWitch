@@ -7,15 +7,15 @@
 
 .nav__item {
   a {
-    font-size: 42px;
+    font-size: $titleSizeLG;
     line-height: 1.5;
     color: $default-color;
   }
 }
 
-@media(min-width: 1586px) {
+@media(min-width: $lgwidth) {
   .nav {
-    width: 1586px;
+    width: $lgwidth;
   }
   // .nav__list {
   //   width: 1156px;
@@ -23,7 +23,7 @@
   // }
 }
 
-@media(max-width: 1586px) {
+@media(max-width: $lgwidth) {
   .nav__list {
     padding: 0 90px;
     // width: 1156px;
@@ -32,7 +32,7 @@
 
   .nav__item {
     a {
-      font-size: 32px;
+      font-size: $titleSize;
     }
   }
 }
