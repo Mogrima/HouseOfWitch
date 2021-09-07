@@ -25,7 +25,7 @@
           <div class="cart"><a href="#" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}" width="78"
                 height="69" alt="корзина"></a></div>
           <ul class="user-menu">
-            <li class="user-menu__item"><a class="user-menu__link" href="#">Вход</a></li>
+            <li class="user-menu__item"><a class="user-menu__link" href="{% url 'auth' %}">Вход</a></li>
             <li class="user-menu__item"><a class="user-menu__link" href="{% url 'login' %}">Регистрация</a></li>
           </ul>
         </div>

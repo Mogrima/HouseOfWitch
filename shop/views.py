@@ -51,7 +51,11 @@ class ShowArticle(DataMixin, ListView):
 
  
 def login(request):
-    return render(request, 'shop/login.html', {'menu': menu, 'title': 'Авторизация'})
+    return render(request, 'shop/login.html', {'menu': menu, 'title': 'Регистрация'})
+
+ 
+def Signin(request):
+    return render(request, 'shop/signin.html', {'menu': menu, 'title': 'Авторизация'})
 
 class ShowGoods(DataMixin, DetailView):
     model = Goods
