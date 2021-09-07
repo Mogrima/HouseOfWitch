@@ -1,14 +1,15 @@
 .footer {
   margin: 0 auto;
-  margin-top: -20px;
-  background-image: url('../img/graveBottom.png');
-  background-repeat: no-repeat;
 }
 
 .footer__wrapper {
   display: flex;
   justify-content: space-between;
   padding-top: 71px;
+  padding-bottom: 30px;
+  margin-top: -20px;
+  background-image: url('../img/graveBottom.png');
+  background-repeat: no-repeat;
 }
 
 .social {
@@ -32,5 +33,26 @@
 @media(min-width: 1586px) {
   .footer {
     width: 1509px;
+  }
+}
+
+@media(max-width: 1586px) {
+  .footer {
+    width: 1200px;
+    
+  }
+  .footer__wrapper {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .social__item {
+    width: 69px;
+    height: 71px;
+    background-size: contain;
+
+    &--inst{
+      margin-left: 23px;
+    }
   }
 }

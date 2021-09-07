@@ -21,7 +21,6 @@
   width: 354px;
   height: 378px;
   margin-bottom: 50px;
-  // background-image: url("../img/catalog-border.png");
   background-repeat: no-repeat;
 
   &::before {
@@ -46,4 +45,20 @@
   width: 354px;
   height: 378px;
   object-fit: cover;
+}
+
+@media(max-width: 1586px) {
+  .catalog {
+    width: 900px;
+  }
+
+  .catalog__item {
+    width: 280px;
+    height: 299px;
+
+    &:last-child {
+      margin-right: auto;
+      margin-left: 20px;
+    }
+  }
 }

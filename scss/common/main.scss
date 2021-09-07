@@ -31,8 +31,6 @@ body {
 
 h1, h2, h3, h4, h5, h6 { margin: 0; }
 
-input, textarea, select, button { border: 1px solid $border-base; }
-
 a {
 	text-decoration: none;
 }
@@ -89,14 +87,29 @@ input[type="checkbox"].visually-hidden {
   background-repeat: no-repeat;
 }
 
+.section-header {
+  font-size: 42px;
+  color: $default-color;
+  text-align: center;
+}
+
 @media(min-width: 1586px) {
   .substrate {
     width: 1586px;
   }
 }
 
-.section-header {
-  font-size: 42px;
-  color: $default-color;
-  text-align: center;
+@media(max-width: 1586px) {
+  .wrapper {
+    // background-color: hotpink;
+  }
+
+  .substrate {
+    width: 1200px;
+    background-size: cover;
+  }
+
+  .section-header {
+    font-size: 32px;
+  }
 }

@@ -1,6 +1,8 @@
 .nav__list {
   display: flex;
   justify-content: space-between;
+  width: 1156px;
+  margin: 0 auto;
 }
 
 .nav__item {
@@ -15,8 +17,22 @@
   .nav {
     width: 1586px;
   }
+  // .nav__list {
+  //   width: 1156px;
+  //   margin: 0 auto;
+  // }
+}
+
+@media(max-width: 1586px) {
   .nav__list {
-    width: 1156px;
-    margin: 0 auto;
+    padding: 0 90px;
+    // width: 1156px;
+    // margin: 0 auto;
+  }
+
+  .nav__item {
+    a {
+      font-size: 32px;
+    }
   }
 }

@@ -19,7 +19,6 @@
 
 .user-menu {
   display: flex;
-  // justify-content: space-between;
   flex-wrap: wrap;
   width: 444px;
   margin-left: 36px;
@@ -51,5 +50,44 @@
   .header {
     width: 1586px;
     margin: 0 auto;
+  }
+}
+
+@media(max-width: 1586px) {
+  .header {
+    width: 1200px;
+    margin: 0 auto;
+    background-image: url("../img/bg-header2@1200.png");
+  }
+
+  .header__top {
+    padding-top: 15px;
+    padding-left: 5px;
+  }
+
+  .header__logo {
+    padding-top: 47px;
+  }
+
+  .logo {
+    img {
+      width: 105px;
+      height: 102px;
+    }
+  }
+
+  .header__bottom {
+    padding-bottom: 77px;
+  }
+
+  .header__title {
+    padding-top: 220px;
+  }
+
+  .user-menu {
+    justify-content: flex-end;
+    width: 380px;
+    margin-left: 19px;
+    font-size: 23px;
   }
 }
