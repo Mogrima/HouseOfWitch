@@ -81,10 +81,16 @@ input[type="checkbox"].visually-hidden {
 }
 
 .substrate {
+  position: relative;
+  z-index: 1;
   margin: 0 auto;
   // background-color: $substrate-color;
   background-image: url('../img/substate.png');
   background-repeat: no-repeat;
+}
+
+.substrate__container {
+  margin-top: -4px;
 }
 
 .section-header {
@@ -111,5 +117,56 @@ input[type="checkbox"].visually-hidden {
 
   .section-header {
     font-size: $titleSize;
+  }
+}
+
+@media(max-width: $desktopWidth) {
+  .substrate {
+    width: 100%;
+    margin: 0;
+    background-image: none;
+    background-color: $substrate-color;
+    
+  }
+
+  .wrapper__container {
+    padding-bottom: 50px;
+  }
+
+  .substrate__container {
+   position: relative;
+   z-index: 50;
+    width: 900px;
+    margin: 0 auto;
+    margin-top: -4px;
+    background: url('../img/grave-left.png') top left/contain repeat-y,
+    url('../img/grave-right.png') top right/contain repeat-y;
+    background-color: $substrate-color;
+  }
+}
+
+@media(min-width: 900px) and (max-width: $desktopWidth) {
+  .substrate {
+     &::before {
+      content: "";
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 151px;
+      background-color: #29147B;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 151px;
+      background-color: #29147B;
+    }
   }
 }
