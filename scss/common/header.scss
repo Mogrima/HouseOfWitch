@@ -1,4 +1,6 @@
 .header {
+  position: relative;
+  z-index: 100;
   background-image: url("../img/bg-header2.png");
   background-repeat: no-repeat;
 }
@@ -23,7 +25,7 @@
   width: 444px;
   margin-left: 36px;
   padding-top: 7px;
-  font-size: 26px;
+  font-size: $titleSizeTablet;
 }
 
 .user-menu__item {
@@ -38,7 +40,7 @@
 }
 
 .header__bottom {
-  padding-bottom: 131px;
+  padding-bottom: 129px;
 }
 
 .header__title {
@@ -55,7 +57,7 @@
 
 @media(max-width: $lgwidth) {
   .header {
-    width: 1200px;
+    width: $desktopWidth;
     margin: 0 auto;
     background-image: url("../img/bg-header2@1200.png");
   }
@@ -89,5 +91,46 @@
     width: 380px;
     margin-left: 19px;
     font-size: 23px;
+  }
+}
+
+@media(max-width: $desktopWidth) {
+  .header {
+    width: 900px;
+    background-size: contain;
+    background-position-x: center;
+  }
+
+  .header__top {
+    padding-left: 9px;
+    padding-right: 25px;
+  }
+
+  .header__logo {
+    padding-top: 26px;
+  }
+
+  .header__bottom {
+    padding-bottom: 61px;
+  }
+
+  .header__title {
+    padding-top: 115px;
+  }
+
+  .cart__link {
+    img {
+      width: 58px;
+      height: 51px;
+    }
+  }
+
+  .user-menu {
+    width: 340px;
+    font-size: 20px;
+  }
+
+  .section-header {
+    font-size: $titleSizeTablet;
   }
 }

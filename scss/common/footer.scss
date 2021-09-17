@@ -3,8 +3,11 @@
 }
 
 .footer__wrapper {
+  position: relative;
+  z-index: 50;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-top: 71px;
   padding-bottom: 30px;
   margin-top: -20px;
@@ -19,6 +22,7 @@
 .social__item {
   width: 79px;
   height: 81px;
+  background-repeat: no-repeat;
 
   &--vk{
     background-image: url("../img/icon-vk.png");
@@ -38,7 +42,7 @@
 
 @media(max-width: $lgwidth) {
   .footer {
-    width: 1200px;
+    width: $desktopWidth;
     
   }
   .footer__wrapper {
@@ -54,5 +58,24 @@
     &--inst{
       margin-left: 23px;
     }
+  }
+}
+
+@media(max-width: $desktopWidth) {
+  .footer {
+    width: 900px;
+    
+  }
+
+  .footer__wrapper {
+    margin-top: -6px;
+    background-image: url("../img/graveBottom@900.png");
+    background-position-x: center;
+    background-size: 808px auto;
+  }
+
+  .social__item {
+    width: 59px;
+    height: 60px;
   }
 }

@@ -14,3 +14,9 @@
     font-size: 52px;
   }
 }
+
+@media(max-width: $desktopWidth) {
+  .title {
+    font-size: 42px;
+  }
+}

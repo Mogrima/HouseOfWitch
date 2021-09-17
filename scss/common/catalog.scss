@@ -74,3 +74,19 @@
     height: 299px;
   }
 }
+
+@media(max-width: $desktopWidth) {
+  .catalog {
+    width: 700px;
+  }
+
+  .catalog__wrapper {
+    padding: 0 15px;
+  }
+
+  
+  .catalog__image {
+    width: 270px;
+    height: 288px;
+  }
+}

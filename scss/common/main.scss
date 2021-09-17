@@ -84,7 +84,6 @@ input[type="checkbox"].visually-hidden {
   position: relative;
   z-index: 1;
   margin: 0 auto;
-  // background-color: $substrate-color;
   background-image: url('../img/substate.png');
   background-repeat: no-repeat;
 }
@@ -106,12 +105,9 @@ input[type="checkbox"].visually-hidden {
 }
 
 @media(max-width: $lgwidth) {
-  .wrapper {
-    // background-color: hotpink;
-  }
 
   .substrate {
-    width: 1200px;
+    width: $desktopWidth;
     background-size: cover;
   }
 
@@ -121,9 +117,15 @@ input[type="checkbox"].visually-hidden {
 }
 
 @media(max-width: $desktopWidth) {
+  // .wrapper {
+  //   background-color: hotpink;
+  // }
+}
+
+@media(max-width: $desktopWidth) {
   .substrate {
-    width: 100%;
-    margin: 0;
+    width: 900px;
+    margin: 0 auto;
     background-image: none;
     background-color: $substrate-color;
     
@@ -137,7 +139,6 @@ input[type="checkbox"].visually-hidden {
    position: relative;
    z-index: 50;
     width: 900px;
-    margin: 0 auto;
     margin-top: -4px;
     background: url('../img/grave-left.png') top left/contain repeat-y,
     url('../img/grave-right.png') top right/contain repeat-y;
