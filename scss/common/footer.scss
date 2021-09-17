@@ -10,7 +10,7 @@
   align-items: center;
   padding-top: 71px;
   padding-bottom: 30px;
-  margin-top: -20px;
+  margin-top: -10px;
   background-image: url('../img/graveBottom.png');
   background-repeat: no-repeat;
 }
@@ -48,6 +48,8 @@
   .footer__wrapper {
     padding-left: 30px;
     padding-right: 30px;
+    background-position-x: center;
+    background-size: 1135px auto;
   }
 
   .social__item {
@@ -70,7 +72,6 @@
   .footer__wrapper {
     margin-top: -6px;
     background-image: url("../img/graveBottom@900.png");
-    background-position-x: center;
     background-size: 808px auto;
   }
 
