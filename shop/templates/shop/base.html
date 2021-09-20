@@ -22,12 +22,16 @@
       <header class="header">
         <div class="header__top"><a href="./" class="header__logo logo"><img src="{% static 'shop/img/logo.png' %}"
               width="127" height="124" alt="Логотип магазина Дом Лесной Ведьмы"></a>
-          <div class="cart"><a href="#" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}" width="78"
+          <div class="cart header__cart"><a href="#" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}" width="78"
                 height="69" alt="корзина"></a></div>
-          <ul class="user-menu">
+         <nav class="user-menu user-menu--nojs user-menu--closed">
+          <button class="user-menu__toggle" type="button"><span class="visually-hidden">Открыть</span>
+          </button>
+          <ul class="user-menu__list">
             <li class="user-menu__item"><a class="user-menu__link" href="{% url 'auth' %}">Вход</a></li>
             <li class="user-menu__item"><a class="user-menu__link" href="{% url 'login' %}">Регистрация</a></li>
           </ul>
+         </nav>
         </div>
         <div class="header__bottom">
           <h1 class="header__title title"><span>Дом</span> лесной ведьмы</h1>
@@ -117,5 +121,6 @@
     </footer>
     </div>
   </div>
+<script src="{% static 'shop/js/main.js' %}"></script>
 </body>
 </html>

@@ -19,26 +19,6 @@
   margin-left: auto;
 }
 
-.user-menu {
-  display: flex;
-  flex-wrap: wrap;
-  width: 444px;
-  margin-left: 36px;
-  padding-top: 7px;
-  font-size: $titleSizeTablet;
-}
-
-.user-menu__item {
-  &:last-child {
-    margin-left: 30px;
-  }
-}
-
-.user-menu__link {
-  color: $default-color;
-  text-shadow:0px 1px 0 rgb(0,0,0),0px -1px 0 rgb(0,0,0),1px 0px 0 rgb(0,0,0),-1px 0px 0 rgb(0,0,0),1px 1px 0 rgb(0,0,0),1px -1px 0 rgb(0,0,0),-1px 1px 0 rgb(0,0,0),-1px -1px 0 rgb(0,0,0),0px 2px 0 rgb(0,0,0),0px -2px 0 rgb(0,0,0),2px 0px 0 rgb(0,0,0),-2px 0px 0 rgb(0,0,0),2px 2px 0 rgb(0,0,0),2px -2px 0 rgb(0,0,0),-2px 2px 0 rgb(0,0,0),-2px -2px 0 rgb(0,0,0),0px 3px 0 rgb(0,0,0),0px -3px 0 rgb(0,0,0),3px 0px 0 rgb(0,0,0),-3px 0px 0 rgb(0,0,0),3px 3px 0 rgb(0,0,0),3px -3px 0 rgb(0,0,0),-3px 3px 0 rgb(0,0,0),-3px -3px 0 rgb(0,0,0);
-}
-
 .header__bottom {
   padding-bottom: 129px;
 }
@@ -85,13 +65,6 @@
   .header__title {
     padding-top: 220px;
   }
-
-  .user-menu {
-    justify-content: flex-end;
-    width: 380px;
-    margin-left: 19px;
-    font-size: 23px;
-  }
 }
 
 @media(max-width: $desktopWidth) {
@@ -123,11 +96,6 @@
       width: 58px;
       height: 51px;
     }
-  }
-
-  .user-menu {
-    width: 340px;
-    font-size: 20px;
   }
 
   .section-header {
