@@ -50,3 +50,22 @@
     }
   }
 }
+
+@media(max-width: $smDesktopWidth) {
+  .nav {
+    width: 767px;
+    margin: 0 auto;
+    padding: 0 25px;
+  }
+
+  .nav__list {
+    width: 100%;
+    padding: 0;
+  }
+
+  .nav__item {
+    a {
+      font-size: $titleSizeMobile;
+    }
+  }
+}

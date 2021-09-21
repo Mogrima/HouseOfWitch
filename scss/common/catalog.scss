@@ -90,3 +90,29 @@
     height: 288px;
   }
 }
+
+@media(max-width: $smDesktopWidth) {
+
+  .catalog__wrapper {
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  .catalog__item {
+    width: 230px;
+    height: 246px;
+
+    &:nth-child(3n + 1) {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-left: 0;
+    }
+  }
+
+  .catalog__image {
+    width: 230px;
+    height: 246px;
+  }
+}

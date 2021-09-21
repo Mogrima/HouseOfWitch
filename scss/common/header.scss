@@ -102,3 +102,21 @@
     font-size: $titleSizeTablet;
   }
 }
+
+@media(max-width: $smDesktopWidth) {
+  .header {
+    width: 100%;
+  }
+
+  .header__logo {
+    padding-top: 13px;
+  }
+
+  .header__cart {
+    margin-right: 20px;
+  }
+
+  .header__title {
+    padding-top: 100px;
+  }
+}

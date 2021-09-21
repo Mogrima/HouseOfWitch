@@ -20,3 +20,9 @@
     font-size: 42px;
   }
 }
+
+@media(max-width: $smDesktopWidth) {
+  .title {
+    font-size: 35px;
+  }
+}

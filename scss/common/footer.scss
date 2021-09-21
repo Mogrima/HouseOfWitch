@@ -34,6 +34,10 @@
   }
 }
 
+.footer__copyright {
+  font-size: $mainFontSize;
+}
+
 @media(min-width: $lgwidth) {
   .footer {
     width: 1509px;
@@ -78,5 +82,24 @@
   .social__item {
     width: 59px;
     height: 60px;
+  }
+}
+
+@media(max-width: $smDesktopWidth) {
+  .footer {
+    width: 100%;
+  }
+
+  .footer__wrapper {
+    background-size: contain;
+  }
+
+  .social__item {
+    width: 49px;
+    height: 50px;
+  }
+
+  .footer__copyright {
+    font-size: $mainFontSizeSm;
   }
 }
