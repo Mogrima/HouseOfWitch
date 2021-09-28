@@ -11,10 +11,6 @@ menu = [{'title': "Главная", 'url_name': 'home', 'url_link': '/'},
 
         ]
 
-user_menu = [{'url_name': 'auth', 'url_link': '/'},
-		{'url_name': 'signup', 'url_link': '/'},
-        ]
-
 class DataMixin:
 	paginate_by = 6
 	def get_user_context(self, **kwargs):
@@ -22,7 +18,6 @@ class DataMixin:
 		cats = Category.objects.annotate(Count('goods'))
 		
 		context['menu'] = menu
-		context['user_menu'] = user_menu
 
 		context['cats'] = cats
 		if 'cat_selected' not in context:
