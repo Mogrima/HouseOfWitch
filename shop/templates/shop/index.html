@@ -18,7 +18,7 @@
           height="347" src="../../static/shop/img/notavailable2.jpg" width="258" class="catalog__image">
         </div>
         {% endif %}
-        <a href="#" class="button catalog__button">Открыть</a>
+        <a href="{{ post.get_absolute_url }}" class="button catalog__button">Открыть</a>
     </figure>
     {% endfor %}
   </div>
