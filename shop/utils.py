@@ -1,13 +1,18 @@
 from django.db.models import Count
+from django.http import request
 
 from .models import *
 
 
-menu = [{'title': "Главная", 'url_name': 'home'},
-		{'title': "Каталог", 'url_name': 'catalog'},
-        {'title': "О нас", 'url_name': 'about'},
-        {'title': "Статьи", 'url_name': 'article'},
+menu = [{'title': "Главная", 'url_name': 'home', 'url_link': '/'},
+		{'title': "Каталог", 'url_name': 'catalog', 'url_link': 'catalog'},
+        {'title': "О нас", 'url_name': 'about', 'url_link': 'about'},
+        {'title': "Статьи", 'url_name': 'article', 'url_link': 'article'},
 
+        ]
+
+user_menu = [{'url_name': 'auth', 'url_link': '/'},
+		{'url_name': 'signup', 'url_link': '/'},
         ]
 
 class DataMixin:
@@ -17,6 +22,7 @@ class DataMixin:
 		cats = Category.objects.annotate(Count('goods'))
 		
 		context['menu'] = menu
+		context['user_menu'] = user_menu
 
 		context['cats'] = cats
 		if 'cat_selected' not in context:
