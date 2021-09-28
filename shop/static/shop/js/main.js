@@ -16,3 +16,25 @@ if (navUser != null) {
     }
   });
 }
+
+const navMain = document.querySelector('.nav');
+const navToggle = document.querySelector('.nav__toggle');
+
+navMain.classList.remove('nav--nojs');
+
+navToggle.addEventListener('click', function () {
+  if (navMain.classList.contains('nav--closed')) {
+    navMain.classList.remove('nav--closed');
+    navMain.classList.add('nav--opened');
+  } else {
+    navMain.classList.add('nav--closed');
+    navMain.classList.remove('nav--opened');
+  }
+});
+
+const activeMenu = document.querySelectorAll('.nav__item--active');
+
+if (activeMenu[1]) {
+  activeMenu[0].classList.remove('nav__item--active')
+}
+
