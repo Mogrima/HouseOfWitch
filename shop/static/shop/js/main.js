@@ -37,3 +37,17 @@ function toggleClass(parent, classA, classB) {
 toggleClass('nav', 'user-menu--closed', 'user-menu--opened');
 toggleClass('nav', 'nav--closed', 'nav--opened');
 
+const navContainer = document.querySelector('.nav-container');
+console.log(navContainer);
+const header = document.querySelector('.header');
+
+window.onscroll = function () {
+  console.log(window.pageYOffset);
+  if (window.pageYOffset > 495) {
+    navContainer.classList.add('nav-container--fixed');
+    header.style = 'padding-top: 70px';
+  } else {
+    navContainer.classList.remove('nav-container--fixed');
+    }
+}
+
