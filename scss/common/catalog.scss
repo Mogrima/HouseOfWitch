@@ -116,3 +116,9 @@
     height: 246px;
   }
 }
+
+@media(max-width: $smMobileWidth) {
+  .catalog {
+    width: auto;
+  }
+}

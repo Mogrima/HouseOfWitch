@@ -91,9 +91,18 @@
     align-items: center;
     padding: 0 25px;
     background-color: $default-color;
+    border: 2px solid $deep-main-color;
 
     .cart {
       display: block;
+      margin-right: 10px;
+    }
+
+    .cart__link {
+      img {
+        width: 48px;
+        height: 42px;
+      }
     }
 
     .user-menu {
@@ -171,6 +180,7 @@
 
   .nav__list {
     position: absolute;
+    top: 8px;
     left: 53px;
     flex-direction: column;
   }

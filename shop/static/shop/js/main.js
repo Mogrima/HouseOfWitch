@@ -45,8 +45,9 @@ window.onscroll = function () {
   console.log(window.pageYOffset);
   if (window.pageYOffset > 495) {
     navContainer.classList.add('nav-container--fixed');
-    header.style = 'padding-top: 70px';
+    header.style = 'padding-top: 52px';
   } else {
+    header.style = '';
     navContainer.classList.remove('nav-container--fixed');
     }
 }
