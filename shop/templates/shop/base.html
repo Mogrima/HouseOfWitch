@@ -22,7 +22,7 @@
       <header class="header">
         <div class="header__top"><a href="./" class="header__logo logo"><img src="{% static 'shop/img/logo.png' %}"
               width="127" height="124" alt="Логотип магазина Дом Лесной Ведьмы"></a>
-          <div class="cart header__cart"><a href="#" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}" width="78"
+          <div class="cart header__cart"><a href="{% url 'cart' %}" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}" width="78"
                 height="69" alt="корзина"></a></div>
          <nav class="user-menu user-menu--nojs user-menu--closed header__user-menu">
           <button class="user-menu__toggle" type="button" data-toggle="toggleClass"><span class="visually-hidden">Открыть</span>
@@ -53,7 +53,7 @@
                 </ul>
               </nav>
         
-              <div class="cart"><a href="#" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}"
+              <div class="cart"><a href="{% url 'cart' %}" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}"
                     width="78" height="69" alt="корзина"></a></div>
               <nav class="user-menu user-menu--nojs user-menu--closed">
                 <button class="user-menu__toggle" type="button" data-toggle="toggleClass"><span class="visually-hidden">Открыть</span>

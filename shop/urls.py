@@ -10,6 +10,7 @@ urlpatterns = [
     path('article/', ShowArticle.as_view(), name='article'),
     path('login/', login, name='login'),
     path('auth/', Signin, name='auth'),
+    path('cart/', Cart, name='cart'),
     path('catalog/<slug:post_slug>/', ShowGoods.as_view(), name='post'),
     path('category/<slug:cat_slug>/', GoodsCategory.as_view(), name='category'),
     path('cats/<int:catid>/', categories),

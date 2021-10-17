@@ -49,6 +49,8 @@ class ShowArticle(DataMixin, ListView):
         context = dict(list(context.items()) + list(c_def.items()))
         return context
 
+def Cart(request):
+    return render(request, 'shop/cart.html', {'menu': menu, 'title': 'Корзинка'})
  
 def login(request):
     return render(request, 'shop/login.html', {'menu': menu, 'title': 'Регистрация'})
