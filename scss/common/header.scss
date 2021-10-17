@@ -122,11 +122,39 @@
 }
 
 @media(max-width: $smMobileWidth) {
+
+  .header {
+    // background-image: url("../img/bg-header@another.png");
+    // background-size: 29em auto;
+    background-size: cover;
+
+  }
+
+  .header__logo {
+    padding-top: 0;
+  }
+
+  .logo {
+    img {
+      width: 80px;
+      height: 78px;
+    }
+  }
   .header__cart {
     display: none;
   }
 
   .header__user-menu {
     display: none;
+  }
+
+  .header__bottom {
+    padding-bottom: 93px;
+  }
+
+  .header__title {
+    position: relative;
+    // margin-top: -20px;
+    padding-top: 189px;
   }
 }
