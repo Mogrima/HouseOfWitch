@@ -121,4 +121,23 @@
   .catalog {
     width: auto;
   }
+
+  .catalog__wrapper {
+    justify-content: space-between;
+  }
+
+  .catalog__item {
+    width: 200px;
+    height: 214px;
+
+    &:last-child {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .catalog__image {
+    width: 200px;
+    height: 214px;
+  }
 }

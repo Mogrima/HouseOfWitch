@@ -9,9 +9,6 @@ html {
   @media screen and (max-width: $desktopWidth) {
 		font-size: 16px;
   }
-  @media screen and (max-width: $tableWidth) {
-		font-size: 15px;
-  }
   @media screen and (max-width: $phoneWidth) {
 		font-size: 14px;
   }
@@ -194,5 +191,15 @@ input[type="checkbox"].visually-hidden {
 
   .section-header {
     font-size: $titleSizeMobile;
+  }
+}
+
+@media(max-width: $smMobileWidth) {
+  .substrate {
+    // background-color: hotpink;
+  }
+
+  .substrate__container {
+    padding-top: 40px;
   }
 }
