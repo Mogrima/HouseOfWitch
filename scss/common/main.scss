@@ -195,11 +195,13 @@ input[type="checkbox"].visually-hidden {
 }
 
 @media(max-width: $smMobileWidth) {
-  .substrate {
-    // background-color: hotpink;
-  }
-
   .substrate__container {
     padding-top: 40px;
+  }
+}
+
+@media(max-width: $phoneWidth) {
+  .substrate {
+    // background-color: hotpink;
   }
 }
