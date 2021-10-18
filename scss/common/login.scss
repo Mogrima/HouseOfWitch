@@ -49,16 +49,13 @@
 }
 
 .login__button {
+  display: block;
+  width: 100%;
   font-family: $mainFont;
   font-size: 26px;
+  text-align: center;
   background-color: transparent;
   border: none;
-
-  &--small {
-    display: block;
-    width: 142px;
-    margin: 0 auto;
-  }
 }
 
 .login__restore {
@@ -67,4 +64,30 @@
   font-size: 18px;
   color: $mainFontColor;
   text-decoration: underline;
+}
+
+@media(max-width: $smMobileWidth) {
+  .login {
+    width: $phoneWidth;
+  }
+
+  .login__wrapper {
+    margin: 23px;
+  }
+
+  .login__form {
+    width: 400px;
+  }
+
+  .login__label {
+    font-size: 20px;
+  }
+
+  .login__button {
+    font-size: 18px;
+  }
+
+  .login__restore {
+    font-size: 14px;
+  }
 }
