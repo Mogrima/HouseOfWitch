@@ -91,3 +91,27 @@
     font-size: 14px;
   }
 }
+
+@media(max-width: $phoneWidth) {
+  .login {
+    width: 100%;
+  }
+
+  .login__wrapper {
+    margin: 18px;
+  }
+
+  .login__form {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .login__button {
+    
+    &--big {
+      font-size: 14px;
+    }
+  }
+
+}
