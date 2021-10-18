@@ -41,15 +41,30 @@
   border-color: $input-color;
 }
 
+.login__info {
+  // display: flex;
+  // justify-content: space-between;
+  margin-bottom: 20px;
+  // padding-top: 20px;
+}
+
 .login__button {
   font-family: $mainFont;
   font-size: 26px;
   background-color: transparent;
   border: none;
+
+  &--small {
+    display: block;
+    width: 142px;
+    margin: 0 auto;
+  }
 }
 
 .login__restore {
-  font-size: 21px;
+  display: block;
+  padding-top: 15px;
+  font-size: 18px;
   color: $mainFontColor;
   text-decoration: underline;
 }
