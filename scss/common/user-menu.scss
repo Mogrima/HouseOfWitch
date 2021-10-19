@@ -59,6 +59,12 @@
     }
   }
 
+  .user-menu--opened .user-menu__item {
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    background-color: $bg-main-color;
+  }
+
   .user-menu__toggle {
     position: relative;
 
