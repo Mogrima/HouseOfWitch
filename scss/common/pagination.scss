@@ -1,0 +1,41 @@
+.pagination {
+  width: 1246px;
+  margin: 0 auto;
+}
+
+.pagination__list {
+  display: flex;
+  justify-content: flex-end;
+  width: 280px;
+  margin-left: auto;
+}
+
+.pagination__item {
+  margin-right: 10px;
+}
+
+.pagination__link {
+  color: #ffffff;
+}
+
+@media(max-width: $lgwidth) {
+  .pagination {
+    width: 900px;
+  }
+}
+
+@media(max-width: $desktopWidth) {
+  .pagination {
+    width: 700px;
+  }
+}
+
+@media(max-width: $smMobileWidth) {
+  .pagination {
+    width: auto;
+  }
+
+  .pagination__list {
+    padding: 0 20px;
+  }
+}

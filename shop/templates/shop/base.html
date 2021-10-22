@@ -89,35 +89,37 @@
       <div class="wrapper__container">
       {% block content %}
       {% endblock %}
-      </div>
       {% if page_obj.has_other_pages %}
-      <nav>
-          <ul>
+      <nav class="pagination">
+          <ul class="pagination__list">
               {% if page_obj.has_previous %}
-              <li>
-                  <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+              <li class="pagination__item">
+                  <a class="pagination__link" href="?page={{ page_obj.previous_page_number }}">
+                    <span class="visually-hidden">назад</span> ←</a>
               </li>
               {% endif %}
   
               {% for p in page_obj.paginator.page_range %}
               {% if page_obj.number == p %}
-              <li class="selected">{{ p }}
+              <li class="pagination__item selected">{{ p }}
               </li>
-              {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
-              <li>
-                  <a href="?page={{ p }}">{{ p }}</a>
+              {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:4 %}
+              <li class="pagination__item">
+                  <a class="pagination__link" href="?page={{ p }}">{{ p }}</a>
               </li>
               {% endif %}
               {% endfor %}
   
               {% if page_obj.has_next %}
-              <li>
-                  <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+              <li class="pagination__item">
+                  <a class="pagination__link" href="?page={{ page_obj.next_page_number }}">
+                    <span class="visually-hidden">вперед</span> →</a>
               </li>
               {% endif %}
           </ul>
       </nav>
       {% endif %}
+      </div>
           </div>
       </div>
     </main>
