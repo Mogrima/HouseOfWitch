@@ -28,8 +28,13 @@
           <button class="user-menu__toggle" type="button" data-toggle="toggleClass"><span class="visually-hidden">Открыть</span>
           </button>
           <ul class="user-menu__list">
-            <li class="user-menu__item"><a class="user-menu__link" href="{% url 'auth' %}">Вход</a></li>
-            <li class="user-menu__item"><a class="user-menu__link" href="{% url 'login' %}">Регистрация</a></li>
+            {% if request.user.is_authenticated %}
+              <li class="user-menu__item"><a class="user-menu__link" href="{% url 'auth' %}">Личный кабинет</a></li>
+              <li class="user-menu__item"><a class="user-menu__link" href="{% url 'logout' %}">{{user.username}} | Выйти</a></li>
+            {% else %}
+              <li class="user-menu__item"><a class="user-menu__link" href="{% url 'auth' %}">Вход</a></li>
+              <li class="user-menu__item"><a class="user-menu__link" href="{% url 'login' %}">Регистрация</a></li>
+            {% endif %}
           </ul>
          </nav>
         </div>
@@ -59,8 +64,13 @@
                 <button class="user-menu__toggle" type="button" data-toggle="toggleClass"><span class="visually-hidden">Открыть</span>
                 </button>
                 <ul class="user-menu__list">
-                  <li class="user-menu__item"><a class="user-menu__link" href="{% url 'auth' %}">Вход</a></li>
-                  <li class="user-menu__item"><a class="user-menu__link" href="{% url 'login' %}">Регистрация</a></li>
+                  {% if request.user.is_authenticated %}
+                    <li class="user-menu__item"><a class="user-menu__link" href="{% url 'auth' %}">Личный кабинет</a></li>
+                    <li class="user-menu__item"><a class="user-menu__link" href="{% url 'logout' %}">{{user.username}} | Выйти</a></li>
+                  {% else %}
+                    <li class="user-menu__item"><a class="user-menu__link" href="{% url 'auth' %}">Вход</a></li>
+                    <li class="user-menu__item"><a class="user-menu__link" href="{% url 'login' %}">Регистрация</a></li>
+                  {% endif %}
                 </ul>
               </nav>
             </div>
