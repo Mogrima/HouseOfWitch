@@ -38,17 +38,16 @@ toggleClass('nav', 'user-menu--closed', 'user-menu--opened');
 toggleClass('nav', 'nav--closed', 'nav--opened');
 
 const navContainer = document.querySelector('.nav-container');
-console.log(navContainer);
 const header = document.querySelector('.header');
 
-window.onscroll = function () {
-  console.log(window.pageYOffset);
-  if (window.pageYOffset > 495) {
-    navContainer.classList.add('nav-container--fixed');
-    header.style = 'padding-top: 52px';
-  } else {
-    header.style = '';
-    navContainer.classList.remove('nav-container--fixed');
-    }
+if(window.matchMedia('(max-width: 767px)').matches) {
+  window.onscroll = function () {
+    if (window.pageYOffset > 495) {
+      navContainer.classList.add('nav-container--fixed');
+      header.style = 'padding-top: 52px';
+    } else {
+      header.style = '';
+      navContainer.classList.remove('nav-container--fixed');
+      }
+  }
 }
-
