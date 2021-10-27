@@ -1,68 +1,122 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
-<section style="width: 1246px; margin: 0 auto;">
-    <h2 style="font-size: 30px; margin-bottom: 20px;">Содержимое корзинки</h2>
-<ul style="width: 1246px; margin: 0 auto; margin-bottom: 50px;">
-    <li style="display: flex; margin-top: 20px; margin-bottom: 20px;">
-        <div style="background-color: blueviolet; width: 400px;" >
-            <img src="" alt="фото товара">
-        </div>
-       <div class="">
-        <h3>Название товара</h3>
-        <small style="font-size: 13px; color: #ccc; margin-bottom: 20px; display: block;">артикул товара</small>
-        <table>
-            <tr>
-                <th>Цвет</th>
-                <th>Размер</th>
-                <th>Количество</th>
-                <th>Цена</th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr>
-                <td>Данные</td>
-                <td>Данные</td>
-                <td><button>-</button><input type="text" value="1"><button>+</button></td>
-                <td>1000 р.</td>
-                <td><button>Редакт.</button></td>
-                <td><button>Удалить</button></td>
-            </tr>
-        </table>
-       </div>
-    </li>
-    <li style="display: flex; margin-top: 20px;">
-        <div style="background-color: blueviolet; width: 400px;">
-            <img src="" alt="фото товара">
-        </div>
-       <div class="">
-        <h3>Название товара 2</h3>
-        <small style="font-size: 13px; color: #ccc; margin-bottom: 20px; display: block;">артикул товара</small>
-        <table>
-            <tr>
-                <th>Цвет</th>
-                <th>Размер</th>
-                <th>Количество</th>
-                <th>Цена</th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr>
-                <td>Данные</td>
-                <td>Данные</td>
-                <td><button>-</button><input type="text" value="3"><button>+</button></td>
-                <td>2000 р.</td>
-                <td><button>Редакт.</button></td>
-                <td><button>Удалить</button></td>
-            </tr>
-        </table>
-       </div>
-    </li>
-</ul>
-<p>Доставка <strong>точная стоимость доставки будет известна на следующем шаге,<br>
-     либо после обработки вашего заказа менеджером</strong></p>
-<small style="text-decoration: underline; font-size: 13px; color: #ccc; display: block; margin-bottom: 30px;">Подробнее об условиях доставки*</small>
-<strong style="display: block; margin-bottom: 30px;">Итого: Р</strong>
-<button class="width: 100px; margin: 0 auto;">Оформить заказ</button>
+<section class="catalog">
+    <h2 class="catalog__section-header section-header">Содержимое корзинки</h2>
+    <ul class="cart">
+        <li class="cart__item">
+            <div class="catalog__image-wrapper cart__image-wrapper">
+                <img alt="изображение товара" height="298" src="../static/shop/img/notavailable2.jpg" width="279"
+                    class="catalog__image cart__image">
+            </div>
+            <div class="cart__content">
+                <h3>Название товара</h3>
+                <small class="cart__article">артикул товара</small>
+                <div class="cart__wrapper">
+                    <table class="cart__settings">
+                        <tr class="cart__settings-list">
+                            <th class="cart__settings-item">Цвет</th>
+                            <th class="cart__settings-item">Размер</th>
+                            <th class="cart__settings-item">Цена за шт.</th>
+                        </tr>
+                        <tr class="cart__settings-list">
+                            <td class="cart__settings-item">Желтый</td>
+
+                            <td class="cart__settings-item">10 см</td>
+
+                            <td class="cart__settings-item">5000 руб.</td>
+                        </tr>
+                    </table>
+                    <div class="cart__settings">
+                        <div>
+                            <div class="cart__settings-item cart__counter-block">
+                                <button class="cart__counter" type="button">
+                                    <span class="visually-hidden">Увеличить</span>
+                                    <svg class="icon icon--counter" width="41" height="39" viewBox="0 0 41 39"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M25.102 24.29L20.886 38.674H20.018L15.244 24.29L0.488 19.764V19.144L15.244 14.928L20.018 0.729998H20.886L25.102 14.928L40.23 19.144V19.764L25.102 24.29Z"
+                                            fill="white" />
+                                    </svg>
+                                </button>
+                                <input class="cart__input-counter" type="text" value="1">
+                                <button class="cart__counter" type="button">
+                                    <span class="visually-hidden">Уменьшить</span>
+                                    <svg class="icon icon--counter" width="27" height="13" viewBox="0 0 27 13" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0.976 12.964V0.749998L26.644 6.454V6.888L0.976 12.964Z" fill="white" />
+                                    </svg>
+                                </button>
+                            </div>
+
+
+                        </div>
+                        <p class="cart__settings-item">Цена 50 руб.</p>
+                        <button class="cart__delete-btn" type="button">
+                            <span class="visually-hidden">Удалить</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="cart__item">
+            <div class="catalog__image-wrapper cart__image-wrapper">
+                <img alt="изображение товара" height="298" src="../static/shop/img/notavailable2.jpg" width="279"
+                    class="catalog__image cart__image">
+            </div>
+            <div class="cart__content">
+                <h3>Название товара</h3>
+                <small class="cart__article">артикул товара</small>
+                <div class="cart__wrapper">
+                    <table class="cart__settings">
+                        <tr class="cart__settings-list">
+                            <th class="cart__settings-item">Цвет</th>
+                            <th class="cart__settings-item">Размер</th>
+                            <th class="cart__settings-item">Цена за шт.</th>
+                        </tr>
+                        <tr class="cart__settings-list">
+                            <td class="cart__settings-item">Желтый</td>
+
+                            <td class="cart__settings-item">10 см</td>
+
+                            <td class="cart__settings-item">50 руб.</td>
+                        </tr>
+                    </table>
+                    <div class="cart__settings">
+                        <div>
+                            <div class="cart__settings-item cart__counter-block">
+                                <button class="cart__counter" type="button">
+                                    <span class="visually-hidden">Увеличить</span>
+                                    <svg class="icon icon--counter" width="41" height="39" viewBox="0 0 41 39"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M25.102 24.29L20.886 38.674H20.018L15.244 24.29L0.488 19.764V19.144L15.244 14.928L20.018 0.729998H20.886L25.102 14.928L40.23 19.144V19.764L25.102 24.29Z"
+                                            fill="white" />
+                                    </svg>
+                                </button>
+                                <input class="cart__input-counter" type="text" value="1">
+                                <button class="cart__counter" type="button">
+                                    <span class="visually-hidden">Уменьшить</span>
+                                    <svg class="icon icon--counter" width="27" height="13" viewBox="0 0 27 13" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0.976 12.964V0.749998L26.644 6.454V6.888L0.976 12.964Z" fill="white" />
+                                    </svg>
+                                </button>
+                            </div>
+
+
+                        </div>
+                        <p class="cart__settings-item">Цена 50 руб.</p>
+                        <button class="cart__delete-btn" type="button">
+                            <span class="visually-hidden">Удалить</span></button>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="cart__output">
+        <p class="cart__output-text"><strong>Итого: <span class="cart__output-price">50 руб.</span></strong></p>
+        <button class="button">Купить</button>
+    </div>
 </section>
 {% endblock %}

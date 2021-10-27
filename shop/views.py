@@ -54,7 +54,7 @@ class ShowArticle(DataMixin, ListView):
         return context
 
 def Cart(request):
-    return render(request, 'shop/cart.html', {'menu': menu, 'title': 'Корзинка'})
+    return render(request, 'shop/cart.html', {'menu': menu, 'title': 'Содержимое корзинки'})
 class ShowGoods(DataMixin, DetailView):
     model = Goods
     template_name = 'shop/goods.html'
