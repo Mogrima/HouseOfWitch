@@ -18,3 +18,25 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name", )}
 
 admin.site.register(Category, CategoryAdmin)
+
+class  ArticleAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title')
+    list_display_links = ('id', 'title')
+    search_fields = ('title',)
+    prepopulated_fields = {"slug": ("title", )}
+
+admin.site.register(Article,  ArticleAdmin)
+
+class  CustomerAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user')
+    list_display_links = ('id', 'user')
+    search_fields = ('user', 'address')
+
+admin.site.register(Customer,  CustomerAdmin)
+
+class CartAdmin(admin.ModelAdmin):
+    list_display = ('id', 'owner')
+    list_display_links = ('id', 'owner')
+    search_fields = ('owner',)
+
+admin.site.register(Cart, CartAdmin)

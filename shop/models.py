@@ -1,14 +1,19 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth import get_user_model
+from django.contrib.contenttypes.models import ContentType
+
+User = get_user_model()
 
 class Goods(models.Model):
     title = models.CharField(max_length=255, verbose_name='Название товара')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
-    price = models.CharField(max_length=20, verbose_name="Цена")
+    price = models.FloatField(verbose_name='Цена')
     description = models.TextField(blank=True, verbose_name="Описание товара")
     photo = models.ImageField(upload_to="photos/%Y/%m/%d/", blank=True, verbose_name="Фото")
     time_create = models.DateTimeField(auto_now_add=True)
     is_published = models.BooleanField(default=True)
+    stock = models.PositiveIntegerField(default='0')
     cat = models.ForeignKey('Category', on_delete=models.PROTECT)
 
     def __str__(self):
@@ -54,6 +59,47 @@ class Article(models.Model):
         return reverse('article', kwargs={'article_slug': self.slug})
 
     class Meta:
-        verbose_name = 'Заголовок'
-        verbose_name_plural = 'Заголовки'
+        verbose_name = 'Статью'
+        verbose_name_plural = 'Статьи'
         ordering = ['time_create', 'title']
+
+class CartGoods(models.Model):
+
+    user = models.ForeignKey('Customer', verbose_name='Покупатель', on_delete=models.PROTECT)
+    cart = models.ForeignKey('Cart', verbose_name='Корзина', on_delete=models.PROTECT, related_name='related_products')
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    final_price = models.FloatField(verbose_name='Итоговая цена')
+
+    def __str__(self):
+        return "Продукт: {} (для корзины)".format(self.content_object.title)
+
+class Cart(models.Model):
+
+    owner = models.ForeignKey('Customer', blank=True, verbose_name='Владелец', on_delete=models.PROTECT)
+    products = models.ManyToManyField(CartGoods, blank=True, related_name='related_cart')
+    total_products = models.PositiveIntegerField(default=0)
+    final_price = models.FloatField(default=0, verbose_name='Общая цена')
+
+    def __str__(self):
+        return str(self.id)
+
+    class Meta:
+        verbose_name = 'Корзина покупателя'
+        verbose_name_plural = 'Корзины покупателей'
+        ordering = ['owner',]
+
+class Customer(models.Model):
+
+    user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.PROTECT)
+    phone = models.CharField(max_length=20, verbose_name='Номер телефона', blank=True)
+    address = models.CharField(max_length=255, verbose_name='Адрес', blank=True)
+    # orders = models.ManyToManyField('Order', verbose_name='Заказы покупателя', related_name='related_order')
+
+    def __str__(self):
+        return "Покупатель: {} {}".format(self.user.first_name, self.user.last_name)
+    
+    class Meta:
+        verbose_name = 'Покупатель'
+        verbose_name_plural = 'Покупатели'
+        ordering = ['user',]
+
