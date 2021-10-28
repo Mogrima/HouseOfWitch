@@ -6,6 +6,9 @@
  
 {% if post.photo %}
 <p><img class="img-article-left" src="{{post.photo.url}}"></p>
+<p><a href="{{ post.cat.get_absolute_url }}">{{post.cat.name}}</a></p>
+<p>{{post.description}}</p>
+<p>{{post.price}}</p>
 {% endif %}
  
 {{post.content|linebreaks}}
