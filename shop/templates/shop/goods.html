@@ -2,7 +2,18 @@
  
 {% block content %}
  
-<h1>{{post.title}}</h1>
+<h2>{{post.title}}</h2>
+
+<ul class="breadcrumbs">
+    <li class="breadcrumbs__item">
+        <a href="{% url 'catalog' %}" class="breadcrumbs__link">Каталог</a>
+    </li>
+    <li class="breadcrumbs__item">
+        <a href="{{ post.cat.get_absolute_url }}" class="breadcrumbs__link">{{post.cat.name}}</a>
+    </li>
+    <li class="breadcrumbs__item"> {{post.title}}
+    </li>
+</ul>
  
 {% if post.photo %}
 <p><img class="img-article-left" src="{{post.photo.url}}"></p>
