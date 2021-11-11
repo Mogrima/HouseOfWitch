@@ -1,8 +1,23 @@
 from django.contrib import admin
+from django.forms import ModelForm
+from django.utils.safestring import mark_safe
+from PIL import Image
 
 from .models import *
 
+class GoodsAdminForm(ModelForm):
+
+    MIN_RESOLUTION = (400, 400)
+    MAX_RESOLUTION = (1200, 1200)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['photo'].help_text = mark_safe('<strong style="color:yellow;">Загружайте изображение с минимальным разрешением {}x{}</strong>'.format(
+            *self.MIN_RESOLUTION
+        ))
+
 class GoodsAdmin(admin.ModelAdmin):
+    form = GoodsAdminForm
     list_display = ('id', 'title', 'time_create', 'photo', 'is_published')
     list_display_links = ('id', 'title')
     search_fields = ('title', 'description')
