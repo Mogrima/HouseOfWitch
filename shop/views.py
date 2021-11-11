@@ -24,7 +24,7 @@ class ShopHome(DataMixin, ListView):
         return context
 
     def get_queryset(self):
-        return Goods.objects.filter(is_published=True)
+        return Goods.objects.filter(is_published=True).order_by('-id')[:9]
 
 
 def about(request):
