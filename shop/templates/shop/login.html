@@ -3,22 +3,24 @@
 {% block content %}
 <section class="login">
   <div class="login__wrapper">
-    <h2 class="visually-hidden">Здесь можно зарегистрироваться</h2>
+    <h2 class="visually-hidden">Здесь можно авторизоваться</h2>
     <form id="login__form" class="login__form" method="POST">
       {% csrf_token %}
+      <div class="form-error">{{ form.non_field_errors }}</div>
       {% for f in form %}
       <p class="login__input-wrapper">
         <label for="{{ f.id_for_label }}" class="login__label">{{f.label}}</label>
         {{ f }}
+        <div class="form-error">{{ f.errors }}</div>
       </p>
-      <div class="form-error">{{ f.errors }}</div>
       {% endfor %}
       <div class="login__info">
       <input id="login-remember" class="checkbox login__info-checkbox" type="checkbox" name="remember">
        <label for="login-remember" class="checkbox__name login__checkbox-name">
          <span class="checkbox__indicator login__checkbox-indicator"></span>Запомните	&ensp; меня</label>
+      <a class="login__restore" href="#">Забыл(а)	&ensp; пароль</a> 
     </div>
-      <button class="user-menu__link login__button login__button--big" type="submit" value="enter" name="submit">Зарегистрироваться</button>
+      <button class="user-menu__link login__button" type="submit" value="enter" name="submit">Войти</button>
     </form>
     <!-- <a class="login__info login__info--last link link--modal" href="login.php">Если форма работает некорректно</a>
      <button class="close login__close-log">Закрыть</button> -->

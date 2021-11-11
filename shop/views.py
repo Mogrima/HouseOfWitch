@@ -86,8 +86,8 @@ class GoodsCategory(DataMixin, ListView):
 
 class RegisterUser(DataMixin, CreateView):
     form_class = RegisterUserForm
-    template_name = 'shop/login.html'
-    success_url = reverse_lazy('auth')
+    template_name = 'shop/registration.html'
+    success_url = reverse_lazy('login')
 
     def form_valid(self, form):
         user = form.save()
@@ -102,7 +102,7 @@ class RegisterUser(DataMixin, CreateView):
 
 class LoginUser(DataMixin, LoginView):
     form_class = LoginUserForm
-    template_name = 'shop/Signin.html'
+    template_name = 'shop/login.html'
  
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

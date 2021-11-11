@@ -29,11 +29,11 @@
           </button>
           <ul class="user-menu__list">
             {% if request.user.is_authenticated %}
-              <li class="user-menu__item"><a class="user-menu__link" href="{% url 'auth' %}">Личный кабинет</a></li>
+              <li class="user-menu__item"><a class="user-menu__link" href="{% url 'login' %}">Личный кабинет</a></li>
               <li class="user-menu__item"><a class="user-menu__link" href="{% url 'logout' %}">{{user.username}} | Выйти</a></li>
             {% else %}
-              <li class="user-menu__item"><a class="user-menu__link" href="{% url 'auth' %}">Вход</a></li>
-              <li class="user-menu__item"><a class="user-menu__link" href="{% url 'login' %}">Регистрация</a></li>
+              <li class="user-menu__item"><a class="user-menu__link" href="{% url 'login' %}">Вход</a></li>
+              <li class="user-menu__item"><a class="user-menu__link" href="{% url 'registration' %}">Регистрация</a></li>
             {% endif %}
           </ul>
          </nav>
@@ -65,11 +65,11 @@
                 </button>
                 <ul class="user-menu__list">
                   {% if request.user.is_authenticated %}
-                    <li class="user-menu__item"><a class="user-menu__link" href="{% url 'auth' %}">Личный кабинет</a></li>
+                    <li class="user-menu__item"><a class="user-menu__link" href="{% url 'login' %}">Личный кабинет</a></li>
                     <li class="user-menu__item"><a class="user-menu__link" href="{% url 'logout' %}">{{user.username}} | Выйти</a></li>
                   {% else %}
-                    <li class="user-menu__item"><a class="user-menu__link" href="{% url 'auth' %}">Вход</a></li>
-                    <li class="user-menu__item"><a class="user-menu__link" href="{% url 'login' %}">Регистрация</a></li>
+                    <li class="user-menu__item"><a class="user-menu__link" href="{% url 'login' %}">Вход</a></li>
+                    <li class="user-menu__item"><a class="user-menu__link" href="{% url 'registration' %}">Регистрация</a></li>
                   {% endif %}
                 </ul>
               </nav>
