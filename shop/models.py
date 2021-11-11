@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
+from PIL import Image
 
 User = get_user_model()
 
@@ -21,6 +22,16 @@ class Goods(models.Model):
 
     def get_absolute_url(self):
         return reverse('post', kwargs={'post_slug': self.slug})
+
+    def save(self):
+        if self.photo:
+            super().save()
+            img = Image.open(self.photo.path)
+
+            if img.height > 800 or img.width > 800:
+                output_size = (800, 800)
+                img.thumbnail(output_size)
+                img.save(self.photo.path)
 
     class Meta:
         verbose_name = 'Товары'
