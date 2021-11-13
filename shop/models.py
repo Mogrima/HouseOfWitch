@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
@@ -99,16 +101,24 @@ class Cart(models.Model):
         verbose_name_plural = 'Корзины покупателей'
         ordering = ['owner',]
 
+class Order(models.Model):
+    pass
 class Customer(models.Model):
+    """Покупатель"""
 
-    user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.PROTECT)
-    phone = models.CharField(max_length=20, verbose_name='Номер телефона', blank=True)
-    address = models.CharField(max_length=255, verbose_name='Адрес', blank=True)
-    # orders = models.ManyToManyField('Order', verbose_name='Заказы покупателя', related_name='related_order')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Пользователь')
+    in_active = models.BooleanField(default=True, verbose_name='Активный')
+    customer_orders = models.ManyToManyField(
+        Order, blank=True, related_name='related_customer', verbose_name='Заказы покупателя'
+    )
+    wishlist = models.ManyToManyField(Goods, blank=True, verbose_name='Список ожидаемого')
+    phone = models.CharField(max_length=20, verbose_name='Телефон')
+    adress = models.TextField(blank=True, verbose_name='Адрес')
 
     def __str__(self):
-        return "Покупатель: {} {}".format(self.user.first_name, self.user.last_name)
-    
+        return f"{self.user.username}"
+
+
     class Meta:
         verbose_name = 'Покупатель'
         verbose_name_plural = 'Покупатели'
