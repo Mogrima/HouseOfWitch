@@ -37,10 +37,10 @@ class RegisterUserForm(forms.ModelForm):
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'login__input'}))
     confirm_password = forms.CharField(label='Повторите пароль', widget=forms.PasswordInput(attrs={'class': 'login__input'}))
     email = forms.EmailField(label='Электронная почта', widget=forms.EmailInput(attrs={'class': 'login__input'}))
-    phone = forms.CharField(label='Номер телефона', widget=forms.TextInput(attrs={'class': 'login__input'}))
-    address = forms.CharField(label='Адрес', widget=forms.TextInput(attrs={'class': 'login__input'}), required=False)
-    first_name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={'class': 'login__input'}), required=False)
-    last_name = forms.CharField(label='Фамилия', widget=forms.TextInput(attrs={'class': 'login__input'}), required=False)
+    # phone = forms.CharField(label='Номер телефона', widget=forms.TextInput(attrs={'class': 'login__input'}), required=False)
+    # address = forms.CharField(label='Адрес', widget=forms.TextInput(attrs={'class': 'login__input'}), required=False)
+    # first_name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={'class': 'login__input'}), required=False)
+    # last_name = forms.CharField(label='Фамилия', widget=forms.TextInput(attrs={'class': 'login__input'}), required=False)
     
 
   # Валидация конкретного поля
@@ -65,4 +65,4 @@ class RegisterUserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'password', 'confirm_password', 'email', 'phone', 'first_name', 'last_name', 'address']
+        fields = ['username', 'password', 'confirm_password', 'email',]
