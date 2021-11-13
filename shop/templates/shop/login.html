@@ -11,7 +11,7 @@
       <p class="login__input-wrapper">
         <label for="{{ f.id_for_label }}" class="login__label">{{f.label}}</label>
         {{ f }}
-        <div class="form-error">{{ f.errors }}</div>
+        <div class="form-error" style="color: orange;">{{ f.errors }}</div>
       </p>
       {% endfor %}
       <div class="login__info">

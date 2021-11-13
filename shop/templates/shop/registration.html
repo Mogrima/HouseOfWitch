@@ -6,12 +6,13 @@
     <h2 class="visually-hidden">Здесь можно зарегистрироваться</h2>
     <form id="login__form" class="login__form" method="POST">
       {% csrf_token %}
+      <div class="form-error" style="color: orange;">{{ form.non_field_errors }}</div>
       {% for f in form %}
       <p class="login__input-wrapper">
         <label for="{{ f.id_for_label }}" class="login__label">{{f.label}}</label>
         {{ f }}
       </p>
-      <div class="form-error">{{ f.errors }}</div>
+      <div class="form-error" style="color: orange;">{{ f.errors }}</div>
       {% endfor %}
       <div class="login__info">
       <input id="login-remember" class="checkbox login__info-checkbox" type="checkbox" name="remember">
