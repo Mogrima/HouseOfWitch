@@ -112,7 +112,7 @@ class Customer(models.Model):
         Order, blank=True, related_name='related_customer', verbose_name='Заказы покупателя'
     )
     wishlist = models.ManyToManyField(Goods, blank=True, verbose_name='Список ожидаемого')
-    phone = models.CharField(max_length=20, verbose_name='Телефон')
+    phone = models.CharField(max_length=20, blank=True, verbose_name='Телефон')
     adress = models.TextField(blank=True, verbose_name='Адрес')
 
     def __str__(self):
