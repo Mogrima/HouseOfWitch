@@ -78,11 +78,38 @@ input[type="checkbox"].visually-hidden {
 }
 
 .substrate {
+  background-color: $substrate-color;
   position: relative;
   z-index: 1;
   margin: 0 auto;
-  background-image: url('../img/substate.png');
-  background-repeat: no-repeat;
+  border-radius: 14px;
+
+&::before {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: -88px;
+  bottom: 0;
+  width: 92px;
+  background-image: url("../img/grave-left-nonbg.png");
+  background-repeat: repeat-y;
+  background-size: cover;
+}
+
+&::after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: auto;
+  right: -76px;
+  bottom: 0;
+  width: 92px;
+  background-image: url("../img/grave-right-nonbg.png");
+  background-repeat: repeat-y;
+  background-size: cover;
+  }
 }
 
 .substrate__container {
@@ -98,6 +125,12 @@ input[type="checkbox"].visually-hidden {
 @media(min-width: $lgwidth) {
   .substrate {
     width: $lgwidth;
+    width: 1420px;
+
+    &::before {
+      left: -104px;
+      width: 107px;
+    }
   }
 }
 
@@ -105,7 +138,7 @@ input[type="checkbox"].visually-hidden {
 
   .substrate {
     width: $desktopWidth;
-    background-size: cover;
+    width: 1070px;
   }
 
   .section-header {
@@ -116,50 +149,24 @@ input[type="checkbox"].visually-hidden {
 @media(max-width: $desktopWidth) {
   .substrate {
     width: 900px;
-    margin: 0 auto;
-    background-image: none;
-    background-color: $substrate-color;
+    width: 775px;
+
+  &::before {
+    left: -41px;
+    width: 48px;
+    background-size: contain;
+  }
+
+  &::after {
+    right: -41px;
+    width: 48px;
+    background-size: contain;
+  }
     
   }
 
   .wrapper__container {
     padding-bottom: 50px;
-  }
-
-  .substrate__container {
-   position: relative;
-   z-index: 50;
-    width: 900px;
-    margin-top: -4px;
-    background: url('../img/grave-left.png') top left/contain repeat-y,
-    url('../img/grave-right.png') top right/contain repeat-y;
-    background-color: $substrate-color;
-  }
-}
-
-@media(min-width: 900px) and (max-width: $desktopWidth) {
-  .substrate {
-     &::before {
-      content: "";
-      position: absolute;
-      z-index: 10;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      width: 151px;
-      background-color: #29147B;
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 151px;
-      background-color: #29147B;
-    }
   }
 }
 
@@ -173,20 +180,17 @@ input[type="checkbox"].visually-hidden {
   }
 
   .substrate {
-    z-index: 300;
     width: 100%;
-    background-image: url("../img/graveBottom@900.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: top center;
+    border-radius: 0;
+
+  &::before, &::after {
+    content: none;
+  }
   }
 
   .substrate__container {
     
     width: 100%;
-    padding-top: 50px;
-    background-image: none;
-    background-color: transparent;
   }
 
   .section-header {
@@ -200,8 +204,8 @@ input[type="checkbox"].visually-hidden {
   }
 }
 
-@media(max-width: $phoneWidth) {
+@media(max-width: $desktopWidth) {
   .substrate {
-    // background-color: hotpink;
+    // background-color: hotpink !important;
   }
 }

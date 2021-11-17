@@ -11,7 +11,6 @@
 .nav__list {
   display: flex;
   justify-content: space-between;
-  width: 1156px;
   margin: 0 auto;
 }
 
@@ -29,19 +28,14 @@
 
 @media(min-width: $lgwidth) {
   .nav {
-    width: $lgwidth;
+    width: 1290px;
+    margin: 0 auto;
   }
-  // .nav__list {
-  //   width: 1156px;
-  //   margin: 0 auto;
-  // }
 }
 
 @media(max-width: $lgwidth) {
   .nav__list {
-    padding: 0 90px;
-    // width: 1156px;
-    // margin: 0 auto;
+    padding: 0 60px;
   }
 
   .nav__item {
@@ -53,9 +47,9 @@
 
 @media(max-width: $desktopWidth) {
   .nav__list {
-    width: 856px;
-    padding-left: 80px;
-    padding-right: 80px;
+    width: 775px;
+    padding-left: 50px;
+    padding-right: 50px;
   }
 
   .nav__item {
