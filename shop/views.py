@@ -20,15 +20,13 @@ class ShopHome(DataMixin, ListView):
     model = Goods
     template_name = 'shop/index.html'
     context_object_name = 'posts'
-
+        
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title="Главная страница")
-        context = dict(list(context.items()) + list(c_def.items()))
+        context['title'] = 'Главная страница'
+        context['menu'] = self.menu
+        context['cats'] = self.cats
         return context
-
-    def get_queryset(self):
-        return Goods.objects.filter(is_published=True).order_by('-id')[:9]
 
 
 def about(request):
@@ -54,8 +52,9 @@ class ShowArticle(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title="Статьи")
-        context = dict(list(context.items()) + list(c_def.items()))
+        context['title'] = 'Статьи'
+        context['menu'] = self.menu
+        context['cats'] = self.cats
         return context
 
 
@@ -71,8 +70,9 @@ class ShowGoods(DataMixin, DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title=context['post'])
-        context = dict(list(context.items()) + list(c_def.items()))
+        context['title'] = context['post']
+        context['menu'] = self.menu
+        context['cats'] = self.cats
         return context
 
 
@@ -84,9 +84,10 @@ class GoodsCategory(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Категория - ' + str(context['posts'][0].cat),
-                                      cat_selected=context['posts'][0].cat_id)
-        context = dict(list(context.items()) + list(c_def.items()))
+        context['title'] = 'Категория - ' + str(context['posts'][0].cat)
+        context['menu'] = self.menu
+        context['cats'] = self.cats
+        context['cat_selected'] = context['posts'][0].cat_id
         return context
 
     def get_queryset(self):
