@@ -223,3 +223,14 @@ class LoginUser(DataMixin, views.View):
 def logout_user(request):
     logout(request)
     return redirect('home')
+
+class AccountView(DataMixin, views.View):
+  def get(self, request, *args, **kwargs):
+    customer = Customer.objects.get(user=request.user)
+    context = {
+      'customer': customer,
+      'title': 'Личный кабинет ' + request.user.username,
+      'menu': self.menu,
+      'cart': self.cart
+    }
+    return render(request, 'shop/account.html', context)
