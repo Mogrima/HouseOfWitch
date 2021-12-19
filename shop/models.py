@@ -82,9 +82,18 @@ class CartGoods(models.Model):
     cart = models.ForeignKey('Cart', verbose_name='Корзина', on_delete=models.PROTECT, related_name='related_products')
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     final_price = models.FloatField(verbose_name='Итоговая цена')
+    qty = models.PositiveIntegerField(default=1)
 
     def __str__(self):
         return "Продукт: {} (для корзины)".format(self.content_object.title)
+
+    def save(self, *args, **kwargs):
+        self.final_price = self.qty * self.content_object.price
+        super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = 'Продукт корзины'
+        verbose_name_plural = 'Продукты корзины'
 
 class Cart(models.Model):
 
@@ -92,6 +101,8 @@ class Cart(models.Model):
     products = models.ManyToManyField(CartGoods, blank=True, related_name='related_cart')
     total_products = models.PositiveIntegerField(default=0)
     final_price = models.FloatField(default=0, verbose_name='Общая цена')
+    in_order = models.BooleanField(default=False)
+    for_anonymous_user = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.id)
