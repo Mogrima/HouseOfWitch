@@ -15,4 +15,9 @@ urlpatterns = [
     path('catalog/<slug:post_slug>/', ShowGoods.as_view(), name='post'),
     path('category/<slug:cat_slug>/', GoodsCategory.as_view(), name='category'),
     path('cats/<int:catid>/', categories),
+
+    path('cart/', CartView.as_view(), name='cart'),
+    path('add-to-cart/<str:ct_model>/<str:slug>/', AddToCartView.as_view(), name='add_to_cart'),
+    path('remove-from-cart/<str:ct_model>/<str:slug>/', DeleteFromCartView.as_view(), name='delete_from_cart'),
+    path('change-qty/<str:ct_model>/<str:slug>/', ChangeQTVView.as_view(), name='change_qty'),
 ]
