@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from PIL import Image
+from django.utils import timezone
 
 User = get_user_model()
 
@@ -113,7 +114,49 @@ class Cart(models.Model):
         ordering = ['owner',]
 
 class Order(models.Model):
-    pass
+    STATUS_NEW = 'new'
+    STATUS_IN_PROGRESS = 'in_progress'
+    STATUS_READY = 'is_ready'
+    STATUS_COMPLETED = 'completed'
+    STATUS_CANCELED = 'canceled'
+
+    BUYING_TYPE_SELF = 'self'
+    BUYING_TYPE_DELIVERY = 'delivery'
+
+    STATUS_CHOICES = (
+        (STATUS_NEW, 'Новый заказ'),
+        (STATUS_IN_PROGRESS, 'Заказ в обработке'),
+        (STATUS_READY, 'Заказ готов'),
+        (STATUS_COMPLETED, 'Заказ отдан'),
+        (STATUS_CANCELED, 'Заказ отменен')
+    )
+
+    BUYING_TYPE_CHOICES = (
+        (BUYING_TYPE_SELF, 'Самовывоз'),
+        (BUYING_TYPE_DELIVERY, 'Доставка')
+    )
+
+    customer = models.ForeignKey(
+        'Customer', on_delete=models.CASCADE, related_name='orders', default='', verbose_name='Покупатель'
+        )
+    first_name = models.CharField(max_length=255, verbose_name='Имя')
+    last_name = models.CharField(max_length=255, verbose_name='Фамилия')
+    phone = models.CharField(max_length=20, verbose_name='Телефон')
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, blank=True, default='', verbose_name='Корзина')
+    adress = models.CharField(max_length=1024, blank=True, verbose_name='Адрес')
+    status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=STATUS_NEW, verbose_name='Статус заказа')
+    buying_type = models.CharField(max_length=100, choices=BUYING_TYPE_CHOICES, default='Доставка', verbose_name='Тип доставки')
+    comment = models.TextField(blank=True, verbose_name='Комментарий к заказу')
+    created_at = models.DateField(verbose_name='Дата создания заказа', auto_now=True)
+    order_date = models.DateField(default=timezone.now, verbose_name='Дата получения заказа')
+
+    def __str__(self):
+        return str(self.id)
+
+    class Meta:
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
+
 class Customer(models.Model):
     """Покупатель"""
 
@@ -135,3 +178,15 @@ class Customer(models.Model):
         verbose_name_plural = 'Покупатели'
         ordering = ['user',]
 
+class Notification(models.Model):
+
+    recipient = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='')
+    text = models.TextField()
+    read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Уведомление для {self.recipient.user.username} | id={self.id}"
+
+    class Meta:
+        verbose_name = 'Уведомление'
+        verbose_name_plural = 'Уведомления'

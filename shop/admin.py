@@ -55,3 +55,5 @@ class CartAdmin(admin.ModelAdmin):
     search_fields = ('owner',)
 
 admin.site.register(Cart, CartAdmin)
+admin.site.register(Order)
+admin.site.register(Notification)
