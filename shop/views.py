@@ -60,11 +60,6 @@ class ShowArticle(DataMixin, ListView):
         context['cats'] = self.cats
         return context
 
-
-def Cart(request):
-    return render(request, 'shop/cart.html', {'menu': menu, 'title': 'Содержимое корзинки'})
-
-
 class ShowGoods(DataMixin, DetailView):
     model = Goods
     template_name = 'shop/goods.html'
@@ -98,7 +93,7 @@ class GoodsCategory(DataMixin, ListView):
 
 class CartView(DataMixin, views.View):
   def get(self, request, *args, **kwargs):
-    return render(request, 'cart.html', {"cart": self.cart})
+    return render(request, 'shop/cart.html', {"cart": self.cart})
 
 
 class AddToCartView(DataMixin, views.View):
