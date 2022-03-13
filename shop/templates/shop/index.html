@@ -30,8 +30,12 @@
           {% else %}
             <p class="btn btn-default">Добавлен в корзину</з>
           {% endif %}
-        {% else %}
-          <p>Не в наличии</p>
+          {% else %}
+          {% if post not in request.user.customer.wishlist.all %}
+              <a href="{% url 'add_to_wishlist' post_id=post.id %}">Добавить в ожидаемое</a>
+          {% else %}
+              <a href="#" class="btn btn-default" disabled="">Добавлен в ожидаемое</a>
+          {% endif %}
         {% endif %}
       {% endif %}
 

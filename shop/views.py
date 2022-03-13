@@ -140,6 +140,15 @@ class ChangeQTVView(DataMixin, views.View):
     messages.add_message(request, messages.INFO, "Количество изменено")
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
+class AddToWishlist(views.View):
+
+    @staticmethod
+    def get(request, *args, **kwargs):
+        goods = Goods.objects.get(id=kwargs['post_id'])
+        customer = Customer.objects.get(user=request.user)
+        customer.wishlist.add(goods)
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
 class RegisterUser(DataMixin, views.View):
 
     def get(self, request, *args, **kwargs):
