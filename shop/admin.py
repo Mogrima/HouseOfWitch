@@ -18,7 +18,7 @@ class GoodsAdminForm(ModelForm):
 
 class GoodsAdmin(admin.ModelAdmin):
     form = GoodsAdminForm
-    list_display = ('id', 'title', 'stock', 'time_create', 'is_published')
+    list_display = ('id', 'title', 'stock', 'price', 'time_create', 'is_published')
     list_display_links = ('id', 'title')
     search_fields = ('title', 'description')
     list_filter = ('is_published', 'time_create')
