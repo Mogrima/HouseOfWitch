@@ -4,7 +4,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
-from PIL import Image
+from django.contrib.contenttypes.fields import GenericForeignKey
 from django.utils import timezone
 
 User = get_user_model()
@@ -17,7 +17,7 @@ class Goods(models.Model):
     photo = models.ImageField(upload_to="photos/%Y/%m/%d/", blank=True, verbose_name="Фото")
     time_create = models.DateTimeField(auto_now_add=True)
     is_published = models.BooleanField(default=True)
-    stock = models.PositiveIntegerField(default='0')
+    stock = models.IntegerField(default=1, verbose_name='Наличие на складе')
     cat = models.ForeignKey('Category', on_delete=models.PROTECT)
 
     def __str__(self):
@@ -26,16 +26,9 @@ class Goods(models.Model):
     def get_absolute_url(self):
         return reverse('post', kwargs={'post_slug': self.slug})
 
-    def save(self):
-        if self.photo:
-            super().save()
-            img = Image.open(self.photo.path)
-
-            if img.height > 800 or img.width > 800:
-                output_size = (800, 800)
-                img.thumbnail(output_size)
-                img.save(self.photo.path)
-
+    @property
+    def ct_model(self):
+        return self._meta.model_name
     class Meta:
         verbose_name = 'Товары'
         verbose_name_plural = 'Товары'
@@ -82,11 +75,13 @@ class CartGoods(models.Model):
     user = models.ForeignKey('Customer', verbose_name='Покупатель', on_delete=models.PROTECT)
     cart = models.ForeignKey('Cart', verbose_name='Корзина', on_delete=models.PROTECT, related_name='related_products')
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
     final_price = models.FloatField(verbose_name='Итоговая цена')
     qty = models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return "Продукт: {} (для корзины)".format(self.content_object.title)
+        return f"Продукт: {self.content_object} (для корзины)"
 
     def save(self, *args, **kwargs):
         self.final_price = self.qty * self.content_object.price
@@ -104,6 +99,9 @@ class Cart(models.Model):
     final_price = models.FloatField(default=0, verbose_name='Общая цена')
     in_order = models.BooleanField(default=False)
     for_anonymous_user = models.BooleanField(default=False)
+
+    def products_in_cart(self):
+        return [c.content_object for c in self.products.all()]
 
     def __str__(self):
         return str(self.id)
