@@ -18,7 +18,7 @@ class GoodsAdminForm(ModelForm):
 
 class GoodsAdmin(admin.ModelAdmin):
     form = GoodsAdminForm
-    list_display = ('id', 'title', 'time_create', 'photo', 'is_published')
+    list_display = ('id', 'title', 'stock', 'time_create', 'is_published')
     list_display_links = ('id', 'title')
     search_fields = ('title', 'description')
     list_filter = ('is_published', 'time_create')
@@ -57,3 +57,4 @@ class CartAdmin(admin.ModelAdmin):
 admin.site.register(Cart, CartAdmin)
 admin.site.register(Order)
 admin.site.register(Notification)
+admin.site.register(CartGoods)
