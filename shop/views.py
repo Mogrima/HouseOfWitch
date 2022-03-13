@@ -12,6 +12,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from .utils import recalc_cart
 from django.contrib import messages
+from django.contrib.contenttypes.models import ContentType
 
 from .forms import *
 from .models import *
@@ -106,9 +107,9 @@ class AddToCartView(DataMixin, views.View):
     )
     if created:
       self.cart.products.add(cart_product)
-    recalc_cart(self.cart)
+    # recalc_cart(self.cart)
     messages.add_message(request, messages.INFO, "Товар добавлен в корзину")
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    return HttpResponseRedirect('/')
 
 class DeleteFromCartView(DataMixin, views.View):
   def get(self, request, *args, **kwargs):

@@ -19,6 +19,23 @@
         </div>
         {% endif %}
         <a href="{{ post.get_absolute_url }}" class="button catalog__button">Открыть</a>
+
+        {% if request.user.is_authenticated %}
+
+        {% if  post.stock %}
+          {%  if post not in cart.products_in_cart %}
+            <a href="{% url 'add_to_cart' ct_model=post.ct_model slug=post.slug %}" class="btn btn-primary">
+              Добавить в корзину
+            </a>
+          {% else %}
+            <p class="btn btn-default">Добавлен в корзину</з>
+          {% endif %}
+        {% else %}
+          <p>Не в наличии</p>
+        {% endif %}
+      {% endif %}
+
+
     </figure>
     {% endfor %}
   </div>
