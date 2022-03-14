@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.utils import timezone
+import operator
 
 User = get_user_model()
 
@@ -72,6 +73,10 @@ class Article(models.Model):
 
 class CartGoods(models.Model):
 
+    MODEL_CARTPRODUCT_DISPLAY_NAME_MAP = {
+        "Goods": {"is_constructable": True, "fields": ["title"], "separator": ' - '}
+    }
+
     user = models.ForeignKey('Customer', verbose_name='Покупатель', on_delete=models.PROTECT)
     cart = models.ForeignKey('Cart', verbose_name='Корзина', on_delete=models.PROTECT, related_name='related_products')
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
@@ -82,6 +87,20 @@ class CartGoods(models.Model):
 
     def __str__(self):
         return f"Продукт: {self.content_object} (для корзины)"
+
+    @property
+    def display_name(self):
+        model_fields = self.MODEL_CARTPRODUCT_DISPLAY_NAME_MAP.get(self.content_object.__class__._meta.model_name.capitalize())
+        if model_fields and model_fields['is_constructable']:
+            display_name = model_fields['separator'].join(
+                [operator.attrgetter(field)(self.content_object) for field in model_fields['fields']]
+            )
+            return display_name
+        if model_fields and not model_fields['is_constructable']:
+            display_name = operator.attrgetter(model_fields['field'])(self.content_object)
+            return display_name
+
+        return self.content_object
 
     def save(self, *args, **kwargs):
         self.final_price = self.qty * self.content_object.price
