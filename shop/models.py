@@ -16,10 +16,10 @@ class Goods(models.Model):
     price = models.FloatField(verbose_name='Цена')
     description = models.TextField(blank=True, verbose_name="Описание товара")
     photo = models.ImageField(upload_to="photos/%Y/%m/%d/", blank=True, verbose_name="Фото")
-    time_create = models.DateTimeField(auto_now_add=True)
-    is_published = models.BooleanField(default=True)
+    time_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    is_published = models.BooleanField(default=True, verbose_name='Показано на сайте')
     stock = models.IntegerField(default=1, verbose_name='Наличие на складе')
-    cat = models.ForeignKey('Category', on_delete=models.PROTECT)
+    cat = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')
 
     def __str__(self):
         return self.title
@@ -55,10 +55,10 @@ class Article(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
     content = models.TextField(blank=True, verbose_name="Текст статьи")
     photo = models.ImageField(upload_to="imgarticle/%Y/", blank=True, verbose_name="Фото")
-    time_create = models.DateTimeField(auto_now_add=True)
-    time_update = models.DateTimeField(auto_now=True)
-    is_published = models.BooleanField(default=True)
-    cat = models.ForeignKey('Category', on_delete=models.PROTECT)
+    time_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    time_update = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
+    is_published = models.BooleanField(default=True, verbose_name='Опубликовано на сайте')
+    cat = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')
 
     def __str__(self):
         return self.title
@@ -83,7 +83,7 @@ class CartGoods(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
     final_price = models.FloatField(verbose_name='Итоговая цена')
-    qty = models.PositiveIntegerField(default=1)
+    qty = models.PositiveIntegerField(default=1, verbose_name='Количество')
 
     def __str__(self):
         return f"Продукт: {self.content_object} (для корзины)"
@@ -114,10 +114,10 @@ class Cart(models.Model):
 
     owner = models.ForeignKey('Customer', blank=True, verbose_name='Владелец', on_delete=models.PROTECT)
     products = models.ManyToManyField(CartGoods, blank=True, related_name='related_cart')
-    total_products = models.PositiveIntegerField(default=0)
+    total_products = models.PositiveIntegerField(default=0, verbose_name='Общее кол-во товаров')
     final_price = models.FloatField(default=0, verbose_name='Общая цена')
-    in_order = models.BooleanField(default=False)
-    for_anonymous_user = models.BooleanField(default=False)
+    in_order = models.BooleanField(default=False, verbose_name='В заказе')
+    for_anonymous_user = models.BooleanField(default=False, verbose_name='Неавторизованный пользователь')
 
     def products_in_cart(self):
         return [c.content_object for c in self.products.all()]
@@ -197,9 +197,9 @@ class Customer(models.Model):
 
 class Notification(models.Model):
 
-    recipient = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='')
-    text = models.TextField()
-    read = models.BooleanField(default=False)
+    recipient = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='Получатель')
+    text = models.TextField(verbose_name='Текст')
+    read = models.BooleanField(default=False, verbose_name='Прочитано')
 
     def __str__(self):
         return f"Уведомление для {self.recipient.user.username} | id={self.id}"
