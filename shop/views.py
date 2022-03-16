@@ -10,7 +10,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
-from .utils import recalc_cart
+from .utils.recalc_cart import recalc_cart
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 

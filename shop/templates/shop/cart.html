@@ -36,9 +36,10 @@
                         </tr>
                     </table>
                     <div class="cart__settings">
-                        <div>
                             <div class="cart__settings-item cart__counter-block">
-                                <button class="cart__counter" type="button">
+                                <form action="{% url 'change_qty' ct_model=item.content_object.ct_model slug=item.content_object.slug %}" method="POST">
+                                    {% csrf_token %}
+                                <button class="cart__counter" type="submit">
                                     <span class="visually-hidden">Увеличить</span>
                                     <svg class="icon icon--counter" width="41" height="39" viewBox="0 0 41 39"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,6 +48,7 @@
                                             fill="white" />
                                     </svg>
                                 </button>
+                                <input type="number" style="width: 70px;" name="qty" min="1" value="{{ item.qty }}">
                                 <input class="cart__input-counter" type="text" value="{{ item.qty }}">
                                 <button class="cart__counter" type="button">
                                     <span class="visually-hidden">Уменьшить</span>
@@ -56,13 +58,11 @@
                                     </svg>
                                 </button>
                             </div>
-
-
-                        </div>
                         <p class="cart__settings-item">Цена {{ item.final_price }} руб.</p>
                         <button class="cart__delete-btn" type="button">
                             <span class="visually-hidden">Удалить</span>
                         </button>
+                    </form>
                     </div>
                 </div>
             </div>
