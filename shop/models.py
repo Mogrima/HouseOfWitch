@@ -7,6 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.utils import timezone
 import operator
+from .utils.upload import upload_function
 
 User = get_user_model()
 
@@ -15,7 +16,7 @@ class Goods(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
     price = models.FloatField(verbose_name='Цена')
     description = models.TextField(blank=True, verbose_name="Описание товара")
-    photo = models.ImageField(upload_to="photos/%Y/%m/%d/", blank=True, verbose_name="Фото")
+    photo = models.ImageField(upload_to=upload_function, blank=True, verbose_name="Фото")
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     is_published = models.BooleanField(default=True, verbose_name='Показано на сайте')
     stock = models.IntegerField(default=1, verbose_name='Наличие на складе')
@@ -123,7 +124,7 @@ class Cart(models.Model):
         return [c.content_object for c in self.products.all()]
 
     def __str__(self):
-        return str(self.id)
+        return f"Корзина: id - {str(self.id)} {self.owner}"
 
     class Meta:
         verbose_name = 'Корзина покупателя'
