@@ -59,9 +59,9 @@
                                 </button>
                             </div>
                         <p class="cart__settings-item">Цена {{ item.final_price }} руб.</p>
-                        <button class="cart__delete-btn" type="button">
+                        <a class="cart__delete-btn" href="{% url 'delete_from_cart' ct_model=item.content_object.ct_model slug=item.content_object.slug %}"">
                             <span class="visually-hidden">Удалить</span>
-                        </button>
+                        </a>
                     </form>
                     </div>
                 </div>
