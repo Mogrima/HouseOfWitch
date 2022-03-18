@@ -31,6 +31,13 @@ class Goods(models.Model):
     @property
     def ct_model(self):
         return self._meta.model_name
+
+    @property
+    def get_photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
+        else:
+            return "../static/shop/img/notavailable2.jpg"
     class Meta:
         verbose_name = 'Товары'
         verbose_name_plural = 'Товары'
