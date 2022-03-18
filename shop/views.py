@@ -149,6 +149,15 @@ class AddToWishlist(views.View):
         customer.wishlist.add(goods)
         return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
+class RemoveFromWishListView(views.View):
+
+    @staticmethod
+    def get(request, *args, **kwargs):
+        goods = Goods.objects.get(id=kwargs['post_id'])
+        customer = Customer.objects.get(user=request.user)
+        customer.wishlist.remove(goods)
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
 class RegisterUser(DataMixin, views.View):
 
     def get(self, request, *args, **kwargs):
