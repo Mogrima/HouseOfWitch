@@ -33,12 +33,37 @@ class ShopHome(DataMixin, ListView):
         return context
 
 
-def about(request):
-    return render(request, 'shop/about.html', {'menu': menu, 'title': 'О нас'})
+# def about(request):
+#     return render(request, 'shop/about.html', {'menu': menu, 'title': 'О нас'})
+
+class about(DataMixin, ListView):
+    model = Goods
+    template_name = 'shop/about.html'
+    context_object_name = 'posts'
+        
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'О нас'
+        context['menu'] = self.menu
+        context['cart'] = self.cart
+        return context
 
 
-def catalog(request):
-    return render(request, 'shop/catalog.html', {'menu': menu, 'title': 'Каталог'})
+# def catalog(request):
+#     return render(request, 'shop/catalog.html', {'menu': menu, 'title': 'Каталог'})
+
+class catalog(DataMixin, ListView):
+    model = Goods
+    template_name = 'shop/index.html'
+    context_object_name = 'posts'
+        
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Каталог'
+        context['menu'] = self.menu
+        context['cats'] = self.cats
+        context['cart'] = self.cart
+        return context
 
 
 def categories(request, catid):
