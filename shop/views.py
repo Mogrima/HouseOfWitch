@@ -92,9 +92,18 @@ class GoodsCategory(DataMixin, ListView):
     def get_queryset(self):
         return Goods.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
 
-class CartView(DataMixin, views.View):
-  def get(self, request, *args, **kwargs):
-    return render(request, 'shop/cart.html', {"cart": self.cart})
+# class CartView(DataMixin, views.View):
+#   def get(self, request, *args, **kwargs):
+#     return render(request, 'shop/cart.html', {"cart": self.cart})
+
+class CartView(DataMixin, ListView):
+    def get(self, request, *args, **kwargs):
+        context = {
+            'cart': self.cart,
+            'menu': self.menu,
+            'title': 'Корзина'
+        }
+        return render(request, 'shop/cart.html', context)
 
 
 class AddToCartView(DataMixin, views.View):
