@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseNotFound, Http404
+from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpRequest
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
@@ -32,17 +32,14 @@ class ShopHome(DataMixin, ListView):
         context['cart'] = self.cart
         return context
 
-class about(DataMixin, ListView):
-    model = Goods
-    template_name = 'shop/about.html'
-    context_object_name = 'posts'
-        
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'О нас'
-        context['menu'] = self.menu
-        context['cart'] = self.cart
-        return context
+class about(DataMixin, views.View):
+  def get(self, request, *args, **kwargs):
+    context = {
+      'title': 'О нас',
+      'menu': self.menu,
+      'cart': self.cart
+    }
+    return render(request, 'shop/about.html', context)
 
 
 # def catalog(request):
@@ -139,7 +136,7 @@ class AddToCartView(DataMixin, views.View):
       self.cart.products.add(cart_product)
     recalc_cart(self.cart)
     messages.add_message(request, messages.INFO, "Товар добавлен в корзину")
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 class DeleteFromCartView(DataMixin, views.View):
   def get(self, request, *args, **kwargs):
