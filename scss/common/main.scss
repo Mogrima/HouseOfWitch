@@ -116,10 +116,31 @@ input[type="checkbox"].visually-hidden {
   margin-top: -4px;
 }
 
+.wrapper-text {
+  padding: 0 20px;
+  padding-top: 30px;
+}
+
 .section-header {
   font-size: $titleSizeLG;
   color: $default-color;
   text-align: center;
+}
+
+.text {
+  margin-bottom: 20px;
+  // padding: 0 20px;
+  font-size: 21px;
+  font-family: 'Consolas', Arial, Helvetica, sans-serif;
+  color: $light-text-color;
+}
+
+.about-pumpkin {
+  display: flex;
+
+  img {
+    margin-left: auto;
+  }
 }
 
 @media(min-width: $lgwidth) {
