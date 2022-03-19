@@ -32,10 +32,6 @@ class ShopHome(DataMixin, ListView):
         context['cart'] = self.cart
         return context
 
-
-# def about(request):
-#     return render(request, 'shop/about.html', {'menu': menu, 'title': 'О нас'})
-
 class about(DataMixin, ListView):
     model = Goods
     template_name = 'shop/about.html'
@@ -141,7 +137,7 @@ class AddToCartView(DataMixin, views.View):
     )
     if created:
       self.cart.products.add(cart_product)
-    # recalc_cart(self.cart)
+    recalc_cart(self.cart)
     messages.add_message(request, messages.INFO, "Товар добавлен в корзину")
     return HttpResponseRedirect('/')
 
