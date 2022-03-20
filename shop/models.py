@@ -148,6 +148,10 @@ class Order(models.Model):
     BUYING_TYPE_SELF = 'self'
     BUYING_TYPE_DELIVERY = 'delivery'
 
+    PAY_FALSE = 'unpaid '
+    PAY_PROGRESS = 'pay_inprogress'
+    PAY_TRUE = 'paid'
+
     STATUS_CHOICES = (
         (STATUS_NEW, 'Новый заказ'),
         (STATUS_IN_PROGRESS, 'Заказ в обработке'),
@@ -161,6 +165,12 @@ class Order(models.Model):
         (BUYING_TYPE_DELIVERY, 'Доставка')
     )
 
+    STATUS_PAY = (
+        (PAY_FALSE, 'Неоплачен'),
+        (PAY_PROGRESS, 'Платеж в обработке'),
+        (PAY_TRUE, 'Оплачен'),
+    )
+
     customer = models.ForeignKey(
         'Customer', on_delete=models.CASCADE, related_name='orders', default='', verbose_name='Покупатель'
         )
@@ -171,12 +181,13 @@ class Order(models.Model):
     adress = models.CharField(max_length=1024, blank=True, verbose_name='Адрес')
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=STATUS_NEW, verbose_name='Статус заказа')
     buying_type = models.CharField(max_length=100, choices=BUYING_TYPE_CHOICES, default='Доставка', verbose_name='Тип доставки')
+    pay_status = models.CharField(max_length=100, choices=STATUS_PAY, default=PAY_FALSE, verbose_name='Статус платежа')
     comment = models.TextField(blank=True, verbose_name='Комментарий к заказу')
     created_at = models.DateField(verbose_name='Дата создания заказа', auto_now=True)
     order_date = models.DateField(default=timezone.now, verbose_name='Дата получения заказа')
 
     def __str__(self):
-        return str(self.id)
+         return f"Заказ: № - {str(self.id)}, владельца {self.first_name} {self.last_name}"
 
     class Meta:
         verbose_name = 'Заказ'
