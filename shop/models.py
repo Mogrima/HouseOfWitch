@@ -148,9 +148,9 @@ class Order(models.Model):
     BUYING_TYPE_SELF = 'self'
     BUYING_TYPE_DELIVERY = 'delivery'
 
-    PAY_FALSE = 'unpaid '
-    PAY_PROGRESS = 'pay_inprogress'
-    PAY_TRUE = 'paid'
+    PAY_FALSE = 'Неоплачен'
+    PAY_PROGRESS = 'Платеж в обработке'
+    PAY_TRUE = 'Оплачен'
 
     STATUS_CHOICES = (
         (STATUS_NEW, 'Новый заказ'),
@@ -165,7 +165,7 @@ class Order(models.Model):
         (BUYING_TYPE_DELIVERY, 'Доставка')
     )
 
-    STATUS_PAY = (
+    STATUS_PAY_CHOICES = (
         (PAY_FALSE, 'Неоплачен'),
         (PAY_PROGRESS, 'Платеж в обработке'),
         (PAY_TRUE, 'Оплачен'),
@@ -181,7 +181,7 @@ class Order(models.Model):
     adress = models.CharField(max_length=1024, blank=True, verbose_name='Адрес')
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=STATUS_NEW, verbose_name='Статус заказа')
     buying_type = models.CharField(max_length=100, choices=BUYING_TYPE_CHOICES, default='Доставка', verbose_name='Тип доставки')
-    pay_status = models.CharField(max_length=100, choices=STATUS_PAY, default=PAY_FALSE, verbose_name='Статус платежа')
+    pay_status = models.CharField(max_length=100, choices=STATUS_PAY_CHOICES, default=PAY_FALSE, verbose_name='Статус платежа')
     comment = models.TextField(blank=True, verbose_name='Комментарий к заказу')
     created_at = models.DateField(verbose_name='Дата создания заказа', auto_now=True)
     order_date = models.DateField(default=timezone.now, verbose_name='Дата получения заказа')
