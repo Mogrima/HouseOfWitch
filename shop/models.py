@@ -177,7 +177,7 @@ class Order(models.Model):
     first_name = models.CharField(max_length=255, verbose_name='Имя')
     last_name = models.CharField(max_length=255, verbose_name='Фамилия')
     phone = models.CharField(max_length=20, verbose_name='Телефон')
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, blank=True, default='', verbose_name='Корзина')
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, blank=True, null=True, default='', verbose_name='Корзина')
     adress = models.CharField(max_length=1024, blank=True, verbose_name='Адрес')
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=STATUS_NEW, verbose_name='Статус заказа')
     buying_type = models.CharField(max_length=100, choices=BUYING_TYPE_CHOICES, default='Доставка', verbose_name='Тип доставки')
