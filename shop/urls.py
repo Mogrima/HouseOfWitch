@@ -23,4 +23,5 @@ urlpatterns = [
     path('change-qty/<str:ct_model>/<str:slug>/', ChangeQTVView.as_view(), name='change_qty'),
     path('add-to-wishlist/<int:post_id>/', AddToWishlist.as_view(), name='add_to_wishlist'),
     path('remove-from-wishlist/<int:post_id>/', RemoveFromWishListView.as_view(), name='remove_from_wishlist'),
+    path('make-order/', MakeOrderView.as_view(), name='make-order'),
 ]
