@@ -70,10 +70,30 @@
         {% endfor %}
     </ul>
     {% endif %}
+    {% if messages %}
+{% for message in messages %}
+    <div class="alert alert-success fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+{% endif %}
+<form action="{% url 'make-order' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-error" style="color: orange;">{{ form.non_field_errors }}</div>
+    {% for f in form %}
+    <p class="login__input-wrapper">
+      <label for="{{ f.id_for_label }}" class="login__label">{{f.label}}</label>
+      {{ f }}
+    </p>
+    <div class="form-error" style="color: orange;">{{ f.errors }}</div>
+    {% endfor %}
+    <input type="submit" class="button" value="Оформить">
+</form>
     {% if cart.products.count %} 
     <div class="cart__output">
         <p class="cart__output-text"><strong>Итого: <span class="cart__output-price">{{ cart.final_price }} руб.</span></strong></p>
-        <button class="button">Купить</button>
+        <a href="#" class="button">Оформить</a>
     </div>
     {% endif %}
 </section>
