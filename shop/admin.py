@@ -54,7 +54,10 @@ class CartAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'owner')
     search_fields = ('owner',)
 
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'customer', 'first_name', 'last_name', 'created_at', 'status')
+
 admin.site.register(Cart, CartAdmin)
-admin.site.register(Order)
+admin.site.register(Order,  OrderAdmin)
 admin.site.register(Notification)
 admin.site.register(CartGoods)
