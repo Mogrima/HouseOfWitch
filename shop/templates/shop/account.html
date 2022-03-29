@@ -25,7 +25,9 @@
                     <th scope="col">Номер заказа</th>
                     <th scope="col">Статус</th>
                     <th scope="col">Сумма</th>
-                    <th scope="col">Детали</th>
+                    <th scope="col">Статус платежа</th>
+                    <th scope="col">Дата создания</th>
+                    <th> Информация о заказе</th>
                 </tr>
 
                 </thead>
@@ -38,11 +40,11 @@
                         <th scope="row">{{ order.id }}</th>
                         <td>{{ order.get_status_display }}</td>
                         <td>{{ order.cart.final_price }} руб.</td>
-                        <td>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#orderDetails-{{ order.id }}">Детали заказа
-                            </button>
-                        </td>
+                        <td>{{ order.pay_status }}</td>
+                        <td>{{ order.created_at }}</td>
+                        <th>
+                            <button>Детали</button>
+                        </th>
 
 
                         <div class="modal fade" id="orderDetails-{{ order.id }}" tabindex="-1"
@@ -63,7 +65,7 @@
                                         <div class="row">
 
                                             <div class="col-md-3 text-center mb-2">
-                                                <strong>Исполнитель/альбом</strong>
+                                                <strong>Наименование</strong>
                                             </div>
                                             <div class="col-md-3 text-center mb-2">
                                                 <strong>Изображение</strong>
@@ -78,20 +80,22 @@
                                             {% for item in order.cart.products.all %}
                                                 <div class="col-md-3 mb-3 text-center">
                                                     <strong>
-                                                        <a href="{{ item.content_object.artist.get_absolute_url }}"
-                                                           class="text-decoration-none">
-                                                            {{ item.content_object.name }}
-                                                        </a> - <a
+                                                          <a
                                                             href="{{ item.content_object.get_absolute_url }}"
                                                             class="text-decoration-none">
-                                                        {{ item.content_object.name }}
+                                                        {{ item.content_object.title }}
                                                     </a>
                                                     </strong>
 
                                                 </div>
                                                 <div class="col-md-3 mb-3 text-center">
-                                                    <img src="{{ item.content_object.image.url }}"
-                                                         class="img-fluid">
+                                                    {% if item.content_object.photo %}
+                <img alt="{{post.title}}" height="298" src="{{item.content_object.photo.url}}" width="279"
+                    class="catalog__image cart__image">
+                {% else %}
+                <img alt="изображение товара" height="298" src="../static/shop/img/notavailable2.jpg" width="279"
+                    class="catalog__image cart__image">
+                {% endif %}
                                                 </div>
                                                 <div class="col-md-3 mb-3 text-center">
                                                     {{ item.qty }} шт.
