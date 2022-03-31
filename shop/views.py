@@ -326,7 +326,6 @@ class MakeOrderView(DataMixin, views.View):
             new_order.phone = form.cleaned_data['phone']
             new_order.adress = form.cleaned_data['adress']
             new_order.buying_type = form.cleaned_data['buying_type']
-            new_order.order_date = form.cleaned_data['order_date']
             new_order.comment = form.cleaned_data['comment']
             new_order.save()
 
