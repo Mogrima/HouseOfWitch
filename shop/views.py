@@ -215,7 +215,7 @@ class RegisterUser(DataMixin, views.View):
             new_user.save()
             Customer.objects.create(
                 user=new_user,
-                # phone=form.cleaned_data['phone'],
+                email=form.cleaned_data['email'],
                 # adress=form.cleaned_data['address']
             )
             user = authenticate(

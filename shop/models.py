@@ -184,7 +184,6 @@ class Order(models.Model):
     pay_status = models.CharField(max_length=100, choices=STATUS_PAY_CHOICES, default=PAY_FALSE, verbose_name='Статус платежа')
     comment = models.TextField(blank=True, verbose_name='Комментарий к заказу')
     created_at = models.DateField(verbose_name='Дата создания заказа', auto_now=True)
-    order_date = models.DateField(default=timezone.now, verbose_name='Дата получения заказа')
 
     def __str__(self):
          return f"Заказ: № - {str(self.id)}, владельца {self.first_name} {self.last_name}"
@@ -203,6 +202,7 @@ class Customer(models.Model):
     )
     wishlist = models.ManyToManyField(Goods, blank=True, verbose_name='Список ожидаемого')
     phone = models.CharField(max_length=20, blank=True, verbose_name='Телефон')
+    email = models.EmailField(max_length = 254, default='', verbose_name='Email')
     adress = models.TextField(blank=True, verbose_name='Адрес')
 
     def __str__(self):
