@@ -1,3 +1,5 @@
+from urllib import request
+from urllib.request import Request
 from django import forms
 from .models import *
 from django.contrib.auth.models import User
@@ -68,11 +70,8 @@ class RegisterUserForm(forms.ModelForm):
         fields = ['username', 'password', 'confirm_password', 'email',]
 
 class OrderForm(forms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
     class Meta:
         model = Order
         fields = (
-            'first_name', 'last_name', 'surname', 'phone', 'adress', 'buying_type', 'comment'
+            'first_name', 'last_name', 'surname', 'email', 'phone', 'adress', 'buying_type', 'comment'
         )

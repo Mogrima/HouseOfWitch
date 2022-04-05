@@ -84,10 +84,15 @@
     {% for f in form %}
     <p class="login__input-wrapper">
       <label for="{{ f.id_for_label }}" class="login__label">{{f.label}}</label>
+      {% if f.name == 'email' %}
+      <input id="email" type="email" name="email" value="{{user.email}}">
+      {% else %}
       {{ f }}
+      {% endif%}
     </p>
     <div class="form-error" style="color: orange;">{{ f.errors }}</div>
     {% endfor %}
+   
     <input type="submit" class="button" value="Оформить">
 </form>
     {% if cart.products.count %} 

@@ -323,6 +323,7 @@ class MakeOrderView(DataMixin, views.View):
             new_order.customer = customer
             new_order.first_name = form.cleaned_data['first_name']
             new_order.last_name = form.cleaned_data['last_name']
+            new_order.email = form.cleaned_data['email']
             new_order.surname = form.cleaned_data['surname']
             new_order.phone = form.cleaned_data['phone']
             new_order.adress = form.cleaned_data['adress']
