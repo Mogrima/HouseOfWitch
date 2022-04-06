@@ -145,9 +145,6 @@ class Order(models.Model):
     STATUS_COMPLETED = 'completed'
     STATUS_CANCELED = 'canceled'
 
-    BUYING_TYPE_SELF = 'self'
-    BUYING_TYPE_DELIVERY = 'delivery'
-
     PAY_FALSE = 'Неоплачен'
     PAY_PROGRESS = 'Платеж в обработке'
     PAY_TRUE = 'Оплачен'
@@ -158,11 +155,6 @@ class Order(models.Model):
         (STATUS_READY, 'Заказ готов'),
         (STATUS_COMPLETED, 'Заказ отдан'),
         (STATUS_CANCELED, 'Заказ отменен')
-    )
-
-    BUYING_TYPE_CHOICES = (
-        (BUYING_TYPE_SELF, 'Самовывоз'),
-        (BUYING_TYPE_DELIVERY, 'Доставка')
     )
 
     STATUS_PAY_CHOICES = (
@@ -182,7 +174,6 @@ class Order(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, blank=True, null=True, default='', verbose_name='Корзина')
     adress = models.CharField(max_length=1024, blank=True, verbose_name='Адрес')
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=STATUS_NEW, verbose_name='Статус заказа')
-    buying_type = models.CharField(max_length=100, choices=BUYING_TYPE_CHOICES, default='Доставка', verbose_name='Тип доставки')
     pay_status = models.CharField(max_length=100, choices=STATUS_PAY_CHOICES, default=PAY_FALSE, verbose_name='Статус платежа')
     comment = models.TextField(blank=True, verbose_name='Комментарий к заказу')
     created_at = models.DateField(verbose_name='Дата создания заказа', auto_now=True)
