@@ -69,7 +69,7 @@
         </li>
         {% endfor %}
     </ul>
-    {% endif %}
+    
     {% if messages %}
 {% for message in messages %}
     <div class="alert alert-success fade show" role="alert">
@@ -100,6 +100,7 @@
         <p class="cart__output-text"><strong>Итого: <span class="cart__output-price">{{ cart.final_price }} руб.</span></strong></p>
         <a href="#" class="button">Оформить</a>
     </div>
+    {% endif %}
     {% endif %}
 </section>
 {% endblock %}
