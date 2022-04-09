@@ -42,9 +42,17 @@ class  ArticleAdmin(admin.ModelAdmin):
 
 admin.site.register(Article,  ArticleAdmin)
 
+class OrderInline(admin.TabularInline):
+    model = Order
+    fields = ("id", "first_name", "last_name", "status", "pay_status")
+    extra = 1
+
 class  CustomerAdmin(admin.ModelAdmin):
     list_display = ('id', 'user')
     list_display_links = ('id', 'user')
+    fields = ("user", "in_active", "wishlist", "phone", "email", "adress")
+    filter_horizontal = ('wishlist',)
+    inlines = (OrderInline,)
     search_fields = ('user', 'address')
 
 admin.site.register(Customer,  CustomerAdmin)
