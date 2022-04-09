@@ -138,7 +138,6 @@ class AddToCartView(DataMixin, views.View):
     if created:
       self.cart.products.add(cart_product)
     recalc_cart(self.cart)
-    messages.add_message(request, messages.INFO, "Товар добавлен в корзину")
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 class DeleteFromCartView(DataMixin, views.View):
@@ -152,7 +151,6 @@ class DeleteFromCartView(DataMixin, views.View):
     self.cart.products.remove(cart_product)
     cart_product.delete()
     recalc_cart(self.cart)
-    messages.add_message(request, messages.INFO, "Товар удален")
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 class ChangeQTVView(DataMixin, views.View):
@@ -340,7 +338,6 @@ class MakeOrderView(DataMixin, views.View):
                 item.content_object.stock -= item.qty
                 item.content_object.save()
 
-            messages.add_message(request, messages.INFO, 'Спасибо за заказ! Менеджер с Вами свяжется')
             return HttpResponseRedirect('/checkout/')
         return HttpResponseRedirect('/cart/')
 
