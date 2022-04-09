@@ -341,5 +341,17 @@ class MakeOrderView(DataMixin, views.View):
                 item.content_object.save()
 
             messages.add_message(request, messages.INFO, 'Спасибо за заказ! Менеджер с Вами свяжется')
-            return HttpResponseRedirect('/account/')
+            return HttpResponseRedirect('/checkout/')
         return HttpResponseRedirect('/cart/')
+
+class CheckoutView(DataMixin, views.View):
+  def get(self, request, *args, **kwargs):
+    customer = Customer.objects.get(user=request.user)
+    order = customer.orders.last()
+    context = {
+      'order': order,
+      'title': 'Заказ оформлен',
+      'menu': self.menu,
+      'cart': self.cart
+    }
+    return render(request, 'shop/checkout.html', context)

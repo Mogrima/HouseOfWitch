@@ -1,0 +1,11 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<section class="catalog">
+    <h2 class="catalog__section-header section-header">Спасибо за ваш заказ!</h2>
+    <p>Информацию о № {{ order.id }} заказе, а также его статус можете узнать в личном кабинете. Также Информация
+        отправлена на указанную почту - {{ order.email }}. С вами также может связаться Ведьма для уточнения информации по 
+        указанным контактам! 
+    </p>
+</section>
+{% endblock %}

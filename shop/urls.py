@@ -24,4 +24,5 @@ urlpatterns = [
     path('add-to-wishlist/<int:post_id>/', AddToWishlist.as_view(), name='add_to_wishlist'),
     path('remove-from-wishlist/<int:post_id>/', RemoveFromWishListView.as_view(), name='remove_from_wishlist'),
     path('make-order/', MakeOrderView.as_view(), name='make-order'),
+    path('checkout/', CheckoutView.as_view(), name='checkout'),
 ]
