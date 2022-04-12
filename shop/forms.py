@@ -1,5 +1,3 @@
-from urllib import request
-from urllib.request import Request
 from django import forms
 from .models import *
 from django.contrib.auth.models import User
