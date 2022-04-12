@@ -145,6 +145,9 @@ class Order(models.Model):
     STATUS_COMPLETED = 'completed'
     STATUS_CANCELED = 'canceled'
 
+    BUYING_TYPE_RF = 'pochta'
+    BUYING_TYPE_DELIVERY = 'SDEK'
+
     PAY_FALSE = 'Неоплачен'
     PAY_PROGRESS = 'Платеж в обработке'
     PAY_TRUE = 'Оплачен'
@@ -155,6 +158,11 @@ class Order(models.Model):
         (STATUS_READY, 'Заказ готов'),
         (STATUS_COMPLETED, 'Заказ отдан'),
         (STATUS_CANCELED, 'Заказ отменен')
+    )
+
+    BUYING_TYPE_CHOICES = (
+        (BUYING_TYPE_RF, 'Почта РФ'),
+        (BUYING_TYPE_DELIVERY, 'СДЭК')
     )
 
     STATUS_PAY_CHOICES = (
@@ -172,6 +180,7 @@ class Order(models.Model):
     email = models.EmailField(max_length = 254, default='', verbose_name='Электронная почта')
     phone = models.CharField(max_length=20, verbose_name='Телефон')
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, blank=True, null=True, default='', verbose_name='Корзина')
+    buying_type = models.CharField(max_length=100, choices=BUYING_TYPE_CHOICES, default=BUYING_TYPE_RF, verbose_name='Тип заказа',)
     state = models.CharField(max_length=255, verbose_name='Область/Край')
     city = models.CharField(max_length=255, verbose_name='Город')
     street = models.CharField(max_length=1024, verbose_name='Улица')
