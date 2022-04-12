@@ -78,7 +78,7 @@
     </div>
 {% endfor %}
 {% endif %}
-<form action="{% url 'make-order' %}" method="POST">
+<form id="form-order" action="{% url 'make-order' %}" method="POST">
     {% csrf_token %}
     <div class="form-error" style="color: orange;">{{ form.non_field_errors }}</div>
     {% for f in form %}
@@ -93,7 +93,7 @@
     <div class="form-error" style="color: orange;">{{ f.errors }}</div>
     {% endfor %}
    
-    <input type="submit" class="button" value="Оформить">
+    <button type="submit" class="button" value="Оформить">Оформить</button>
 </form>
     {% if cart.products.count %} 
     <div class="cart__output">
