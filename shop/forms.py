@@ -7,9 +7,9 @@ User = get_user_model()
 
 class LoginUserForm(forms.ModelForm):
     username = forms.CharField(
-        label='Логин', widget=forms.TextInput(attrs={'class': 'login__input'}))
+        label='Логин', widget=forms.TextInput(attrs={'class': 'login__input', 'maxlength': '32'}))
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'login__input'}))
+        widget=forms.PasswordInput(attrs={'class': 'login__input', 'minlength': '8'}))
 
     class Meta:
         model = User
@@ -33,10 +33,10 @@ class LoginUserForm(forms.ModelForm):
 
 
 class RegisterUserForm(forms.ModelForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'login__input'}))
-    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'login__input'}))
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'login__input', 'maxlength': '32'}))
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'login__input', 'minlength': '8'}))
     confirm_password = forms.CharField(label='Повторите пароль', widget=forms.PasswordInput(attrs={'class': 'login__input'}))
-    email = forms.EmailField(label='Электронная почта', widget=forms.EmailInput(attrs={'class': 'login__input'}))
+    email = forms.EmailField(label='Электронная почта', widget=forms.EmailInput(attrs={'class': 'login__input', 'maxlength': '255'}))
     # phone = forms.CharField(label='Номер телефона', widget=forms.TextInput(attrs={'class': 'login__input'}), required=False)
     # address = forms.CharField(label='Адрес', widget=forms.TextInput(attrs={'class': 'login__input'}), required=False)
     # first_name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={'class': 'login__input'}), required=False)
@@ -61,6 +61,8 @@ class RegisterUserForm(forms.ModelForm):
         confirm_password = self.cleaned_data['confirm_password']
         if password != confirm_password:
             raise forms.ValidationError('Пароли не совпадают')
+        if len(password) < 8:
+            raise forms.ValidationError('Пароль слишком короткий. Он должен быть не менее 8 символов')
         return self.cleaned_data
 
     class Meta:
