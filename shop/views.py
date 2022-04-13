@@ -189,6 +189,8 @@ class RemoveFromWishListView(views.View):
 class RegisterUser(DataMixin, views.View):
 
     def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('account')
         form = RegisterUserForm(request.POST or None)
         title = 'Регистрация'
         context = {
@@ -233,6 +235,8 @@ class RegisterUser(DataMixin, views.View):
 class LoginUser(DataMixin, views.View):
 
     def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('account')
         form = LoginUserForm(request.POST or None)
         title = 'Авторизация'
         context = {
@@ -252,7 +256,7 @@ class LoginUser(DataMixin, views.View):
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return redirect('home')
         title = 'Авторизация'
         context = {
             'form': form,
