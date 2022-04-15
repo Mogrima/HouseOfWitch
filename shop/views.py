@@ -272,6 +272,8 @@ def logout_user(request):
 
 class AccountView(DataMixin, views.View):
   def get(self, request, *args, **kwargs):
+    if not request.user.is_authenticated:
+        return redirect('login')
     customer = Customer.objects.get(user=request.user)
     context = {
       'customer': customer,
