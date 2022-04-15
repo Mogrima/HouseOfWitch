@@ -58,7 +58,6 @@ let last_name = document.getElementById("id_last_name");
 let surname = document.getElementById("id_surname");
 let email = document.getElementById("email");
 let phone = document.getElementById("id_phone");
-let adress = document.getElementById("id_adress");
 
 const input = order_form.querySelectorAll("input");
 
@@ -71,7 +70,6 @@ last_name.value = (isItemExist('last_name')) ? localStorage.last_name : ''
 surname.value = (isItemExist('surname')) ? localStorage.surname : ''
 email.value = (isItemExist('email')) ? localStorage.email : email.value
 phone.value = (isItemExist('phone')) ? localStorage.phone : ''
-adress.value = (isItemExist('adress')) ? localStorage.adress : ''
 
 order_form.addEventListener('submit', () => {
   localStorage.first_name = first_name.value
@@ -79,5 +77,4 @@ order_form.addEventListener('submit', () => {
   localStorage.surname = surname.value
   localStorage.email = email.value
   localStorage.phone = phone.value
-  localStorage.adress = adress.value
 })
