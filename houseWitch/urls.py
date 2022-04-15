@@ -25,5 +25,10 @@ urlpatterns = [
     path('', include('shop.urls')),
 ]
 
+handler400 = 'houseWitch.views.bad_request_view'
+handler403 = 'houseWitch.views.permission_denied_view'
+handler404 = 'houseWitch.views.page_not_found_view'
+handler500 = 'houseWitch.views.server_error_view'
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
