@@ -354,6 +354,8 @@ class MakeOrderView(DataMixin, views.View):
 
 class CheckoutView(DataMixin, views.View):
   def get(self, request, *args, **kwargs):
+    if request.user.is_authenticated:
+        return redirect('account')
     customer = Customer.objects.get(user=request.user)
     order = customer.orders.last()
     context = {
