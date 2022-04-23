@@ -188,7 +188,7 @@ class Order(models.Model):
     flat = models.CharField(max_length=30, blank=True, verbose_name='Квартира')
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=STATUS_NEW, verbose_name='Статус заказа')
     pay_status = models.CharField(max_length=100, choices=STATUS_PAY_CHOICES, default=PAY_FALSE, verbose_name='Статус платежа')
-    comment = models.TextField(blank=True, verbose_name='Комментарий к заказу')
+    comment = models.TextField(blank=True, max_length=255, verbose_name='Комментарий к заказу')
     created_at = models.DateField(verbose_name='Дата создания заказа', auto_now=True)
 
     def __str__(self):
