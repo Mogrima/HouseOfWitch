@@ -354,14 +354,19 @@ class MakeOrderView(DataMixin, views.View):
 
 class CheckoutView(DataMixin, views.View):
   def get(self, request, *args, **kwargs):
-    if request.user.is_authenticated:
-        return redirect('account')
+    if not request.user.is_authenticated:
+        return redirect('login')
     customer = Customer.objects.get(user=request.user)
     order = customer.orders.last()
-    context = {
-      'order': order,
-      'title': 'Заказ оформлен',
-      'menu': self.menu,
-      'cart': self.cart
-    }
-    return render(request, 'shop/checkout.html', context)
+    if (order):
+        context = {
+        'order': order,
+        'title': 'Заказ оформлен!',
+        'menu': self.menu,
+        'cart': self.cart
+        }
+        return render(request, 'shop/checkout.html', context)
+
+    else:
+        return redirect('catalog')
+    
