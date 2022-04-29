@@ -110,6 +110,13 @@
   color: $light-text-color;
 }
 
+.cart_add_btn {
+  width: 78px;
+  height: 69px;
+  background-image: url("../../../static/shop/img/cart-icon.png");
+  background-size: contain;
+}
+
 @media(max-width: $desktopWidth) {
   .cart__wrapper {
     flex-direction: column;
