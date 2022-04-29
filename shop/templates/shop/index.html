@@ -24,11 +24,28 @@
 
         {% if  post.stock %}
           {%  if post not in cart.products_in_cart %}
-            <a href="{% url 'add_to_cart' ct_model=post.ct_model slug=post.slug %}" class="btn btn-primary">
-              Добавить в корзину
+            <a href="{% url 'add_to_cart' ct_model=post.ct_model slug=post.slug %}" class="btn btn-primary cart_add_btn">
+              <span class="visually-hidden">Добавить в корзину</span> 
             </a>
           {% else %}
-            <p class="btn btn-default">Добавлен в корзину</з>
+          <a class="cart__counter" href="{% url 'change_up' ct_model=post.ct_model slug=post.slug %}">
+            <span class="visually-hidden">Увеличить</span>
+            <svg class="icon icon--counter" width="41" height="39" viewBox="0 0 41 39"
+                fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M25.102 24.29L20.886 38.674H20.018L15.244 24.29L0.488 19.764V19.144L15.244 14.928L20.018 0.729998H20.886L25.102 14.928L40.23 19.144V19.764L25.102 24.29Z"
+                    fill="white" />
+            </svg>
+        </a>
+          <span class="visually-hidden">Уменьшить</span>
+          <svg class="icon icon--counter" width="27" height="13" viewBox="0 0 27 13" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.976 12.964V0.749998L26.644 6.454V6.888L0.976 12.964Z" fill="white" />
+          </svg>
+      </a>
+      <a class="cart__delete-btn" href="{% url 'delete_from_cart' ct_model=post.ct_model slug=post.slug %}"">
+        <span class="visually-hidden">Удалить</span>
+    </a>
           {% endif %}
           {% else %}
           {% if post not in request.user.customer.wishlist.all %}
@@ -37,6 +54,10 @@
               <a href="#" class="btn btn-default" disabled="">Добавлен в ожидаемое</a>
           {% endif %}
         {% endif %}
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-primary cart_add_btn">
+          <span class="visually-hidden">Добавить в корзину</span>
+        </a>
       {% endif %}
 
 

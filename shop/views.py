@@ -168,6 +168,34 @@ class ChangeQTVView(DataMixin, views.View):
     messages.add_message(request, messages.INFO, "Количество изменено")
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
+class ChangeUpCart(DataMixin, views.View):
+   def get(self, request, *args, **kwargs):
+        ct_model, product_slug = kwargs.get('ct_model'), kwargs.get('slug')
+        content_type = ContentType.objects.get(model=ct_model)
+        product = content_type.model_class().objects.get(slug=product_slug)
+        cart_product, created = CartGoods.objects.get_or_create(
+        user=self.cart.owner, cart=self.cart, content_type=content_type, object_id=product.id
+        )
+        cart_product.qty += 1
+        cart_product.save()
+        recalc_cart(self.cart)
+        messages.add_message(request, messages.INFO, "Количество изменено")
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+class ChangeDownCart(DataMixin, views.View):
+   def get(self, request, *args, **kwargs):
+        ct_model, product_slug = kwargs.get('ct_model'), kwargs.get('slug')
+        content_type = ContentType.objects.get(model=ct_model)
+        product = content_type.model_class().objects.get(slug=product_slug)
+        cart_product, created = CartGoods.objects.get_or_create(
+        user=self.cart.owner, cart=self.cart, content_type=content_type, object_id=product.id
+        )
+        cart_product.qty -= 1
+        cart_product.save()
+        recalc_cart(self.cart)
+        messages.add_message(request, messages.INFO, "Количество изменено")
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
 class AddToWishlist(views.View):
 
     @staticmethod
