@@ -14,6 +14,11 @@ from .utils.recalc_cart import recalc_cart
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 from django.db import transaction
+from json import dumps
+
+import json
+
+from django.http import HttpResponseBadRequest, JsonResponse
 
 from .forms import *
 from .models import *
@@ -35,10 +40,22 @@ class ShopHome(DataMixin, ListView):
 
 class about(DataMixin, views.View):
   def get(self, request, *args, **kwargs):
+    dataDictionary = {
+        'hello': 'World',
+        'geeks': 'forgeeks',
+        'ABC': 123,
+        456: 'abc',
+        14000605: 1,
+        'list': ['geeks', 4, 'geeks'],
+        'dictionary': {'you': 'can', 'send': 'anything', 3: 1}
+        }
+    # dump data
+    dataJSON = dumps(dataDictionary)
     context = {
       'title': 'О нас',
       'menu': self.menu,
-      'cart': self.cart
+      'cart': self.cart,
+      'data': dataJSON
     }
     return render(request, 'shop/about.html', context)
 
@@ -176,11 +193,18 @@ class ChangeUpCart(DataMixin, views.View):
         cart_product, created = CartGoods.objects.get_or_create(
         user=self.cart.owner, cart=self.cart, content_type=content_type, object_id=product.id
         )
-        cart_product.qty += 1
-        cart_product.save()
-        recalc_cart(self.cart)
-        messages.add_message(request, messages.INFO, "Количество изменено")
-        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+        # cart_product.qty += 1
+        # cart_product.save()
+        # recalc_cart(self.cart)
+        # messages.add_message(request, messages.INFO, "Количество изменено")
+        # return HttpResponseRedirect(request.META['HTTP_REFERER'])
+        if request.method == 'GET':
+            cart_product.qty += 1
+            cart_product.save()
+            recalc_cart(self.cart)
+            messages.add_message(request, messages.INFO, "Количество изменено")
+            return JsonResponse({'context': 'succes'})
+        return JsonResponse({'status': 'Invalid request'}, status=400)
 
 class ChangeDownCart(DataMixin, views.View):
    def get(self, request, *args, **kwargs):

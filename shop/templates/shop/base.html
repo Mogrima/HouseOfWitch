@@ -148,6 +148,45 @@
     </footer>
     </div>
   </div>
+  <div class="modal js-modal-qty">
+    <h3>Количество изменено</h3>
+  </div>
 <script src="{% static 'shop/js/main.js' %}"></script>
 </body>
+
+<script>
+  (function() {
+    function getQTYup(url) {
+  fetch(url, {
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    let js_modal_qty = document.querySelector('.js-modal-qty');
+    js_modal_qty.classList.add('show-modal');
+    setTimeout(() => js_modal_qty.classList.remove('show-modal'), 3000);
+    console.log('success');
+  });
+}
+    let cart_add_qty = document.querySelectorAll('.js-cart');
+    for (i=0; i < cart_add_qty.length; i++) {
+      cart_add_qty[i].addEventListener("click", (event) => {
+        event.preventDefault();
+        let targetLink = event.target.closest('a'); 
+        if (event.target.tagName == 'a') {
+          targetLink = event.target;
+        } 
+
+        let ct_model = targetLink.getAttribute('data-ctmodel');
+        let slug = targetLink.getAttribute('data-slug');
+        const getUrlCart = `./change_up/${ct_model}/${slug}/`;
+        getQTYup(getUrlCart);
+    });
+    }
+
+  })();
+
+</script>
 </html>
