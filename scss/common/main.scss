@@ -143,6 +143,23 @@ input[type="checkbox"].visually-hidden {
   }
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 10000;
+  width: 400px;
+  margin-left: -300px;
+  padding: 30px 20px;
+  background-color: beige;
+  color: #000000;
+}
+
+.show-modal {
+  display: block;
+}
+
 @media(min-width: $lgwidth) {
   .substrate {
     width: $lgwidth;
