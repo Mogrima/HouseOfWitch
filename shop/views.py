@@ -40,22 +40,22 @@ class ShopHome(DataMixin, ListView):
 
 class about(DataMixin, views.View):
   def get(self, request, *args, **kwargs):
-    dataDictionary = {
-        'hello': 'World',
-        'geeks': 'forgeeks',
-        'ABC': 123,
-        456: 'abc',
-        14000605: 1,
-        'list': ['geeks', 4, 'geeks'],
-        'dictionary': {'you': 'can', 'send': 'anything', 3: 1}
-        }
+    # dataDictionary = {
+    #     'hello': 'World',
+    #     'geeks': 'forgeeks',
+    #     'ABC': 123,
+    #     456: 'abc',
+    #     14000605: 1,
+    #     'list': ['geeks', 4, 'geeks'],
+    #     'dictionary': {'you': 'can', 'send': 'anything', 3: 1}
+    #     }
     # dump data
-    dataJSON = dumps(dataDictionary)
+    # dataJSON = dumps(dataDictionary)
     context = {
       'title': 'О нас',
       'menu': self.menu,
       'cart': self.cart,
-      'data': dataJSON
+    #   'data': dataJSON
     }
     return render(request, 'shop/about.html', context)
 
