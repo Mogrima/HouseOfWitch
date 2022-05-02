@@ -193,18 +193,20 @@ class ChangeUpCart(DataMixin, views.View):
         cart_product, created = CartGoods.objects.get_or_create(
         user=self.cart.owner, cart=self.cart, content_type=content_type, object_id=product.id
         )
-        # cart_product.qty += 1
-        # cart_product.save()
-        # recalc_cart(self.cart)
-        # messages.add_message(request, messages.INFO, "Количество изменено")
-        # return HttpResponseRedirect(request.META['HTTP_REFERER'])
-        if request.method == 'GET':
+        is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+        if is_ajax:
+            if request.method == 'GET':
+                cart_product.qty += 1
+                cart_product.save()
+                recalc_cart(self.cart)
+                messages.add_message(request, messages.INFO, "Количество изменено")
+                return JsonResponse({'context': 'succes'})
+        else:
             cart_product.qty += 1
             cart_product.save()
             recalc_cart(self.cart)
             messages.add_message(request, messages.INFO, "Количество изменено")
-            return JsonResponse({'context': 'succes'})
-        return JsonResponse({'status': 'Invalid request'}, status=400)
+            return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 class ChangeDownCart(DataMixin, views.View):
    def get(self, request, *args, **kwargs):
