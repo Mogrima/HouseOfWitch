@@ -148,9 +148,6 @@
     </footer>
     </div>
   </div>
-  <div class="modal js-modal-qty">
-    <h3>Количество изменено</h3>
-  </div>
 <script src="{% static 'shop/js/main.js' %}"></script>
 </body>
 
@@ -164,9 +161,6 @@
   })
   .then(response => response.json())
   .then(data => {
-    let js_modal_qty = document.querySelector('.js-modal-qty');
-    js_modal_qty.classList.add('show-modal');
-    setTimeout(() => js_modal_qty.classList.remove('show-modal'), 3000);
     console.log('success');
   });
 }
