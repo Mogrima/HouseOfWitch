@@ -32,6 +32,11 @@
           <a class="cart__counter js-cart" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_up' ct_model=post.ct_model slug=post.slug %}">
             <span class="visusally-hidden">Увеличить</span>
         </a>
+        {%  for item in cart.products.all %}
+        {% if item.display_name == post.title %}
+        <div class="js-count-cart">{{ item.qty }}</div>
+        {% endif %}
+        {% endfor %}
           <span class="visually-hidden">Уменьшить</span>
           <svg class="icon icon--counter" width="27" height="13" viewBox="0 0 27 13" fill="none"
               xmlns="http://www.w3.org/2000/svg">
