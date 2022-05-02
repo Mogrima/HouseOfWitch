@@ -36,11 +36,8 @@
         <div class="js-count-cart">{{ item.qty }}</div>
         {% endif %}
         {% endfor %}
-          <span class="visually-hidden">Уменьшить</span>
-          <svg class="icon icon--counter" width="27" height="13" viewBox="0 0 27 13" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path d="M0.976 12.964V0.749998L26.644 6.454V6.888L0.976 12.964Z" fill="white" />
-          </svg>
+        <a class="cart__counter js-cart-remove" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_down' ct_model=post.ct_model slug=post.slug %}">
+          <span class="visuaslly-hidden">Уменьшить</span>
       </a>
       <a class="cart__delete-btn" href="{% url 'delete_from_cart' ct_model=post.ct_model slug=post.slug %}"">
         <span class="visually-hidden">Удалить</span>
