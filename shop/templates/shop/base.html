@@ -186,6 +186,22 @@
     });
     }
 
+    let cart_add = document.querySelectorAll('.cart_add_btn');
+    for (i=0; i < cart_add.length; i++) {
+      cart_add[i].addEventListener("click", (event) => {
+        event.preventDefault();
+        let targetLink = event.target.closest('a'); 
+        if (event.target.tagName == 'a') {
+          targetLink = event.target;
+        } 
+
+        let ct_model = targetLink.getAttribute('data-ctmodel');
+        let slug = targetLink.getAttribute('data-slug');
+        const getUrlCart = `./add-to-cart/${ct_model}/${slug}/`;
+        getQTYup(getUrlCart);
+    });
+    }
+
   })();
 
 </script>
