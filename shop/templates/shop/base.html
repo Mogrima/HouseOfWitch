@@ -178,9 +178,12 @@
         if (event.target.tagName == 'a') {
           targetLink = event.target;
         } 
+        let count_cart_block = targetLink.nextSibling.nextSibling;
 
         let ct_model = targetLink.getAttribute('data-ctmodel');
         let slug = targetLink.getAttribute('data-slug');
+        count_cart = Number(count_cart_block.textContent) + 1;
+        count_cart_block.textContent = count_cart;
         const getUrlCart = `./change_up/${ct_model}/${slug}/`;
         getQTYup(getUrlCart);
     });
