@@ -96,6 +96,7 @@ class ShowArticle(DataMixin, ListView):
         context['title'] = 'Статьи'
         context['menu'] = self.menu
         context['cats'] = self.cats
+        context['cart'] = self.cart
         return context
 
 class ShowGoods(DataMixin, DetailView):
@@ -109,6 +110,7 @@ class ShowGoods(DataMixin, DetailView):
         context['title'] = context['post']
         context['menu'] = self.menu
         context['cats'] = self.cats
+        context['cart'] = self.cart
         return context
 
 
@@ -124,6 +126,7 @@ class GoodsCategory(DataMixin, ListView):
         context['menu'] = self.menu
         context['cats'] = self.cats
         context['cat_selected'] = context['posts'][0].cat_id
+        context['cart'] = self.cart
         return context
 
     def get_queryset(self):
