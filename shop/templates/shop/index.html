@@ -28,17 +28,19 @@
               <span class="visually-hidden">Добавить в корзину</span> 
             </a>
           {% else %}
-          <a class="cart__counter js-cart" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_up' ct_model=post.ct_model slug=post.slug %}">
-            <span class="visusally-hidden">Увеличить</span>
+          <div class="cart__counter-block">
+          <a class="cart__counter cart__counter--plus js-cart" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_up' ct_model=post.ct_model slug=post.slug %}">
+            <span class="visually-hidden">Увеличить</span>
         </a>
         {%  for item in cart.products.all %}
         {% if item.display_name == post.title %}
         <div class="js-count-cart">{{ item.qty }}</div>
         {% endif %}
         {% endfor %}
-        <a class="cart__counter js-cart-remove" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_down' ct_model=post.ct_model slug=post.slug %}">
-          <span class="visuaslly-hidden">Уменьшить</span>
+        <a class="cart__counter cart__counter--minus js-cart-remove" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_down' ct_model=post.ct_model slug=post.slug %}">
+          <span class="visually-hidden">Уменьшить</span>
       </a>
+    </div>
       <a class="cart__delete-btn" href="{% url 'delete_from_cart' ct_model=post.ct_model slug=post.slug %}"">
         <span class="visually-hidden">Удалить</span>
     </a>

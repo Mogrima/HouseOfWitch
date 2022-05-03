@@ -60,6 +60,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100px;
 }
 
 .cart__input-counter {
@@ -71,11 +72,24 @@
 }
 
 .cart__counter {
+  width: 23px;
+  height: 25px;
   padding: 0;
   font-family:$mainFont;
   color: $light-text-color;
-  background-color: transparent;
+  ;
+  background-repeat: no-repeat;
+  background-size: contain;
   border: none;
+
+  &--plus {
+    background-image: url("../../../static/shop/img/plus-text.svg")
+  }
+
+  &--minus {
+    height: 12px;
+    background-image: url("../../../static/shop/img/minus-text.svg")
+  }
 }
 
 .cart__delete-btn {
@@ -129,6 +143,10 @@
       margin-left: 0;
       margin-bottom: 0;
     }
+  }
+
+  .cart__counter-block {
+    margin-bottom: 20px;
   }
 
   .cart__delete-btn {
