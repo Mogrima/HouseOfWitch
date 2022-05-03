@@ -1,12 +1,63 @@
 {% extends 'shop/base.html' %}
- 
+
 {% block content %}
- 
-<h1>{{post.title}}</h1>
- 
-{% if post.photo %}
-<p><img class="img-article-left" src="{{post.photo.url}}"></p>
-{% endif %}
- 
-{{post.content|linebreaks}}
+<section class="catalog">
+  <div class="catalog__wrapper">
+    {% for post in posts %}
+    <figure class="catalog__item">
+      <figcaption class="catalog__title">{{post.title}}</figcaption>
+        {% if post.photo %}
+        <div class="catalog__image-wrapper">
+          <img alt="изображение {{post.title}}"
+          height="347" src="{{post.photo.url}}" width="258" class="catalog__image">
+        </div>
+        {% else %}
+        <div class="catalog__image-wrapper">
+          <img alt="изображение {{post.title}}"
+          height="347" src="../../static/shop/img/notavailable2.jpg" width="258" class="catalog__image">
+        </div>
+        {% endif %}
+        <a href="{{ post.get_absolute_url }}" class="button catalog__button">Открыть</a>
+
+        {% if request.user.is_authenticated %}
+
+        {% if  post.stock %}
+          {%  if post not in cart.products_in_cart %}
+            <a href="{% url 'add_to_cart' ct_model=post.ct_model slug=post.slug %}" class="btn btn-primary cart_add_btn" >
+              <span class="visually-hidden">Добавить в корзину</span> 
+            </a>
+          {% else %}
+          <a class="cart__counter js-cart" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_up' ct_model=post.ct_model slug=post.slug %}">
+            <span class="visusally-hidden">Увеличить</span>
+        </a>
+        {%  for item in cart.products.all %}
+        {% if item.display_name == post.title %}
+        <div class="js-count-cart">{{ item.qty }}</div>
+        {% endif %}
+        {% endfor %}
+        <a class="cart__counter js-cart-remove" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_down' ct_model=post.ct_model slug=post.slug %}">
+          <span class="visuaslly-hidden">Уменьшить</span>
+      </a>
+      <a class="cart__delete-btn" href="{% url 'delete_from_cart' ct_model=post.ct_model slug=post.slug %}"">
+        <span class="visually-hidden">Удалить</span>
+    </a>
+          {% endif %}
+          {% else %}
+          {% if post not in request.user.customer.wishlist.all %}
+              <a href="{% url 'add_to_wishlist' post_id=post.id %}">Добавить в ожидаемое</a>
+          {% else %}
+              <a href="#" class="btn btn-default" disabled="">Добавлен в ожидаемое</a>
+          {% endif %}
+        {% endif %}
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-primary cart_add_btn">
+          <span class="visually-hidden">Добавить в корзину</span>
+        </a>
+      {% endif %}
+
+
+    </figure>
+    {% endfor %}
+  </div>
+</section>
 {% endblock %}

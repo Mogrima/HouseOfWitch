@@ -66,7 +66,7 @@ class about(DataMixin, views.View):
 
 class catalog(DataMixin, ListView):
     model = Goods
-    template_name = 'shop/index.html'
+    template_name = 'shop/catalog.html'
     context_object_name = 'posts'
         
     def get_context_data(self, *, object_list=None, **kwargs):
