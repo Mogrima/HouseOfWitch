@@ -94,9 +94,13 @@
               </ul>
            </div>
         <!-- Хлебные крошки -->
-        <form class="search__form" action="{% url 'search_results' %}" method="get">
-          <input class="search__input" name="q" type="text" placeholder="Поиск">
-        </form>
+        <div class="search">
+          <form class="search__form" action="{% url 'search_results' %}" method="get">
+            <input class="search__input" name="q" type="text" placeholder="Поиск">
+          </form>
+          <button class="category-menu__toggle" type="button"><span class="visually-hidden">Открыть</span>
+          </button>
+        </div>
         {% block breadcrumbs %}
         {% endblock %}
       

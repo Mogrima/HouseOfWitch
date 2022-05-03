@@ -35,6 +35,16 @@
     }
 }
 
+ .category-menu__toggle {
+     flex-shrink: 0;
+     width: 45px;
+     height: 5px;
+     margin-top: 16px;
+    background-color: transparent;
+    background-color: #fed330;
+    box-shadow: 0 10px 00 #fed330, 0 20px 0 0 #fed330;
+  }
+
 @media(min-width: $lgwidth) {
     .category__wrapper {
         width: 1246px;
