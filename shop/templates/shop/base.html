@@ -92,8 +92,8 @@
               {% endfor %}
             </ul>
         <!-- Хлебные крошки -->
-        <form action="{% url 'search_results' %}" method="get">
-          <input name="q" type="text" placeholder="Search...">
+        <form class="search__form" action="{% url 'search_results' %}" method="get">
+          <input class="search__input" name="q" type="text" placeholder="Поиск">
         </form>
         {% block breadcrumbs %}
         {% endblock %}

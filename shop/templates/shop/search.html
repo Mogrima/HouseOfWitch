@@ -1,0 +1,14 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<h1>Search Results</h1>
+ 
+<ul>
+  {% for post in object_list %}
+    <li>
+      {{ post.title }}, {{ post.price }}
+    </li>
+  {% endfor %}
+</ul>
+</section>
+{% endblock %}
