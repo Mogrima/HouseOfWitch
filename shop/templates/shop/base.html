@@ -74,7 +74,7 @@
                 </ul>
               </nav>
             </div>
-           <div class="category__wrapper">
+           <div class="category__wrapper category__wrapper--closed js-category-wrapper no-js-wrapper">
               <ul class="category__list">
                 {% if cat_selected == 0 %}
                         <li class="category__item category__item--selected">Все категории</li>
@@ -98,7 +98,7 @@
           <form class="search__form" action="{% url 'search_results' %}" method="get">
             <input class="search__input" name="q" type="text" placeholder="Поиск">
           </form>
-          <button class="category-menu__toggle" type="button"><span class="visually-hidden">Открыть</span>
+          <button class="category-menu__toggle js-category-toggle" type="button"><span class="visually-hidden">Открыть</span>
           </button>
         </div>
         {% block breadcrumbs %}
