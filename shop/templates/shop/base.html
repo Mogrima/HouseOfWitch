@@ -203,7 +203,7 @@ getCountGoods();
         let slug = targetLink.getAttribute('data-slug');
         count_cart = Number(count_cart_block.textContent) + 1;
         count_cart_block.textContent = count_cart;
-        const getUrlCart = `./change_up/${ct_model}/${slug}/`;
+        const getUrlCart = `/change_up/${ct_model}/${slug}/`;
         getQTYup(getUrlCart);
         getCountGoods()
     });
@@ -230,7 +230,7 @@ getCountGoods();
         let ct_model = targetLink.getAttribute('data-ctmodel');
         let slug = targetLink.getAttribute('data-slug');
         
-        const getUrlCart = `./change_down/${ct_model}/${slug}/`;
+        const getUrlCart = `/change_down/${ct_model}/${slug}/`;
 
         getQTYup(getUrlCart);
         getCountGoods()
