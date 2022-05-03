@@ -116,7 +116,7 @@ class ShowGoods(DataMixin, DetailView):
 
 class GoodsCategory(DataMixin, ListView):
     model = Goods
-    template_name = 'shop/index.html'
+    template_name = 'shop/catalog.html'
     context_object_name = 'posts'
     allow_empty = False
 
