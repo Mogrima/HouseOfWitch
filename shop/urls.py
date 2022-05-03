@@ -27,4 +27,6 @@ urlpatterns = [
     path('remove-from-wishlist/<int:post_id>/', RemoveFromWishListView.as_view(), name='remove_from_wishlist'),
     path('make-order/', MakeOrderView.as_view(), name='make-order'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
+
+    path('search/', SearchResultsView.as_view(), name='search_results'),
 ]

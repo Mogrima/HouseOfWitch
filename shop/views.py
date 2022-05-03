@@ -19,6 +19,7 @@ from json import dumps
 import json
 
 from django.http import HttpResponseBadRequest, JsonResponse
+from django.db.models import Q
 
 from .forms import *
 from .models import *
@@ -431,4 +432,15 @@ class CheckoutView(DataMixin, views.View):
 
     else:
         return redirect('catalog')
-    
+
+class SearchResultsView(ListView):
+    model = Goods
+    template_name = 'shop/search.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self): # новый
+        query = self.request.GET.get('q')
+        object_list = Goods.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        )
+        return object_list
