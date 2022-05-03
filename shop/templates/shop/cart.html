@@ -39,7 +39,7 @@
                             <div class="cart__settings-item cart__counter-block">
                                 <form action="{% url 'change_qty' ct_model=item.content_object.ct_model slug=item.content_object.slug %}" method="POST">
                                     {% csrf_token %}
-                                <button class="cart__counter" type="submit">
+                                <button class="cart__counter js-btn-up" type="button">
                                     <span class="visually-hidden">Увеличить</span>
                                     <svg class="icon icon--counter" width="41" height="39" viewBox="0 0 41 39"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,15 +48,15 @@
                                             fill="white" />
                                     </svg>
                                 </button>
-                                <input type="number" style="width: 70px;" name="qty" min="1" value="{{ item.qty }}">
-                                <input class="cart__input-counter" type="text" value="{{ item.qty }}">
-                                <button class="cart__counter" type="button">
+                                <input class="js-input-qty" type="number" style="width: 70px;" name="qty" min="1" value="{{ item.qty }}">
+                                <button class="cart__counter js-btn-down" type="button">
                                     <span class="visually-hidden">Уменьшить</span>
                                     <svg class="icon icon--counter" width="27" height="13" viewBox="0 0 27 13" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0.976 12.964V0.749998L26.644 6.454V6.888L0.976 12.964Z" fill="white" />
                                     </svg>
                                 </button>
+                                <button class="button" type="submit">Изменить количество</button>
                             </div>
                         <p class="cart__settings-item">Цена {{ item.final_price }} руб.</p>
                         <a class="cart__delete-btn" href="{% url 'delete_from_cart' ct_model=item.content_object.ct_model slug=item.content_object.slug %}"">
@@ -103,4 +103,46 @@
     {% endif %}
     {% endif %}
 </section>
+<script>
+    let btnUp = document.querySelectorAll('.js-btn-up');
+    let inputQTY = document.querySelectorAll('.js-input-qty');
+    for (i=0; i < btnUp.length; i++) {
+        btnUp[i].addEventListener("click", (event) => {
+        event.preventDefault();
+        let targetBtn = event.target;
+        if (event.target.tagName == 'svg') {
+            targetBtn = event.target.parentNode;
+            console.log('1')
+        } else if (event.target.tagName == 'path') {
+            targetBtn = event.target.parentNode.parentNode;
+        }
+        console.log(targetBtn.nextSibling.nextSibling);
+        targetBtn.nextSibling.nextSibling.value = Number(targetBtn.nextSibling.nextSibling.value) + 1;
+        
+    });
+    }
+
+    let btnDown = document.querySelectorAll('.js-btn-down');
+    for (i=0; i < btnUp.length; i++) {
+        btnDown[i].addEventListener("click", (event) => {
+        event.preventDefault();
+        let targetBtn = event.target;
+        if (event.target.tagName == 'svg') {
+            targetBtn = event.target.parentNode;
+            console.log('1')
+        } else if (event.target.tagName == 'path') {
+            console.log('3')
+            targetBtn = event.target.parentNode.parentNode;
+        }
+        console.log(targetBtn.nextSibling.nextSibling);
+        if(Number(targetBtn.previousSibling.previousSibling.value) > 1) {
+            targetBtn.previousSibling.previousSibling.value = Number(targetBtn.previousSibling.previousSibling.value) - 1;
+        } else {
+            targetBtn.previousSibling.previousSibling.value = 1;
+        }
+        
+        
+    });
+    }
+</script>
 {% endblock %}
