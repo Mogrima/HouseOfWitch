@@ -248,3 +248,14 @@
     display: block;
   }
 }
+
+@media(max-width: $phoneWidth) {
+  .nav-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .nav__list {
+    left: 25px;
+  }
+}
