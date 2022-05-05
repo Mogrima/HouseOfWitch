@@ -37,7 +37,7 @@
               <span class="visually-hidden">Добавить в корзину</span> 
             </a>
           {% else %}
-          <div class="cart__counter-block">
+          <div class="cart__counter-block product__counter-block">
           <a class="cart__counter cart__counter--plus js-cart" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_up' ct_model=post.ct_model slug=post.slug %}"
             title="увеличить">
             <span class="visually-hidden">Увеличить</span>

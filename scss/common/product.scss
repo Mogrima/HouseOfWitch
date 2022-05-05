@@ -8,13 +8,26 @@
 }
 
 .product__content {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 50%;
     padding-left: 30px;
+    padding-top: 50px;
     color: $light-text-color;
     text-align: center;
-    // flex-shrink: 0;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 103px;
+        height: 56px;
+        background-image: url("../../../static/shop/img/arrow-product.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
 }
 
 .product__title {
@@ -29,6 +42,25 @@
 
 .product__add-link {
     margin: 0 auto;
+}
+
+.product__counter-block {
+    position: relative;
+    width: 205px !important;
+    margin: 0 auto;
+    margin-top: 30px;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: -18px;
+        right: -68px;
+        width: 51px;
+        height: 49px;
+        background-image: url("../../../static/shop/img/new-cart.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
 }
 
 @media(max-width: $desktopWidth) {
@@ -46,11 +78,22 @@
         margin: 0 auto;
         margin-top: 30px;
         padding-left: 0;
+        padding-top: 0;
+
+        &::before {
+            content: none;
+        }
     }
 }
 
 @media(max-width: $smDesktopWidth) {
     .product__content {
         width: 100%;
+    }
+}
+
+@media(max-width: $phoneWidth) {
+    .product__counter-block {
+        width: 133px !important;
     }
 }
