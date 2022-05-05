@@ -10,12 +10,6 @@
         <li class="breadcrumbs__item">
             <a href="{{ post.cat.get_absolute_url }}" class="breadcrumbs__link">{{post.cat.name}}</a>
         </li>
-        <li class="breadcrumbs__item">
-            <a href="{{ post.cat.get_absolute_url }}" class="breadcrumbs__link">{{post.cat.name}}</a>
-        </li>
-        <li class="breadcrumbs__item">
-            <a href="{{ post.cat.get_absolute_url }}" class="breadcrumbs__link">{{post.cat.name}}</a>
-        </li>
         <li class="breadcrumbs__item"> {{post.title}}
         </li>
     </ul>
@@ -25,20 +19,20 @@
     <div class="product__wrapper">
         <div class="product__photo">
             {% if post.photo %}
-            <img class="img-article-left" src="{{post.photo.url}}" alt="{{post.title}}">
+            <img class="img-article-left" src="{{post.photo.url}}" alt="{{post.title}}" width="690">
             {% else %}
             <img alt="изображение {{post.title}}"
                 height="347" src="../../static/shop/img/notavailable2.jpg">
             {% endif %}
         </div>
         <div class="product__content">
-            <h2>{{post.title}}</h2>
-            <p>{{post.description}}</p>
+            <h2 class="product__title">{{post.title}}</h2>
+            <p class="product__text">{{post.description}}</p>
             {% if request.user.is_authenticated %}
 
         {% if  post.stock %}
           {%  if post not in cart.products_in_cart %}
-            <a href="{% url 'add_to_cart' ct_model=post.ct_model slug=post.slug %}" class="btn btn-primary cart_add_btn" 
+            <a href="{% url 'add_to_cart' ct_model=post.ct_model slug=post.slug %}" class="btn btn-primary cart_add_btn product__add-link" 
               title="добавить в корзину">
               <span class="visually-hidden">Добавить в корзину</span> 
             </a>
@@ -64,15 +58,15 @@
           {% else %}
           {% if post not in request.user.customer.wishlist.all %}
           <p class="mark">Нет в наличии</p>
-              <a class="cart__add-favorite" href="{% url 'add_to_wishlist' post_id=post.id %}" title="Добавить в ожидаемое">
+              <a class="cart__add-favorite product__add-link" href="{% url 'add_to_wishlist' post_id=post.id %}" title="Добавить в ожидаемое">
                 <span class="visually-hidden">Добавить в ожидаемое</span></a>
           {% else %}
           <p class="mark">Нет в наличии</p>
-              <a class="btn btn-default cart__add-favorite cart__add-favorite--added" disabled="" title="Добавлен в ожидаемое"><span class="visually-hidden">Добавлен в ожидаемое</span></a>
+              <a class="btn btn-default cart__add-favorite cart__add-favorite--added product__add-link" disabled="" title="Добавлен в ожидаемое"><span class="visually-hidden">Добавлен в ожидаемое</span></a>
           {% endif %}
         {% endif %}
         {% else %}
-        <a href="{% url 'login' %}" class="btn btn-primary cart_add_btn" title="авторизуйтесь">
+        <a href="{% url 'login' %}" class="btn btn-primary cart_add_btn product__add-link" title="авторизуйтесь">
           <span class="visually-hidden">Добавить в корзину</span>
         </a>
       {% endif %}
