@@ -131,6 +131,18 @@
   background-size: contain;
 }
 
+.cart__add-favorite {
+  width: 78px;
+  height: 69px;
+  background-image: url("../../../static/shop/img/icon-favorite.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  &--added {
+    background-image: url("../../../static/shop/img/icon-favorite-active.png");
+  }
+}
+
 @media(max-width: $desktopWidth) {
   .cart__wrapper {
     flex-direction: column;

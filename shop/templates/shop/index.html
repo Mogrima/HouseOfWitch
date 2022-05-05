@@ -47,9 +47,12 @@
           {% endif %}
           {% else %}
           {% if post not in request.user.customer.wishlist.all %}
-              <a href="{% url 'add_to_wishlist' post_id=post.id %}">Добавить в ожидаемое</a>
+          <p class="mark">Нет в наличии</p>
+              <a class="cart__add-favorite" href="{% url 'add_to_wishlist' post_id=post.id %}">
+                <span class="visually-hidden">Добавить в ожидаемое</span></a>
           {% else %}
-              <a href="#" class="btn btn-default" disabled="">Добавлен в ожидаемое</a>
+          <p class="mark">Нет в наличии</p>
+              <a class="btn btn-default cart__add-favorite cart__add-favorite--added" disabled=""><span class="visually-hidden">Добавлен в ожидаемое</span></a>
           {% endif %}
         {% endif %}
         {% else %}
