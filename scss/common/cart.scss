@@ -171,6 +171,11 @@
 }
 
 @media(max-width: $smMobileWidth) {
+  .cart {
+    &--bottom {
+      margin-bottom: 0;
+    }
+  }
   .cart__item {
     flex-direction: column;
     margin-bottom: 30px;

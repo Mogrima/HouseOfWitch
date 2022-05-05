@@ -1,4 +1,5 @@
 .user-menu__list {
+  z-index: 9999;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -55,6 +56,16 @@
     left: -231px;
     width: 235px;
     flex-direction: column;
+
+    &--bottom {
+      left: -203px;
+      top: 65px;
+    }
+
+    &--auth {
+      left: -261px;
+      width: 317px;
+    }
    
   }
 
