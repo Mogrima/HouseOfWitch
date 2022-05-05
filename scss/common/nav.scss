@@ -186,13 +186,13 @@
 
   .nav__list {
     position: absolute;
-    top: 8px;
+    top: -20px;
     left: 53px;
     flex-direction: column;
   }
 
   .nav__item {
-    padding-right: 0;
+    padding: 25px;
 
     a {
       color: $substrate-color;
