@@ -22,18 +22,18 @@
       <header class="header">
         <div class="header__top"><a href="{% url 'home' %}" class="header__logo logo"><img src="{% static 'shop/img/logo.png' %}"
               width="127" height="124" alt="Логотип магазина Дом Лесной Ведьмы"></a>
-          <div class="cart header__cart"><a href="{% url 'cart' %}" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}" width="78"
-                height="69" alt="корзина"><span>{{ cart.products.count }}</span></a></div>
+          <div class="cart header__cart"><span class="cart__count-goods">{{ cart.products.count }}</span><a href="{% url 'cart' %}" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}" width="78"
+                height="69" alt="корзина"></a></div>
          <nav class="user-menu user-menu--nojs user-menu--closed header__user-menu">
           <button class="user-menu__toggle" type="button" data-toggle="toggleClass"><span class="visually-hidden">Открыть</span>
           </button>
           <ul class="user-menu__list">
             {% if request.user.is_authenticated %}
               <li class="user-menu__item"><a class="user-menu__link" href="{% url 'account' %}">Личный кабинет</a></li>
-              <li class="user-menu__item"><a class="user-menu__link" href="{% url 'logout' %}">{{user.username}} | Выйти</a></li>
+              <li class="user-menu__item"><a class="user-menu__link" href="{% url 'account' %}">{{user.username}} |</a><a class="user-menu__link" href="{% url 'logout' %}">Выйти</a></li>
             {% else %}
               <li class="user-menu__item"><a class="user-menu__link" href="{% url 'login' %}">Вход</a></li>
-              <li class="user-menu__item"><a class="user-menu__link" href="{% url 'registration' %}">Регистрация</a></li>
+              <li class="user-menu__item user-menu__item--ml"><a class="user-menu__link" href="{% url 'registration' %}">Регистрация</a></li>
             {% endif %}
           </ul>
          </nav>

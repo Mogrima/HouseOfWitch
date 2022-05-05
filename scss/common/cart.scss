@@ -1,5 +1,5 @@
 .cart {
-  margin: 0 auto;
+  // margin: 0 auto;
   margin-bottom: 50px;
   color: $light-text-color;
 }
@@ -141,6 +141,10 @@
   &--added {
     background-image: url("../../../static/shop/img/icon-favorite-active.png");
   }
+}
+
+.cart__count-goods {
+  margin-right: 5px;
 }
 
 @media(max-width: $desktopWidth) {
