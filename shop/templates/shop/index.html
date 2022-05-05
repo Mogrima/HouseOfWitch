@@ -24,12 +24,14 @@
 
         {% if  post.stock %}
           {%  if post not in cart.products_in_cart %}
-            <a href="{% url 'add_to_cart' ct_model=post.ct_model slug=post.slug %}" class="btn btn-primary cart_add_btn" >
+            <a href="{% url 'add_to_cart' ct_model=post.ct_model slug=post.slug %}" class="btn btn-primary cart_add_btn" 
+              title="добавить в корзину">
               <span class="visually-hidden">Добавить в корзину</span> 
             </a>
           {% else %}
           <div class="cart__counter-block">
-          <a class="cart__counter cart__counter--plus js-cart" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_up' ct_model=post.ct_model slug=post.slug %}">
+          <a class="cart__counter cart__counter--plus js-cart" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_up' ct_model=post.ct_model slug=post.slug %}"
+            title="увеличить">
             <span class="visually-hidden">Увеличить</span>
         </a>
         {%  for item in cart.products.all %}
@@ -37,26 +39,27 @@
         <div class="js-count-cart">{{ item.qty }}</div>
         {% endif %}
         {% endfor %}
-        <a class="cart__counter cart__counter--minus js-cart-remove" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_down' ct_model=post.ct_model slug=post.slug %}">
+        <a class="cart__counter cart__counter--minus js-cart-remove" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_down' ct_model=post.ct_model slug=post.slug %}"
+          title="уменьшить">
           <span class="visually-hidden">Уменьшить</span>
       </a>
     </div>
-      <a class="cart__delete-btn" href="{% url 'delete_from_cart' ct_model=post.ct_model slug=post.slug %}"">
+      <a class="cart__delete-btn" href="{% url 'delete_from_cart' ct_model=post.ct_model slug=post.slug %}" title="удалить из корзины">
         <span class="visually-hidden">Удалить</span>
     </a>
           {% endif %}
           {% else %}
           {% if post not in request.user.customer.wishlist.all %}
           <p class="mark">Нет в наличии</p>
-              <a class="cart__add-favorite" href="{% url 'add_to_wishlist' post_id=post.id %}">
+              <a class="cart__add-favorite" href="{% url 'add_to_wishlist' post_id=post.id %}" title="Добавить в ожидаемое">
                 <span class="visually-hidden">Добавить в ожидаемое</span></a>
           {% else %}
           <p class="mark">Нет в наличии</p>
-              <a class="btn btn-default cart__add-favorite cart__add-favorite--added" disabled=""><span class="visually-hidden">Добавлен в ожидаемое</span></a>
+              <a class="btn btn-default cart__add-favorite cart__add-favorite--added" disabled="" title="Добавлен в ожидаемое"><span class="visually-hidden">Добавлен в ожидаемое</span></a>
           {% endif %}
         {% endif %}
         {% else %}
-        <a href="{% url 'login' %}" class="btn btn-primary cart_add_btn">
+        <a href="{% url 'login' %}" class="btn btn-primary cart_add_btn" title="авторизуйтесь">
           <span class="visually-hidden">Добавить в корзину</span>
         </a>
       {% endif %}
