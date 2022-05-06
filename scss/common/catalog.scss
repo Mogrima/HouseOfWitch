@@ -78,6 +78,10 @@
       // margin-right: auto;
       margin-left: 20px;
     }
+
+    &--ml:last-child {
+      margin-left: 0;
+    }
   }
 
   .catalog__image {

@@ -19,14 +19,12 @@
     <div class="product__wrapper">
         <div class="product__photo">
             {% if post.photo %}
-            <!-- <img class="img-article-left" src="{{post.photo.url}}" alt="{{post.title}}" width="690"> -->
-
             <div class="slider">
-              <div class="item">
-                <img class="img-article-left" src="{{post.photo.url}}" alt="{{post.title}}" width="690" height="515">
+              <div class="item product__image-wrapper">
+                <img class="product__image" src="{{post.photo.url}}" alt="{{post.title}}" width="690" height="515">
               </div>
               {% for item in post.image_gallery.all %}
-              <div class="item">
+              <div class="item product__image-wrapper">
                 <img class="img-article-left" src="{{ item.image.url }}" alt="{{post.title}}" width="690" height="515">
               </div>
           {% endfor %}
@@ -37,9 +35,13 @@
           <br>
           
           <div class="slider-dots">
-            <img class="slider-dots_item js-dot" src="{{post.photo.url}}" width="150" height="150" alt="">
+            <div class="slider-dots_item js-dot product__image-wrapper">
+              <img class="slider-dots_img" src="{{post.photo.url}}" width="150" height="150" alt="">
+            </div>
               {% for item in post.image_gallery.all %}
-                <img class="slider-dots_item js-dot" src="{{ item.image.url }}" alt="{{post.title}}" width="150">
+                <div class="slider-dots_item js-dot product__image-wrapper">
+                  <img class="slider-dots_img" src="{{ item.image.url }}" alt="{{post.title}}" width="150">
+                </div>
               
           {% endfor %}
           </div>
@@ -103,7 +105,7 @@
   <h2 class="catalog__section-header section-header">Рекомендуемые</h2>
   <div class="product__optional-wrapper">
   {% for item in posts %}
-  <figure class="catalog__item product__optional-item">
+  <figure class="catalog__item catalog__item--ml product__optional-item">
   <a href="{{ item.get_absolute_url }}">
     <div class="catalog__image-wrapper product__image-wrapper">
       <img alt="изображение {{item.title}}"
