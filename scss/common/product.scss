@@ -1,5 +1,6 @@
 .product__wrapper {
     display: flex;
+    margin-bottom: 50px;
     padding: 0 20px;
 }
 
@@ -63,6 +64,10 @@
     }
 }
 
+.product__optional-wrapper {
+    display: flex;
+}
+
 @media(max-width: $desktopWidth) {
     .product__wrapper {
         flex-direction: column;
@@ -83,6 +88,11 @@
         &::before {
             content: none;
         }
+    }
+
+    .product__optional-wrapper {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }
 
