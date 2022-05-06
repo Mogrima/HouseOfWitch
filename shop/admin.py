@@ -2,8 +2,15 @@ from django.contrib import admin
 from django.forms import ModelForm
 from django.utils.safestring import mark_safe
 from PIL import Image
+from django.contrib.admin import TabularInline
+from django.contrib.contenttypes.admin import GenericTabularInline
 
 from .models import *
+
+class ImageGalleryInline(GenericTabularInline):
+
+    model = ImageGallery
+    readonly_fields = ('image_url',)
 
 class GoodsAdminForm(ModelForm):
 
@@ -23,6 +30,8 @@ class GoodsAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
     list_filter = ('is_published', 'time_create')
     prepopulated_fields = {"slug": ("title", )}
+
+    inlines = [ImageGalleryInline]
 
 admin.site.register(Goods, GoodsAdmin)
 

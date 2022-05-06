@@ -4,9 +4,10 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.utils import timezone
 import operator
+from django.utils.safestring import mark_safe
 from .utils.upload import upload_function
 
 User = get_user_model()
@@ -21,6 +22,7 @@ class Goods(models.Model):
     is_published = models.BooleanField(default=True, verbose_name='Показано на сайте')
     stock = models.IntegerField(default=1, verbose_name='Наличие на складе')
     cat = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')
+    image_gallery = GenericRelation('imagegallery')
 
     def __str__(self):
         return self.title
@@ -232,3 +234,21 @@ class Notification(models.Model):
     class Meta:
         verbose_name = 'Уведомление'
         verbose_name_plural = 'Уведомления'
+
+class ImageGallery(models.Model):
+
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    image = models.ImageField(upload_to=upload_function)
+    use_in_slider = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Изображения для: {self.content_object}"
+
+    def image_url(self):
+        return mark_safe(f'<img src="{self.image.url}" width="auto" height="200px">')
+
+    class Meta:
+        verbose_name = 'Галерея изображений'
+        verbose_name_plural = 'Галерея изображений'

@@ -19,7 +19,31 @@
     <div class="product__wrapper">
         <div class="product__photo">
             {% if post.photo %}
-            <img class="img-article-left" src="{{post.photo.url}}" alt="{{post.title}}" width="690">
+            <!-- <img class="img-article-left" src="{{post.photo.url}}" alt="{{post.title}}" width="690"> -->
+
+            <div class="slider">
+              <div class="item">
+                <img class="img-article-left" src="{{post.photo.url}}" alt="{{post.title}}" width="690" height="515">
+              </div>
+              {% for item in post.image_gallery.all %}
+              <div class="item">
+                <img class="img-article-left" src="{{ item.image.url }}" alt="{{post.title}}" width="690" height="515">
+              </div>
+          {% endfor %}
+          
+              <a class="prev" onclick="minusSlide()">&#10094;</a>
+              <a class="next" onclick="plusSlide()">&#10095;</a>
+          </div>
+          <br>
+          
+          <div class="slider-dots">
+            <img class="slider-dots_item js-dot" src="{{post.photo.url}}" width="150" height="150" alt="">
+              {% for item in post.image_gallery.all %}
+                <img class="slider-dots_item js-dot" src="{{ item.image.url }}" alt="{{post.title}}" width="150">
+              
+          {% endfor %}
+          </div>
+
             {% else %}
             <img alt="изображение {{post.title}}"
                 height="347" src="../../static/shop/img/notavailable2.jpg">
@@ -74,6 +98,6 @@
         </div>
     </div>
 </section>
- 
+
 {{post.content|linebreaks}}
 {% endblock %}

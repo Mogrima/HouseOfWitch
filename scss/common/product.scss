@@ -87,6 +87,10 @@
 }
 
 @media(max-width: $smDesktopWidth) {
+
+    .product__photo {
+        width: 100%;
+    }
     .product__content {
         width: 100%;
     }
