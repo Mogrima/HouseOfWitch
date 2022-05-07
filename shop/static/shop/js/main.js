@@ -58,7 +58,6 @@ const categoryWrapper = document.querySelector('.js-category-wrapper');
 categoryWrapper.classList.remove('no-js-wrapper');
 
 categoryToggle.addEventListener('click', function (event) {
-  console.log('ss');
   if (categoryWrapper.classList.contains('category__wrapper--closed')) {
     categoryWrapper.classList.remove('category__wrapper--closed');
     categoryWrapper.classList.add('category__wrapper--show');
@@ -85,7 +84,6 @@ function getCountGoods() {
 let cart_remove_qty = document.querySelectorAll('.js-cart-remove');
 
 for(i=0; i < cart_remove_qty.length; i++) {
-  console.log(cart_remove_qty[i]);
     if(cart_remove_qty[i].previousSibling.previousSibling.textContent > 1) {
       cart_remove_qty[i].style.display = "block";
     } else {
@@ -130,9 +128,7 @@ getCountGoods();
         count_cart_block.textContent = count_cart;
       } else {
         targetLink.style.display = "none";
-        console.log(targetLink)
       }
-      console.log(count_cart_block);
 
       let ct_model = targetLink.getAttribute('data-ctmodel');
       let slug = targetLink.getAttribute('data-slug');
@@ -185,13 +181,10 @@ getCountGoods();
             dots[i].className = dots[i].className.replace(" active", "");
         }
         slides[slideIndex - 1].style.display = "block";
-        // dots[slideIndex - 1].className += " active";
     }
     
     for (let y=0; y < dotsPoint.length; y++) {
       dotsPoint[y].addEventListener("click", () => {
         currentSlide(++y);
-        console.log(event.target);
-        console.log(y)
       });
       }
