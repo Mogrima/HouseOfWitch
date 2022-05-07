@@ -64,22 +64,9 @@
 }
 
 .product__counter-block {
-    position: relative;
     width: 205px !important;
     margin: 0 auto;
     margin-top: 30px;
-
-    &::after {
-        content: "";
-        position: absolute;
-        top: -18px;
-        right: -68px;
-        width: 51px;
-        height: 49px;
-        background-image: url("../../../static/shop/img/new-cart.png");
-        background-repeat: no-repeat;
-        background-size: contain;
-    }
 }
 
 .product__optional-wrapper {
@@ -128,6 +115,6 @@
 
 @media(max-width: $phoneWidth) {
     .product__counter-block {
-        width: 133px !important;
+        width: 225px !important;
     }
 }

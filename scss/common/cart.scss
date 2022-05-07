@@ -147,6 +147,14 @@
   margin-right: 5px;
 }
 
+.cart__new-cart {
+  width: 51px;
+  height: 49px;
+  background-image: url("../../../static/shop/img/new-cart.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 @media(max-width: $desktopWidth) {
   .cart__wrapper {
     flex-direction: column;
