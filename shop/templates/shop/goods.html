@@ -105,14 +105,18 @@
   <h2 class="catalog__section-header section-header">Рекомендуемые</h2>
   <div class="product__optional-wrapper">
   {% for item in posts %}
+  {% if item.cat == post.cat %}
+  {% if item.title not in post.title %}
   <figure class="catalog__item catalog__item--ml product__optional-item">
-  <a href="{{ item.get_absolute_url }}">
-    <div class="catalog__image-wrapper product__image-wrapper">
-      <img alt="изображение {{item.title}}"
-      height="347" src="{{item.photo.url}}" width="258" class="catalog__image">
-    </div>
-  </a>
-</figure>
+    <a href="{{ item.get_absolute_url }}">
+      <div class="catalog__image-wrapper product__image-wrapper">
+        <img alt="изображение {{item.title}}"
+        height="347" src="{{item.photo.url}}" width="258" class="catalog__image">
+      </div>
+    </a>
+  </figure>
+  {% endif %}
+  {% endif %}
   {% endfor %}
 </div>
 </section>
