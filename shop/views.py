@@ -111,7 +111,7 @@ class ShowGoods(DataMixin, DetailView):
         context['menu'] = self.menu
         context['cats'] = self.cats
         context['cart'] = self.cart
-        context['posts'] = Goods.objects.all()
+        context['posts'] = Goods.objects.all()[:5]
         return context
 
 

@@ -108,7 +108,6 @@
   <h2 class="catalog__section-header section-header">Рекомендуемые</h2>
   <div class="product__optional-wrapper">
   {% for item in posts %}
-  {% if item.cat == post.cat %}
   {% if item.title not in post.title %}
   <figure class="catalog__item catalog__item--ml product__optional-item">
     <a href="{{ item.get_absolute_url }}">
@@ -118,7 +117,6 @@
       </div>
     </a>
   </figure>
-  {% endif %}
   {% endif %}
   {% endfor %}
 </div>
