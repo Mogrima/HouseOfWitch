@@ -69,6 +69,7 @@ admin.site.register(Customer,  CustomerAdmin)
 class CartAdmin(admin.ModelAdmin):
     list_display = ('id', 'owner')
     list_display_links = ('id', 'owner')
+    filter_horizontal = ('products',)
     search_fields = ('owner',)
 
 class OrderAdmin(admin.ModelAdmin):
