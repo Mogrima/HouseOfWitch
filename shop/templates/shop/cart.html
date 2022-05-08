@@ -56,12 +56,14 @@
                                         <path d="M0.976 12.964V0.749998L26.644 6.454V6.888L0.976 12.964Z" fill="white" />
                                     </svg>
                                 </button>
-                                <button class="button" type="submit">Изменить количество</button>
+                                <button class="button cart-btn-diff" type="submit">Изменить</button>
                             </div>
-                        <p class="cart__settings-item">Цена {{ item.final_price }} руб.</p>
-                        <a class="cart__delete-btn" href="{% url 'delete_from_cart' ct_model=item.content_object.ct_model slug=item.content_object.slug %}" title="удалить из корзины">
-                            <span class="visually-hidden">Удалить</span>
-                        </a>
+                            <div class="cart__item-bottom">
+                                <p class="cart__settings-item">Цена {{ item.final_price }} руб.</p>
+                                <a class="cart__delete-btn" href="{% url 'delete_from_cart' ct_model=item.content_object.ct_model slug=item.content_object.slug %}" title="удалить из корзины">
+                                    <span class="visually-hidden">Удалить</span>
+                                </a>
+                            </div>
                     </form>
                     </div>
                 </div>
@@ -78,12 +80,12 @@
     </div>
 {% endfor %}
 {% endif %}
-<form id="form-order" action="{% url 'make-order' %}" method="POST">
+<form id="form-order" class="order__form" action="{% url 'make-order' %}" method="POST">
     {% csrf_token %}
     <div class="form-error" style="color: orange;">{{ form.non_field_errors }}</div>
     {% for f in form %}
-    <p class="login__input-wrapper">
-      <label for="{{ f.id_for_label }}" class="login__label">{{f.label}}</label>
+    <p class="order__input-wrapper">
+      <label for="{{ f.id_for_label }}" class="order__input-label">{{f.label}}</label>
       {% if f.name == 'email' %}
       <input id="email" type="email" name="email" value="{{user.email}}">
       {% else %}
@@ -93,15 +95,16 @@
     <div class="form-error" style="color: orange;">{{ f.errors }}</div>
     {% endfor %}
    
-    <button type="submit" class="button" value="Оформить">Оформить</button>
-</form>
+    
     {% if cart.products.count %} 
     <div class="cart__output">
+        <button type="submit" class="button button--light cart__button" value="Оформить">Оформить</button>
         <p class="cart__output-text"><strong>Итого: <span class="cart__output-price">{{ cart.final_price }} руб.</span></strong></p>
-        <a href="#" class="button">Оформить</a>
     </div>
     {% endif %}
     {% endif %}
+</form>
+
 </section>
 <script>
     let btnUp = document.querySelectorAll('.js-btn-up');

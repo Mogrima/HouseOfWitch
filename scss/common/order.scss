@@ -1,0 +1,48 @@
+.order__form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: $deep-main-color;
+}
+
+.order__input-wrapper {
+    width: 48%;
+    margin-bottom: 30px;
+
+    input {
+        width: 80%;
+        padding: 20px;
+        border: 3px solid $default-color;
+        border-radius: 6px;
+    }
+
+    textarea {
+        width: 80%;
+        border: 3px solid $default-color;
+    }
+}
+
+.order__input-label {
+    display: block;
+    font-size: 20px;
+}
+
+@media(max-width: $smDesktopWidth) {
+    .order__form {
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+
+    .order__input-wrapper {
+        width: 100%;
+        
+        input {
+            width: 100%;
+        }
+
+        textarea {
+            width: 100%;
+        }
+    }
+}
