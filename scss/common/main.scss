@@ -197,6 +197,22 @@ select {
   padding: .6em .8em .5em 1.4em; 
   }
 
+.checkout-block {
+  box-sizing: content-box;
+  width: 614px;
+  height: 405px;
+  margin: 0 auto;
+  // margin-right: 76px;
+  padding: 20px;
+  padding-top: 69px;
+  padding-left: 69px;
+  color: $substrate-color;
+  // background-color: $default-color;
+  background-image: url("../../../static/shop/img/bg-login.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 @media(min-width: $lgwidth) {
   .substrate {
     width: $lgwidth;
@@ -206,6 +222,12 @@ select {
       left: -104px;
       width: 107px;
     }
+  }
+}
+
+@media(min-width: $lgwidth) {
+  .checkout-block {
+    margin: 0 auto;
   }
 }
 
@@ -243,6 +265,10 @@ select {
   .wrapper__container {
     padding-bottom: 50px;
   }
+
+  .checkout-block {
+    margin-right: 19px;
+  }
 }
 
 @media(max-width: $smDesktopWidth) {
@@ -275,6 +301,14 @@ select {
   select {
     max-width: 100%;
   }
+
+  .checkout-block {
+    width: auto;
+    margin-right: 0;
+    padding-right: 50px;
+    height: 430px;
+    background-size: cover;
+  }
 }
 
 @media(max-width: $smMobileWidth) {
@@ -286,5 +320,25 @@ select {
 @media(max-width: $desktopWidth) {
   .substrate {
     // background-color: hotpink !important;
+  }
+}
+
+@media(max-width: $phoneWidth ) {
+  .checkout-block {
+    padding-right: 20px;
+  }
+}
+
+@media(max-width: 559px ) {
+  .checkout-block {
+    padding: 20px;
+    height: auto;
+    background-image: none;
+    background-color: $purple-color;
+  }
+
+  .checkout-block__text {
+    padding: 10px;
+    background-color: $default-color;
   }
 }
