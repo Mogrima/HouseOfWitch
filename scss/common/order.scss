@@ -28,6 +28,10 @@
     font-size: 20px;
 }
 
+.order__alert {
+    margin-bottom: 20px;
+}
+
 @media(max-width: $smDesktopWidth) {
     .order__form {
         flex-direction: column;
