@@ -1,0 +1,48 @@
+.tab-wrapper {
+    input {
+      display: none;
+      &:checked + label {
+        background-color: $default-color-hover;
+        color:#fefefe;
+      }
+    }
+    
+    input[id="tab-1"]:checked ~ .tab_content .tab-1,
+    input[id="tab-2"]:checked ~ .tab_content .tab-2,
+    input[id="tab-3"]:checked ~ .tab_content .tab-3{
+      display: block;
+    }
+  }
+
+.tab__section {
+    display: none;
+    min-height: 200px;    
+    border-top:5px solid $default-color-hover;
+    border-radius:0 10px 10px 10px;
+  }
+
+.tab_content {
+    clear:both;
+    position: relative;
+  }
+
+.tab__title {
+    margin-bottom: 20px;
+}
+
+.tab__label {
+    cursor:pointer;
+    float: left;
+    margin-left: 5px;
+    margin-bottom: 0;
+    display: block;
+    padding: 10px 40px;
+    background-color: #ecf0f1;
+    border-radius:20px 20px 0 0;
+}
+
+@media(max-width: $phoneWidth) {
+    .tab__label {
+        padding: 5px 20px;
+    }
+}

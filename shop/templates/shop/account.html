@@ -1,160 +1,62 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
-<h2 class="text-center">Личный кабинет</h2>
-<hr>
+<h2 class="section-header tab__title">Личный кабинет</h2>
+<div class="tab-wrapper">
+    <input type="radio" name="tab" id="tab-1" checked>
+    <label for="tab-1" class="tab__label">Заказы</label>
+    <input type="radio" name="tab" id="tab-2">
+    <label for="tab-2" class="tab__label">Ожидаемое</label>
+    
+    <div class="tab_content">
+      <section class="tab__section tab-1">
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>Номер заказа</th>
+                    <th>Статус</th>
+                    <th>Сумма</th>
+                    <th>Статус платежа</th>
+                    <th>Дата создания</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in customer.orders.all %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.get_status_display }}</td>
+                    <td>{{ order.cart.final_price }} руб.</td>
+                    <td>{{ order.pay_status }}</td>
+                    <td>{{ order.created_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </section>
+      <section class="tab__section tab-2">
+        {% for goods in customer.wishlist.all %}
 
-<div class="row">
-  <div class="col-4">
-    <div class="list-group" id="list-tab" role="tablist">
-      <a class="list-group-item list-group-item-action active" id="list-orders-list" data-bs-toggle="list" href="#list-orders" role="tab" aria-controls="list-orders">Заказы</a>
-      <a class="list-group-item list-group-item-action" id="list-wishlist-list" data-bs-toggle="list" href="#list-wishlist" role="tab" aria-controls="list-wishlist">Лист ожидания</a>
+        <div class="card col-md-4 p-0 mb-3 mt-3">
+
+            <img src="{{goods.get_photo_url}}" class="card-img-top" alt="{{ goods.title }}">
+
+            <div class="card-body text-center">
+
+                <h5 class="card-title"><a href="{{ goods.get_absolute_url }}"
+                                          class="text-decoration-none">
+                    {{ goods.title }}
+                </a></h5>
+            </div>
+
+            <div class="card-body text-center">
+                <a href="{% url 'remove_from_wishlist' post_id=goods.id %}"
+                   class="btn btn-danger">Удалить из ожидаемого <i class="fas fa-star"></i></a>
+            </div>
+
+        </div>
+
+    {% endfor %}
+        </section>
     </div>
   </div>
-  <div class="col-8">
-    <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="list-orders" role="tabpanel"
-             aria-labelledby="list-orders-list">
-
-
-            <table class="table">
-
-                <thead>
-
-                <tr>
-                    <th scope="col">Номер заказа</th>
-                    <th scope="col">Статус</th>
-                    <th scope="col">Сумма</th>
-                    <th scope="col">Статус платежа</th>
-                    <th scope="col">Дата создания</th>
-                    <th> Информация о заказе</th>
-                </tr>
-
-                </thead>
-
-                <tbody>
-
-                {% for order in customer.orders.all %}
-
-                    <tr>
-                        <th scope="row">{{ order.id }}</th>
-                        <td>{{ order.get_status_display }}</td>
-                        <td>{{ order.cart.final_price }} руб.</td>
-                        <td>{{ order.pay_status }}</td>
-                        <td>{{ order.created_at }}</td>
-                        <th>
-                            <button>Детали</button>
-                        </th>
-
-
-                        <div class="modal fade" id="orderDetails-{{ order.id }}" tabindex="-1"
-                             aria-labelledby="orderDetailsLabel-{{ order.id }}" aria-hidden="true">
-
-                            <div class="modal-dialog modal-xl">
-
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title text-center"
-                                            id="orderDetailsLabel-{{ order.id }}">
-                                            Информация о заказе #{{ order.id }}
-                                        </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-
-                                            <div class="col-md-3 text-center mb-2">
-                                                <strong>Наименование</strong>
-                                            </div>
-                                            <div class="col-md-3 text-center mb-2">
-                                                <strong>Изображение</strong>
-                                            </div>
-                                            <div class="col-md-3 text-center mb-2">
-                                                <strong>Кол-во</strong>
-                                            </div>
-                                            <div class="col-md-3 text-center mb-2">
-                                                <strong>Общая цена</strong>
-                                            </div>
-                                            <hr>
-                                            {% for item in order.cart.products.all %}
-                                                <div class="col-md-3 mb-3 text-center">
-                                                    <strong>
-                                                          <a
-                                                            href="{{ item.content_object.get_absolute_url }}"
-                                                            class="text-decoration-none">
-                                                        {{ item.content_object.title }}
-                                                    </a>
-                                                    </strong>
-
-                                                </div>
-                                                <div class="col-md-3 mb-3 text-center">
-                                                    {% if item.content_object.photo %}
-                <img alt="{{post.title}}" height="298" src="{{item.content_object.photo.url}}" width="279"
-                    class="catalog__image cart__image">
-                {% else %}
-                <img alt="изображение товара" height="298" src="../static/shop/img/notavailable2.jpg" width="279"
-                    class="catalog__image cart__image">
-                {% endif %}
-                                                </div>
-                                                <div class="col-md-3 mb-3 text-center">
-                                                    {{ item.qty }} шт.
-                                                </div>
-                                                <div class="col-md-3 mb-3 text-center">
-                                                    {{ item.final_price }} руб.
-                                                </div>
-                                            {% endfor %}
-
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                            Закрыть
-                                        </button>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                    <tr>
-
-                {% endfor %}
-                </tbody>
-
-            </table>
-
-
-        </div>
-        <div class="tab-pane fade" id="list-wishlist" role="tabpanel" aria-labelledby="list-wishlist-list">
-
-            <div class="row">
-                {% for goods in customer.wishlist.all %}
-
-                    <div class="card col-md-4 p-0 mb-3 mt-3">
-
-                        <img src="{{goods.get_photo_url}}" class="card-img-top" alt="{{ goods.title }}">
-
-                        <div class="card-body text-center">
-
-                            <h5 class="card-title"><a href="{{ goods.get_absolute_url }}"
-                                                      class="text-decoration-none">
-                                {{ goods.title }}
-                            </a></h5>
-                        </div>
-
-                        <div class="card-body text-center">
-                            <a href="{% url 'remove_from_wishlist' post_id=goods.id %}"
-                               class="btn btn-danger">Удалить из ожидаемого <i class="fas fa-star"></i></a>
-                        </div>
-
-                    </div>
-
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</div>
-</div>
 {% endblock content %}
