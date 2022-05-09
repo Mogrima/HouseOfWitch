@@ -89,7 +89,7 @@ def pageNotFound(request, exception):
 class ShowArticle(DataMixin, ListView):
     model = Article
     template_name = 'shop/article.html'
-    context_object_name = 'posts'
+    context_object_name = 'articles'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -2,11 +2,12 @@
  
 {% block content %}
  
-<h1>{{post.title}}</h1>
+<h1>Статьи</h1>
  
-{% if post.photo %}
-<p><img class="img-article-left" src="{{post.photo.url}}"></p>
-{% endif %}
- 
-{{post.content|linebreaks}}
+{% for article in articles %}
+<h2>{{ article.title }}</h2>
+<img alt="изображение {{article.title}}"
+          height="347" src="{{article.photo.url}}" width="258" class="catalog__image">
+<p>{{ article.content|safe|linebreaks|truncatewords:50 }}</p>
+{% endfor %}
 {% endblock %}
