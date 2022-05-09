@@ -88,12 +88,26 @@ def pageNotFound(request, exception):
 
 class ShowArticle(DataMixin, ListView):
     model = Article
-    template_name = 'shop/article.html'
+    template_name = 'shop/articles.html'
     context_object_name = 'articles'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Статьи'
+        context['menu'] = self.menu
+        context['cats'] = self.cats
+        context['cart'] = self.cart
+        return context
+
+class Article(DataMixin, DetailView):
+    model = Article
+    template_name = 'shop/article.html'
+    slug_url_kwarg = 'article_slug'
+    context_object_name = 'post'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = context['post']
         context['menu'] = self.menu
         context['cats'] = self.cats
         context['cart'] = self.cart

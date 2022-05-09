@@ -1,13 +1,21 @@
 {% extends 'shop/base.html' %}
  
 {% block content %}
- 
-<h1>Статьи</h1>
- 
-{% for article in articles %}
-<h2>{{ article.title }}</h2>
-<img alt="изображение {{article.title}}"
-          height="347" src="{{article.photo.url}}" width="258" class="catalog__image">
-<p>{{ article.content|safe|linebreaks|truncatewords:50 }}</p>
-{% endfor %}
+
+<div class="breadcrumbs">
+    <ul class="breadcrumbs__list">
+        <li class="breadcrumbs__item">
+            <a href="{% url 'article' %}" class="breadcrumbs__link">Статьи</a>
+        </li>
+        <li class="breadcrumbs__item">
+            <a href="{{ post.cat.get_absolute_url }}" class="breadcrumbs__link">{{post.cat.name}}</a>
+        </li>
+        <li class="breadcrumbs__item"> {{post.title}}
+        </li>
+    </ul>
+</div>
+<h1>{{post.title}}</h1>
+{{post.content|safe}}
+<img alt="изображение {{post.title}}"
+          height="347" src="{{post.photo.url}}" width="258" class="catalog__image">
 {% endblock %}

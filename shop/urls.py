@@ -8,6 +8,7 @@ urlpatterns = [
     path('about/', about.as_view(), name='about'),
     path('catalog/', catalog.as_view(), name='catalog'),
     path('article/', ShowArticle.as_view(), name='article'),
+    path('article/<slug:article_slug>/', Article.as_view(), name='article_content'),
     path('registration/', RegisterUser.as_view(), name='registration'),
     path('login/', LoginUser.as_view(), name='login'),
     path('logout/', logout_user, name='logout'),

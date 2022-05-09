@@ -1,0 +1,14 @@
+{% extends 'shop/base.html' %}
+ 
+{% block content %}
+ 
+<h1>Статьи</h1>
+ 
+{% for article in articles %}
+<h2>{{ article.title }}</h2>
+<img alt="изображение {{article.title}}"
+          height="347" src="{{article.photo.url}}" width="258" class="catalog__image">
+<p>{{ article.content|safe|linebreaks|truncatewords:50 }}</p>
+<a href="{{ article.get_absolute_url }}" class="button catalog__button">Открыть</a>
+{% endfor %}
+{% endblock %}
