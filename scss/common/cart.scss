@@ -100,6 +100,10 @@
   background-color: transparent;
   cursor: pointer;
 
+  &--center {
+    margin: 0 auto;
+  }
+
   &::before {
     content: "";
     position: absolute;
@@ -196,6 +200,10 @@
 
   .cart__delete-btn {
     margin-left: 0;
+
+    &--center {
+      margin-left: auto;
+    }
   }
 }
 

@@ -33,29 +33,26 @@
             </tbody>
         </table>
       </section>
-      <section class="tab__section tab-2">
+      <section class="tab__section tab-2 catalog">
+        <div class="catalog__wrapper">
         {% for goods in customer.wishlist.all %}
+        
+        
+                <figure class="catalog__item">
+                    <figcaption class="catalog__title"> {{ goods.title }}</figcaption>
+                      <div class="catalog__image-wrapper">
+                        <img alt="изображение {{ goods.title }}"
+                        height="347" src="{{goods.get_photo_url}}" width="258" class="catalog__image">
+                      </div>
+                      <a href="{{ goods.get_absolute_url }}" class="button catalog__button">Открыть</a>
+                    <a class="cart__delete-btn cart__delete-btn--center" href="{% url 'remove_from_wishlist' post_id=goods.id %}" title="удалить из ожидаемого">
+                      <span class="visually-hidden">Удалить</span>
+                  </a>
+                  </figure>
+        
 
-        <div class="card col-md-4 p-0 mb-3 mt-3">
-
-            <img src="{{goods.get_photo_url}}" class="card-img-top" alt="{{ goods.title }}">
-
-            <div class="card-body text-center">
-
-                <h5 class="card-title"><a href="{{ goods.get_absolute_url }}"
-                                          class="text-decoration-none">
-                    {{ goods.title }}
-                </a></h5>
-            </div>
-
-            <div class="card-body text-center">
-                <a href="{% url 'remove_from_wishlist' post_id=goods.id %}"
-                   class="btn btn-danger">Удалить из ожидаемого <i class="fas fa-star"></i></a>
-            </div>
-
-        </div>
-
-    {% endfor %}
+        {% endfor %}
+    </div>
         </section>
     </div>
   </div>
