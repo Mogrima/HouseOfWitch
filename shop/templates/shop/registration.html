@@ -4,16 +4,16 @@
 <section class="login">
   <div class="login__wrapper">
     <h2 class="visually-hidden">Здесь можно зарегистрироваться</h2>
-    <p>Уже зарегистрированы? Тогда вам <a href="{% url 'login' %}">сюда</a></p>
+    <p class="login__link-even">Уже зарегистрированы? Тогда вам <a href="{% url 'login' %}">сюда</a></p>
     <form id="login__form" class="login__form" method="POST">
       {% csrf_token %}
-      <div class="form-error" style="color: orange;">{{ form.non_field_errors }}</div>
+      <div class="form-error">{{ form.non_field_errors }}</div>
       {% for f in form %}
       <p class="login__input-wrapper">
         <label for="{{ f.id_for_label }}" class="login__label">{{f.label}}</label>
         {{ f }}
       </p>
-      <div class="form-error" style="color: orange;">{{ f.errors }}</div>
+      <div class="form-error">{{ f.errors }}</div>
       {% endfor %}
       <div class="login__info">
       <input id="login-remember" class="checkbox login__info-checkbox" type="checkbox" name="remember">
