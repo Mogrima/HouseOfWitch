@@ -1,14 +1,22 @@
 {% extends 'shop/base.html' %}
- 
+
 {% block content %}
- 
-<h1>Статьи</h1>
- 
+
+<h1 class="section-header article__header">Статьи</h1>
+
 {% for article in articles %}
-<h2>{{ article.title }}</h2>
-<img alt="изображение {{article.title}}"
-          height="347" src="{{article.photo.url}}" width="258" class="catalog__image">
-<p>{{ article.content|safe|linebreaks|truncatewords:50 }}</p>
-<a href="{{ article.get_absolute_url }}" class="button catalog__button">Открыть</a>
+<article class="article">
+    <div class="article__wrapper">
+        <h2 class="article__title">{{ article.title }}</h2>
+        <img class="article__preview-img" alt="изображение {{article.title}}" height="347" src="{{article.photo.url}}"
+            width="458" class="catalog__image">
+        <div class="article__desc">
+            {{ article.content|safe|linebreaks|truncatewords:60 }}
+        </div>
+        
+    </div>
+    <div class="clearfix"></div>
+    <a class="button article__btn-read" href="{{ article.get_absolute_url }}">Читать</a>
+</article>
 {% endfor %}
 {% endblock %}

@@ -213,6 +213,12 @@ select {
   background-size: contain;
 }
 
+.clearfix::after {
+  content: " ";
+  clear: both;
+  display: table;
+}
+
 @media(min-width: $lgwidth) {
   .substrate {
     width: $lgwidth;
