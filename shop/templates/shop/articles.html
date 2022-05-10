@@ -7,7 +7,7 @@
 {% for article in articles %}
 <article class="article">
     <div class="article__wrapper">
-        <h2 class="article__title">{{ article.title }}</h2>
+        <a class="article__title" href="{{ article.get_absolute_url }}"><h2 class="article__title">{{ article.title }}</h2></a>
         <img class="article__preview-img" alt="изображение {{article.title}}" height="347" src="{{article.photo.url}}"
             width="458" class="catalog__image">
         <div class="article__desc">
