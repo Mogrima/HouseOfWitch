@@ -134,8 +134,9 @@
 .cart_add_btn {
   width: 78px;
   height: 69px;
-  background-image: url("../../../static/shop/img/cart-icon.png");
+  background-image: url("../../../static/shop/img/new-cart.png");
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .cart__add-favorite {
