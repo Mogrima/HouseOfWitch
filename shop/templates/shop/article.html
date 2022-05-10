@@ -1,5 +1,5 @@
 {% extends 'shop/base.html' %}
- 
+
 {% block content %}
 
 <div class="breadcrumbs">
@@ -14,8 +14,12 @@
         </li>
     </ul>
 </div>
-<h1>{{post.title}}</h1>
-{{post.content|safe}}
-<img alt="изображение {{post.title}}"
-          height="347" src="{{post.photo.url}}" width="258" class="catalog__image">
+<h1 class="section-header article__header">{{post.title}}</h1>
+<div class="article__wrapper">
+    <img alt="изображение {{post.title}}" height="347" src="{{post.photo.url}}" width="347" class="article__image">
+    <div class="article__text">
+        {{post.content|safe}}
+    </div>
+</div>
+
 {% endblock %}
