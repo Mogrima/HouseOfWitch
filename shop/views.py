@@ -462,3 +462,11 @@ class SearchResultsView(ListView):
             Q(title__icontains=query) | Q(description__icontains=query)
         )
         return object_list
+class PolicyView(DataMixin, views.View):
+  def get(self, request, *args, **kwargs):
+    context = {
+      'title': 'Политика конфидициальности',
+      'menu': self.menu,
+      'cart': self.cart
+    }
+    return render(request, 'shop/policy.html', context)

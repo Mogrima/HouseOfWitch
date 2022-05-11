@@ -30,4 +30,5 @@ urlpatterns = [
     path('checkout/', CheckoutView.as_view(), name='checkout'),
 
     path('search/', SearchResultsView.as_view(), name='search_results'),
+    path('policy/', PolicyView.as_view(), name='policy'),
 ]
