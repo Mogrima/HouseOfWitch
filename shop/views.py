@@ -470,3 +470,12 @@ class PolicyView(DataMixin, views.View):
       'cart': self.cart
     }
     return render(request, 'shop/policy.html', context)
+
+class DeliveryView(DataMixin, views.View):
+  def get(self, request, *args, **kwargs):
+    context = {
+      'title': 'Доставка и оплата',
+      'menu': self.menu,
+      'cart': self.cart
+    }
+    return render(request, 'shop/delivery.html', context)

@@ -31,4 +31,5 @@ urlpatterns = [
 
     path('search/', SearchResultsView.as_view(), name='search_results'),
     path('policy/', PolicyView.as_view(), name='policy'),
+    path('delivery/', DeliveryView.as_view(), name='delivery'),
 ]
