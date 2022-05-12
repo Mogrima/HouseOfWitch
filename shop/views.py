@@ -175,6 +175,8 @@ class AddToCartView(DataMixin, views.View):
         self.cart.products.add(cart_product)
         recalc_cart(self.cart)
         return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    else:
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
     
 
 class DeleteFromCartView(DataMixin, views.View):
