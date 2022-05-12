@@ -15,6 +15,11 @@
       </p>
       <div class="form-error">{{ f.errors }}</div>
       {% endfor %}
+      <div class="checkbox-policy">
+        <input id="checkbox-policy" class="checkbox login__info-checkbox" type="checkbox" name="remember">
+        <label for="checkbox-policy" class="checkbox__name policy__label">
+     <span class="checkbox__indicator checkbox__indicator--light login__checkbox-indicator"></span>Я даю согласие на обработку персональных данных</label>
+    </div>
       <div class="login__info">
       <input id="login-remember" class="checkbox login__info-checkbox" type="checkbox" name="remember">
        <label for="login-remember" class="checkbox__name login__checkbox-name">
