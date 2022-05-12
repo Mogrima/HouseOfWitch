@@ -96,11 +96,13 @@
    
     
     {% if cart.products.count %} 
+    <div class="checkbox-policy">
+        <input id="checkbox-policy" class="checkbox login__info-checkbox" type="checkbox" name="remember">
+        <label for="checkbox-policy" class="checkbox__name policy__label">
+     <span class="checkbox__indicator checkbox__indicator--light login__checkbox-indicator"></span>Я даю согласие на обработку персональных данных</label>
+    </div>
     <div class="cart__output">
-        <div class="checkbox-policy">
-            <label for="checkbox-policy">Я даю согласие на обработку персональных данных на основании ФЗ № 152-ФЗ «О персональных данных» от 27.07.2006 г. <a href="{% url 'policy' %}">Политика конфидициальности</a></label>
-            <input type="checkbox" name="policy" id="checkbox-policy">
-        </div>
+
         <button type="submit" class="button button--light cart__button" value="Оформить">Оформить</button>
         <p class="cart__output-text"><strong>Итого: <span class="cart__output-price">{{ cart.final_price }} руб.</span></strong></p>
     </div>
