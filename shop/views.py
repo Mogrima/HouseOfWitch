@@ -453,9 +453,9 @@ class CheckoutView(DataMixin, views.View):
     else:
         return redirect('catalog')
 
-class SearchResultsView(ListView):
+class SearchResultsView(DataMixin, ListView):
     model = Goods
-    template_name = 'shop/search.html'
+    template_name = 'shop/catalog.html'
     context_object_name = 'posts'
 
     def get_queryset(self): # новый
@@ -464,6 +464,14 @@ class SearchResultsView(ListView):
             Q(title__icontains=query) | Q(description__icontains=query)
         )
         return object_list
+    
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Поиск'
+        context['menu'] = self.menu
+        context['cats'] = self.cats
+        context['cart'] = self.cart
+        return context
 class PolicyView(DataMixin, views.View):
   def get(self, request, *args, **kwargs):
     context = {
