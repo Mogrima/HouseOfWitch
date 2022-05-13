@@ -34,6 +34,27 @@ function toggleClass(parent, classA, classB) {
   });
 }
 
+document.addEventListener('click', function (event) {
+  let currentNav = document.querySelector('.nav');
+  if (!currentNav.classList.contains('nav--closed')) {
+    
+    currentNav.classList.add('nav--closed');
+    currentNav.classList.remove('nav--opened');
+    
+  }
+});
+
+document.addEventListener('click', function (event) {
+  
+  let userNav = document.querySelector('.user-menu--bottom');
+  if (!userNav.classList.contains('user-menu--closed')) {
+    userNav.classList.add('user-menu--closed');
+    userNav.classList.remove('user-menu--opened');
+    
+  }
+});
+
+
 toggleClass('nav', 'user-menu--closed', 'user-menu--opened');
 toggleClass('nav', 'nav--closed', 'nav--opened');
 

@@ -60,7 +60,7 @@
         
               <div class="cart cart--bottom"><a href="{% url 'cart' %}" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}"
                     width="78" height="69" alt="корзина"></a></div>
-              <nav class="user-menu user-menu--nojs user-menu--closed">
+              <nav class="user-menu user-menu--bottom user-menu--nojs user-menu--closed">
                 <button class="user-menu__toggle" type="button" data-toggle="toggleClass"><span class="visually-hidden">Открыть</span>
                 </button>
                 <ul class="user-menu__list user-menu__list--bottom {% if request.user.is_authenticated %} user-menu__list--auth {% endif %}">
