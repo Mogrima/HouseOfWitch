@@ -1,0 +1,23 @@
+.up_button {
+    position: fixed;
+    bottom: 80px;
+    right: 40px;
+    z-index: 9999;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background: $default-color-hover;
+    color: $substrate-color;
+    cursor: pointer;
+    border-radius: 2px;
+    display: none;
+  }
+  
+  .up_button:hover {
+    background: $light-text-color;
+  }
+  
+  .up_button-show {
+    display: block;
+  }  
