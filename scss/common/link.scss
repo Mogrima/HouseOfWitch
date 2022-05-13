@@ -15,3 +15,13 @@
     color: #7bd782;
   }
 }
+
+.link--light {
+  border-bottom: none;
+  color: $default-color;
+
+  &:hover {
+    color: $default-color-hover;
+    text-decoration: underline;
+  }
+}
