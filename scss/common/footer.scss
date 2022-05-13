@@ -38,6 +38,17 @@
   font-size: $mainFontSize;
 }
 
+.footer__policy {
+  display: block;
+  margin-bottom: 10px;
+  color: $default-color;
+
+  &:hover {
+    color: $default-color-hover;
+    text-decoration: underline;
+  }
+}
+
 @media(min-width: $lgwidth) {
   .footer {
     width: 1509px;
