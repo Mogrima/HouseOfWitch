@@ -30,6 +30,10 @@
 
 .order__alert {
     margin-bottom: 20px;
+    padding: 10px;
+    color: $substrate-color;
+    background-color: $default-color-hover;
+    border-radius: 4px;
 }
 
 @media(max-width: $smDesktopWidth) {
