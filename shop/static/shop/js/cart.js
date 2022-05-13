@@ -45,8 +45,12 @@ let last_name = document.getElementById("id_last_name");
 let surname = document.getElementById("id_surname");
 let email = document.getElementById("email");
 let phone = document.getElementById("id_phone");
+let region = document.getElementById("id_state");
+let city = document.getElementById("id_city");
+let street = document.getElementById("id_street");
+let house = document.getElementById("id_house");
+let flat = document.getElementById("id_flat");
 
-// const input = order_form.querySelectorAll("input");
 
 function isItemExist(name) {
   return (name in localStorage)
@@ -57,6 +61,11 @@ last_name.value = (isItemExist('last_name')) ? localStorage.last_name : ''
 surname.value = (isItemExist('surname')) ? localStorage.surname : ''
 email.value = (isItemExist('email')) ? localStorage.email : email.value
 phone.value = (isItemExist('phone')) ? localStorage.phone : ''
+region.value = (isItemExist('region')) ? localStorage.region : ''
+city.value = (isItemExist('city')) ? localStorage.city : ''
+street.value = (isItemExist('street')) ? localStorage.street : ''
+house.value = (isItemExist('house')) ? localStorage.house : ''
+flat.value = (isItemExist('flat')) ? localStorage.flat : ''
 
 order_form.addEventListener('submit', () => {
   localStorage.first_name = first_name.value
@@ -64,4 +73,9 @@ order_form.addEventListener('submit', () => {
   localStorage.surname = surname.value
   localStorage.email = email.value
   localStorage.phone = phone.value
+  localStorage.region = region.value
+  localStorage.city = city.value
+  localStorage.street = street.value
+  localStorage.house = house.value
+  localStorage.flat = flat.value
 })
