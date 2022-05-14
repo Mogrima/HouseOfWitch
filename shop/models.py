@@ -13,7 +13,7 @@ from .utils.upload import upload_function
 User = get_user_model()
 
 class Goods(models.Model):
-    title = models.CharField(max_length=255, verbose_name='Название товара')
+    title = models.CharField(max_length=255, db_index=True, verbose_name='Название товара')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
     price = models.FloatField(verbose_name='Цена')
     description = models.TextField(blank=True, verbose_name="Описание товара")
@@ -61,7 +61,7 @@ class Category(models.Model):
         ordering = ['id']
 
 class Article(models.Model):
-    title = models.CharField(max_length=255, verbose_name='Заголовок')
+    title = models.CharField(max_length=255, db_index=True, verbose_name='Заголовок')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
     content = models.TextField(blank=True, verbose_name="Текст статьи")
     photo = models.ImageField(upload_to="imgarticle/%Y/", blank=True, verbose_name="Фото")
