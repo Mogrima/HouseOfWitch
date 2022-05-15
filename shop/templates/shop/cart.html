@@ -71,7 +71,7 @@
         </li>
         {% endfor %}
     </ul>
-    
+    <a href="{% url 'delivery' %}" class="link link--light cart__link-delivery">Информации о доставке и оплате</a>
     {% if messages %}
 {% for message in messages %}
     <div class="order__alert">
