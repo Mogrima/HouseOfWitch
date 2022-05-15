@@ -79,6 +79,11 @@
             margin-bottom: 0;
         }
     }
+
+    strong {
+        color: $substrate-color;
+       background-color: $default-color;
+    }
 }
 
 .article__preview-img {
