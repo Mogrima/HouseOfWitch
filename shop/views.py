@@ -482,6 +482,7 @@ class SearchResultsView(DataMixin, ListView):
         context['cats'] = self.cats
         context['cart'] = self.cart
         context['desc'] = 'Страница, на которую выводятся результаты вашего поискового запроса.'
+        context['count'] = self.object_list.count
         return context
 class PolicyView(DataMixin, views.View):
   def get(self, request, *args, **kwargs):

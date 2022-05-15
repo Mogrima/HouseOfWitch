@@ -3,6 +3,10 @@
 {% block content %}
 <section class="catalog">
   <div class="catalog__wrapper">
+    {% if count == 0 %}
+    <p>По вашему поисковому запросу ничего не нашлось.</p>
+    <div class="about-pumpkin"><img src="../../static/shop/img/pumpkin.png" width="278" height="380" alt="Логотип магазина Дом Лесной Ведьмы"></div>
+    {% endif %}
     {% for post in posts %}
     <figure class="catalog__item">
       <figcaption class="catalog__title">{{post.title}}</figcaption>
