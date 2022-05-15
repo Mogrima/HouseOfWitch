@@ -181,8 +181,20 @@ class AddToCartView(DataMixin, views.View):
         self.cart.products.add(cart_product)
         recalc_cart(self.cart)
         return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    if is_ajax:
+        if request.method == 'GET':
+            self.cart.products.add(cart_product)
+            recalc_cart(self.cart)
+            messages.add_message(request, messages.INFO, "Количество изменено")
+            return JsonResponse({'context': 'created'})
     else:
-        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+        if created:
+            self.cart.products.add(cart_product)
+            recalc_cart(self.cart)
+            return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    # else:
+    #     return HttpResponseRedirect(request.META['HTTP_REFERER'])
     
 
 class DeleteFromCartView(DataMixin, views.View):

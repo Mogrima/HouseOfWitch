@@ -162,6 +162,29 @@ getCountGoods();
   });
   }
 
+  let cart_add = document.querySelectorAll('.cart_add_btn');
+  let parent_cart_btn = document.querySelectorAll('.catalog__item');
+  
+  for (i=0; i < cart_add.length; i++) {
+    cart_add[i].addEventListener("click", (event) => {
+      event.preventDefault();
+      console.log
+      let targetLink = event.target.closest('a'); 
+      if (event.target.tagName == 'a') {
+        targetLink = event.target;
+      } 
+      let cart_block = targetLink.nextSibling.nextSibling;
+      console.log(cart_block);
+      let ct_model = targetLink.getAttribute('data-ctmodel');
+      let slug = targetLink.getAttribute('data-slug');
+      const getUrlCart = `./add-to-cart/${ct_model}/${slug}/`;
+      getQTYup(getUrlCart);
+      targetLink.remove();
+      cart_block.style.display = "block";
+      
+  });
+  }
+
 })();
 
 (function() {
