@@ -22,6 +22,7 @@ class Goods(models.Model):
     is_published = models.BooleanField(default=True, verbose_name='Показано на сайте')
     stock = models.IntegerField(default=1, verbose_name='Наличие на складе')
     cat = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')
+    meta_description = models.CharField(max_length=500, blank=True, verbose_name="Meta-description")
     image_gallery = GenericRelation('imagegallery')
 
     def __str__(self):
