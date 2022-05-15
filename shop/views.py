@@ -177,10 +177,10 @@ class AddToCartView(DataMixin, views.View):
     cart_product, created = CartGoods.objects.get_or_create(
       user=self.cart.owner, cart=self.cart, content_type=content_type, object_id=product.id
     )
-    if created:
-        self.cart.products.add(cart_product)
-        recalc_cart(self.cart)
-        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    # if created:
+    #     self.cart.products.add(cart_product)
+    #     recalc_cart(self.cart)
+    #     return HttpResponseRedirect(request.META['HTTP_REFERER'])
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
     if is_ajax:
         if request.method == 'GET':

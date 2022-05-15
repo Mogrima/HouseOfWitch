@@ -177,7 +177,7 @@ getCountGoods();
       console.log(cart_block);
       let ct_model = targetLink.getAttribute('data-ctmodel');
       let slug = targetLink.getAttribute('data-slug');
-      const getUrlCart = `./add-to-cart/${ct_model}/${slug}/`;
+      const getUrlCart = `/add-to-cart/${ct_model}/${slug}/`;
       getQTYup(getUrlCart);
       targetLink.remove();
       cart_block.style.display = "block";

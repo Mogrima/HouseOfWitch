@@ -27,10 +27,25 @@
 
         {% if  post.stock %}
           {%  if post not in cart.products_in_cart %}
-            <a href="{% url 'add_to_cart' ct_model=post.ct_model slug=post.slug %}" class="btn btn-primary cart_add_btn" 
-              title="добавить в корзину">
+          <a href="{% url 'add_to_cart' ct_model=post.ct_model slug=post.slug %}" class="btn btn-primary cart_add_btn" 
+          data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}">
               <span class="visually-hidden">Добавить в корзину</span> 
             </a>
+
+            <div class="js-cart-add" style="display: none;">
+              <div class="cart__counter-block">
+                <a class="cart__counter cart__counter--plus js-cart" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_up' ct_model=post.ct_model slug=post.slug %}"
+                  title="увеличить">
+                  <span class="visually-hidden">Увеличить</span>
+              </a>
+              <div class="js-count-cart">1</div>
+              <a class="cart__counter cart__counter--minus js-cart-remove" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_down' ct_model=post.ct_model slug=post.slug %}"
+                title="уменьшить">
+                <span class="visually-hidden">Уменьшить</span>
+            </a>
+          </div>
+            </div>
+
           {% else %}
           <div class="cart__counter-block">
           <a class="cart__counter cart__counter--plus js-cart" data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}" href="{% url 'change_up' ct_model=post.ct_model slug=post.slug %}"
