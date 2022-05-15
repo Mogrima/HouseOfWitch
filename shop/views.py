@@ -35,6 +35,7 @@ class ShopHome(DataMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Главная страница'
         context['menu'] = self.menu
+        context['desc'] = 'Заходите на кружку ароматного чая к Лесной Ведьмы. Она приготовила для вас нечто особенное. Добро пожаловать в магазин магической атрибутики.'
         context['cats'] = self.cats
         context['cart'] = self.cart
         return context
@@ -56,6 +57,7 @@ class about(DataMixin, views.View):
       'title': 'О нас',
       'menu': self.menu,
       'cart': self.cart,
+      'desc': 'Раздел информации о Лесной Ведьмe и ее работе. Заходите на досуге почитать.',
     #   'data': dataJSON
     }
     return render(request, 'shop/about.html', context)
@@ -75,6 +77,7 @@ class catalog(DataMixin, ListView):
         context['menu'] = self.menu
         context['cats'] = self.cats
         context['cart'] = self.cart
+        context['desc'] = 'Ведьма тщательно и бережно подбирает магические товары для вас. В этом каталоге представлены магические предметы для любого вида колдовства.'
         return context
 
 
@@ -97,6 +100,7 @@ class ShowArticle(DataMixin, ListView):
         context['menu'] = self.menu
         context['cats'] = self.cats
         context['cart'] = self.cart
+        context['desc'] = 'В этом разделе собраны все знания и опыт Лесной Ведьмы, скурпулёзно собранные ей для вас. Статьи про магические обряды и правила их проведения.'
         return context
 
 class Article(DataMixin, DetailView):
@@ -142,6 +146,7 @@ class GoodsCategory(DataMixin, ListView):
         context['cats'] = self.cats
         context['cat_selected'] = context['posts'][0].cat_id
         context['cart'] = self.cart
+        context['desc'] = 'Товары из категории ' + str(context['posts'][0].cat)
         return context
 
     def get_queryset(self):
@@ -158,7 +163,8 @@ class CartView(DataMixin, ListView):
             'form': form,
             'cart': self.cart,
             'menu': self.menu,
-            'title': 'Корзина'
+            'title': 'Корзина',
+            'desc': 'Ваша корзина'
         }
         return render(request, 'shop/cart.html', context)
 
@@ -280,7 +286,8 @@ class RegisterUser(DataMixin, views.View):
         'form': form,
         'menu': self.menu,
         'cats': self.cats,
-        'title': title
+        'title': title,
+        'desc': 'На этой странице Ведьма получает информацию о вас в свою картотеку. Благодаря регистрации вы сможете отслеживать свои заказы, а также добавлять товары в список ожидаемого.'
         }
         return render(request, 'shop/registration.html', context)
 
@@ -326,7 +333,8 @@ class LoginUser(DataMixin, views.View):
             'form': form,
             'menu': self.menu,
             'cats': self.cats,
-            'title': title
+            'title': title,
+            'desc': 'Подтвердите свою личность Ведьме на этой странице, чтобы получить доступ к отслеживанию товаров и списка листа ожидаемого.'
         }
 
         return render(request, 'shop/login.html', context)
@@ -362,7 +370,8 @@ class AccountView(DataMixin, views.View):
       'customer': customer,
       'title': 'Личный кабинет ' + request.user.username,
       'menu': self.menu,
-      'cart': self.cart
+      'cart': self.cart,
+      'desc': 'Это ваш личный кабинет в магазине Лесной Ведьмы. Тут вы можете отслеживать свои заказы и лист ожидания.'
     }
     return render(request, 'shop/account.html', context)
 class MakeOrderView(DataMixin, views.View):
@@ -446,7 +455,8 @@ class CheckoutView(DataMixin, views.View):
         'order': order,
         'title': 'Заказ оформлен!',
         'menu': self.menu,
-        'cart': self.cart
+        'cart': self.cart,
+        'desc': 'Ваш заказ оформлен!'
         }
         return render(request, 'shop/checkout.html', context)
 
@@ -471,13 +481,15 @@ class SearchResultsView(DataMixin, ListView):
         context['menu'] = self.menu
         context['cats'] = self.cats
         context['cart'] = self.cart
+        context['desc'] = 'Страница, на которую выводятся результаты вашего поискового запроса.'
         return context
 class PolicyView(DataMixin, views.View):
   def get(self, request, *args, **kwargs):
     context = {
       'title': 'Политика конфидициальности',
       'menu': self.menu,
-      'cart': self.cart
+      'cart': self.cart,
+      'desc': 'Страница политики конфидициальности интернет-магазина Дом Лесной Ведьмы.'
     }
     return render(request, 'shop/policy.html', context)
 
@@ -486,6 +498,7 @@ class DeliveryView(DataMixin, views.View):
     context = {
       'title': 'Доставка и оплата',
       'menu': self.menu,
-      'cart': self.cart
+      'cart': self.cart,
+      'desc': 'Информация об оплате и доставке интернет-магазина Дом Лесной Ведьмы.'
     }
     return render(request, 'shop/delivery.html', context)
