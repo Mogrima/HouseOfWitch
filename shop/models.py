@@ -70,6 +70,7 @@ class Article(models.Model):
     time_update = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано на сайте')
     cat = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')
+    meta_description = models.CharField(max_length=500, blank=True, verbose_name="Meta-description")
 
     def __str__(self):
         return self.title
