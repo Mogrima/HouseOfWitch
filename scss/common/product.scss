@@ -113,6 +113,15 @@
     }
 }
 
+@media(max-width: $smMobileWidth) {
+    .product__image-wrapper {
+    
+      &::before {
+          content: none;
+      }
+    }
+}
+
 @media(max-width: $phoneWidth) {
     .product__counter-block {
         width: 225px !important;
