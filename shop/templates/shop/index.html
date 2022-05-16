@@ -24,7 +24,7 @@
 
         {% if  post.stock %}
           {%  if post not in cart.products_in_cart %}
-          <a href="{% url 'add_to_cart' ct_model=post.ct_model slug=post.slug %}" class="btn btn-primary cart_add_btn" 
+          <a href="{% url 'add_to_cart' ct_model=post.ct_model slug=post.slug %}" class="btn btn-primary cart_add_btn js-cart_add_btn" 
           data-ctmodel="{{ post.ct_model }}" data-slug="{{ post.slug }}">
               <span class="visually-hidden">Добавить в корзину</span> 
             </a>

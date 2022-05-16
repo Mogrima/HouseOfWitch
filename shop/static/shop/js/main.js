@@ -162,7 +162,7 @@ getCountGoods();
   });
   }
 
-  let cart_add = document.querySelectorAll('.cart_add_btn');
+  let cart_add = document.querySelectorAll('.js-cart_add_btn');
   let parent_cart_btn = document.querySelectorAll('.catalog__item');
   
   for (i=0; i < cart_add.length; i++) {
