@@ -15,6 +15,8 @@ from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 from django.db import transaction
 from json import dumps
+from django.core.mail import send_mail
+from django.template.loader import get_template
 
 import json
 
@@ -452,7 +454,22 @@ class MakeOrderView(DataMixin, views.View):
             for item in self.cart.products.all():
                 item.content_object.stock -= item.qty
                 item.content_object.save()
+            subject = 'Ваш заказ оформлен!'
+            send_text = 'Вы оформили заказ на сайте интернет-магазина Дом Лесной Ведьмы'
+            order = customer.orders.last()
+            context = {
+                'order': order,
+            }
+            send_mail(
+            'Ваш заказ оформлен!',
+            'Ваш заказ оформлен!',
+            'mushroom@houseofwitch.ru',
+            [form.cleaned_data['email']],
+            fail_silently=False,
+            html_message=get_template('shop/mail/checkout_mail.html').render(context)
+            )
 
+            # mail = send_mail(subject, body, 'mushroom@houseofwitch.ru', [form.cleaned_data['email']], fail_silently=False)
             return HttpResponseRedirect('/checkout/')
         return HttpResponseRedirect('/cart/')
 

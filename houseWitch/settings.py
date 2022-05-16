@@ -81,6 +81,18 @@ DATABASES = {
     }
 }
 
+EMAIL_HOST = 'smtp.beget.com'
+
+EMAIL_PORT = 465 # 2525
+
+EMAIL_HOST_USER = 'mushroom@houseofwitch.ru'
+
+EMAIL_HOST_PASSWORD = 'gB8t4mw5'
+
+EMAIL_USE_TLS = False
+
+EMAIL_USE_SSL = True
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
