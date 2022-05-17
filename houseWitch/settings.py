@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'captcha',
     'shop.apps.ShopConfig'
 ]
 
@@ -80,6 +81,9 @@ DATABASES = {
         'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
     }
 }
+
+RECAPTCHA_PUBLIC_KEY = '6Lds7vMfAAAAAD_w8PngODxMXjgnjjIlOFfGmc7P'
+RECAPTCHA_PRIVATE_KEY = '6Lds7vMfAAAAANgTAN8s7ARXTGizxFq56i5iBESe'
 
 EMAIL_HOST = 'smtp.beget.com'
 

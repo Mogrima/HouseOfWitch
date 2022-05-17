@@ -2,10 +2,12 @@ from django import forms
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from captcha.fields import ReCaptchaField
 
 User = get_user_model()
 
 class LoginUserForm(forms.ModelForm):
+    captcha = ReCaptchaField()
     username = forms.CharField(
         label='Логин', widget=forms.TextInput(attrs={'class': 'login__input', 'maxlength': '32'}))
     password = forms.CharField(
@@ -33,6 +35,7 @@ class LoginUserForm(forms.ModelForm):
 
 
 class RegisterUserForm(forms.ModelForm):
+    captcha = ReCaptchaField()
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'login__input', 'maxlength': '32'}))
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'login__input', 'minlength': '8'}))
     confirm_password = forms.CharField(label='Повторите пароль', widget=forms.PasswordInput(attrs={'class': 'login__input'}))
