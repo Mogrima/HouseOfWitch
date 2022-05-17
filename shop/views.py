@@ -465,11 +465,9 @@ class MakeOrderView(DataMixin, views.View):
             'Ваш заказ оформлен!',
             'mushroom@houseofwitch.ru',
             [form.cleaned_data['email']],
-            fail_silently=False,
+            fail_silently=True,
             html_message=get_template('shop/mail/checkout_mail.html').render(context)
             )
-
-            # mail = send_mail(subject, body, 'mushroom@houseofwitch.ru', [form.cleaned_data['email']], fail_silently=False)
             return HttpResponseRedirect('/checkout/')
         return HttpResponseRedirect('/cart/')
 
