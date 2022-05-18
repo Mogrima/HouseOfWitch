@@ -22,6 +22,7 @@ from shop.views import *
 
 urlpatterns = [
     path('receive/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', include('shop.urls')),
 ]
 
