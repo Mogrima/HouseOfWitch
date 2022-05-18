@@ -60,10 +60,12 @@ class about(DataMixin, views.View):
     #     }
     # dump data
     # dataJSON = dumps(dataDictionary)
+    total_count = recalc_count(self.cart)
     context = {
       'title': 'О нас',
       'menu': self.menu,
       'cart': self.cart,
+      'total_count': total_count,
       'desc': 'Раздел информации о Лесной Ведьмe и ее работе. Заходите на досуге почитать.',
     #   'data': dataJSON
     }
@@ -80,10 +82,12 @@ class catalog(DataMixin, ListView):
         
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        total_count = recalc_count(self.cart)
         context['title'] = 'Каталог'
         context['menu'] = self.menu
         context['cats'] = self.cats
         context['cart'] = self.cart
+        context['total_count'] = total_count
         context['desc'] = 'Ведьма тщательно и бережно подбирает магические товары для вас. В этом каталоге представлены магические предметы для любого вида колдовства.'
         return context
 
@@ -103,10 +107,12 @@ class ShowArticle(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        total_count = recalc_count(self.cart)
         context['title'] = 'Статьи'
         context['menu'] = self.menu
         context['cats'] = self.cats
         context['cart'] = self.cart
+        context['total_count'] = total_count
         context['desc'] = 'В этом разделе собраны все знания и опыт Лесной Ведьмы, скурпулёзно собранные ей для вас. Статьи про магические обряды и правила их проведения.'
         return context
 
@@ -118,10 +124,12 @@ class Article(DataMixin, DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        total_count = recalc_count(self.cart)
         context['title'] = context['post']
         context['menu'] = self.menu
         context['cats'] = self.cats
         context['cart'] = self.cart
+        context['total_count'] = total_count
         return context
 
 class ShowGoods(DataMixin, DetailView):
@@ -132,10 +140,12 @@ class ShowGoods(DataMixin, DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        total_count = recalc_count(self.cart)
         context['title'] = context['post']
         context['menu'] = self.menu
         context['cats'] = self.cats
         context['cart'] = self.cart
+        context['total_count'] = total_count
         context['posts'] = Goods.objects.all()[:5]
         return context
 
@@ -148,11 +158,13 @@ class GoodsCategory(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        total_count = recalc_count(self.cart)
         context['title'] = 'Категория - ' + str(context['posts'][0].cat)
         context['menu'] = self.menu
         context['cats'] = self.cats
         context['cat_selected'] = context['posts'][0].cat_id
         context['cart'] = self.cart
+        context['total_count'] = total_count
         context['desc'] = 'Товары из категории ' + str(context['posts'][0].cat)
         return context
 
@@ -165,10 +177,12 @@ class GoodsCategory(DataMixin, ListView):
 
 class CartView(DataMixin, ListView):
     def get(self, request, *args, **kwargs):
+        total_count = recalc_count(self.cart)
         form = OrderForm(request.POST or None)
         context = {
             'form': form,
             'cart': self.cart,
+            'total_count': total_count,
             'menu': self.menu,
             'title': 'Корзина',
             'desc': 'Ваша корзина'
@@ -385,11 +399,13 @@ class AccountView(DataMixin, views.View):
     if not request.user.is_authenticated:
         return redirect('login')
     customer = Customer.objects.get(user=request.user)
+    total_count = recalc_count(self.cart)
     context = {
       'customer': customer,
       'title': 'Личный кабинет ' + request.user.username,
       'menu': self.menu,
       'cart': self.cart,
+      'total_count': total_count,
       'desc': 'Это ваш личный кабинет в магазине Лесной Ведьмы. Тут вы можете отслеживать свои заказы и лист ожидания.'
     }
     return render(request, 'shop/account.html', context)
@@ -509,29 +525,35 @@ class SearchResultsView(DataMixin, ListView):
     
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        total_count = recalc_count(self.cart)
         context['title'] = 'Поиск'
         context['menu'] = self.menu
         context['cats'] = self.cats
         context['cart'] = self.cart
+        context['total_count'] = total_count
         context['desc'] = 'Страница, на которую выводятся результаты вашего поискового запроса.'
         context['count'] = self.object_list.count
         return context
 class PolicyView(DataMixin, views.View):
   def get(self, request, *args, **kwargs):
+    total_count = recalc_count(self.cart)
     context = {
       'title': 'Политика конфидициальности',
       'menu': self.menu,
       'cart': self.cart,
+      'total_count': total_count,
       'desc': 'Страница политики конфидициальности интернет-магазина Дом Лесной Ведьмы.'
     }
     return render(request, 'shop/policy.html', context)
 
 class DeliveryView(DataMixin, views.View):
   def get(self, request, *args, **kwargs):
+    total_count = recalc_count(self.cart)
     context = {
       'title': 'Доставка и оплата',
       'menu': self.menu,
       'cart': self.cart,
+      'total_count': total_count,
       'desc': 'Информация об оплате и доставке интернет-магазина Дом Лесной Ведьмы.'
     }
     return render(request, 'shop/delivery.html', context)

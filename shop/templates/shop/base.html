@@ -1,8 +1,5 @@
 {% load static %}
 {% load shop_tags %}
-{% for item in cart.products.all %}
-{{ item.qty }}
-{% endfor %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -68,7 +65,7 @@
                 </ul>
               </nav>
         
-              <div class="cart cart--bottom"><span class="cart__count-goods">{{ cart.products.count }}</span><a href="{% url 'cart' %}" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}"
+              <div class="cart cart--bottom"><span class="cart__count-goods">{{ total_count }}</span><a href="{% url 'cart' %}" class="cart__link"><img src="{% static 'shop/img/cart-icon.png' %}"
                     width="78" height="69" alt="корзина"></a></div>
               <nav class="user-menu user-menu--bottom user-menu--nojs user-menu--closed">
                 <button class="user-menu__toggle" type="button" data-toggle="toggleClass"><span class="visually-hidden">Открыть</span>
