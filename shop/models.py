@@ -127,7 +127,6 @@ class Cart(models.Model):
     owner = models.ForeignKey('Customer', blank=True, verbose_name='Владелец', on_delete=models.PROTECT)
     products = models.ManyToManyField(CartGoods, blank=True, related_name='related_cart')
     total_products = models.PositiveIntegerField(default=0, verbose_name='Общее кол-во товаров')
-    total_count = models.PositiveIntegerField(default=0, verbose_name='Все кол-во товаров')
     final_price = models.FloatField(default=0, verbose_name='Общая цена')
     in_order = models.BooleanField(default=False, verbose_name='В заказе')
     for_anonymous_user = models.BooleanField(default=False, verbose_name='Неавторизованный пользователь')
