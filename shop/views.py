@@ -10,7 +10,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
-from .utils.recalc_cart import recalc_cart
+from .utils.recalc_cart import recalc_cart, recalc_count
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 from django.db import transaction
@@ -32,14 +32,19 @@ class ShopHome(DataMixin, ListView):
     model = Goods
     template_name = 'shop/index.html'
     context_object_name = 'posts'
-        
+
+
+
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        total_count = recalc_count(self.cart)
         context['title'] = 'Главная страница'
         context['menu'] = self.menu
         context['desc'] = 'Заходите на кружку ароматного чая к Лесной Ведьмы. Она приготовила для вас нечто особенное. Добро пожаловать в магазин магической атрибутики.'
         context['cats'] = self.cats
         context['cart'] = self.cart
+        context['total_count'] = total_count
         return context
 
 class about(DataMixin, views.View):

@@ -116,6 +116,8 @@ for(i=0; i < cart_remove_qty.length; i++) {
 getCountGoods();
 
   let cart_add_qty = document.querySelectorAll('.js-cart');
+
+  let cart__count_goods = document.querySelectorAll('.cart__count-goods');
   for (i=0; i < cart_add_qty.length; i++) {
     cart_add_qty[i].addEventListener("click", (event) => {
       event.preventDefault();
@@ -129,6 +131,7 @@ getCountGoods();
       let slug = targetLink.getAttribute('data-slug');
       count_cart = Number(count_cart_block.textContent) + 1;
       count_cart_block.textContent = count_cart;
+      cart__count_goods[0].textContent = Number(cart__count_goods[0].textContent) + 1;
       const getUrlCart = `/change_up/${ct_model}/${slug}/`;
       getQTYup(getUrlCart);
       getCountGoods()
@@ -147,6 +150,7 @@ getCountGoods();
       if (Number(count_cart_block.textContent) > 1) {
         count_cart = Number(count_cart_block.textContent) - 1;
         count_cart_block.textContent = count_cart;
+        cart__count_goods[0].textContent = Number(cart__count_goods[0].textContent) - 1;
       } else {
         targetLink.style.display = "none";
       }
@@ -179,6 +183,7 @@ getCountGoods();
       let slug = targetLink.getAttribute('data-slug');
       const getUrlCart = `/add-to-cart/${ct_model}/${slug}/`;
       getQTYup(getUrlCart);
+      cart__count_goods[0].textContent = Number(cart__count_goods[0].textContent) + 1;
       targetLink.remove();
       cart_block.style.display = "block";
       

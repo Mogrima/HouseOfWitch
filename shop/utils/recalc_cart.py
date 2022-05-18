@@ -8,3 +8,9 @@ def recalc_cart(cart):
     cart.final_price = 0
   cart.total_products = cart_data['id__count']
   cart.save()
+
+def recalc_count(cart):
+  total_count = 0
+  for item in cart.products.all():
+      total_count = total_count +  item.qty
+  return  total_count

@@ -1,9 +1,11 @@
 from django.db.models import Count
 from django.http import request
+from .utils.recalc_cart import recalc_cart, recalc_count
 
 from .models import *
 
 class DataMixin:
+
 	paginate_by = 6
 	menu = [
 		{'title': "Главная", 'url_name': 'home', 'url_link': '/'},
