@@ -1,6 +1,5 @@
 from django.db.models import Count
 from django.http import request
-from .utils.recalc_cart import recalc_cart, recalc_count
 
 from .models import *
 
