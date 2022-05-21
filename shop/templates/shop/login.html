@@ -19,7 +19,7 @@
       <input id="login-remember" class="checkbox login__info-checkbox" type="checkbox" name="remember">
        <label for="login-remember" class="checkbox__name login__checkbox-name">
          <span class="checkbox__indicator login__checkbox-indicator"></span>Запомните	&ensp; меня</label>
-      <a class="login__restore" href="#">Забыл(а)	&ensp; пароль</a> 
+      <a class="login__restore" href="{% url 'password_reset' %}">Забыл(а)	&ensp; пароль</a> 
     </div>
       <button class="user-menu__link login__button" type="submit" value="enter" name="submit">Войти</button>
     </form>
