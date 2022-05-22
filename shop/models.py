@@ -206,7 +206,7 @@ class Customer(models.Model):
     """Покупатель"""
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Пользователь')
-    in_active = models.BooleanField(default=True, verbose_name='Активный')
+    in_active = models.BooleanField(default=False, verbose_name='Активный')
     customer_orders = models.ManyToManyField(
         Order, blank=True, related_name='related_customer', verbose_name='Заказы покупателя'
     )
