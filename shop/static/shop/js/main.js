@@ -36,21 +36,25 @@ function toggleClass(parent, classA, classB) {
 
 document.addEventListener('click', function (event) {
   let currentNav = document.querySelector('.nav');
-  if (!currentNav.classList.contains('nav--closed')) {
+  if ((!event.target.tagName == 'BUTTON') || (!event.target.classList.contains('nav__toggle'))) {
+    if (!currentNav.classList.contains('nav--closed')) {
     
-    currentNav.classList.add('nav--closed');
-    currentNav.classList.remove('nav--opened');
-    
+      currentNav.classList.add('nav--closed');
+      currentNav.classList.remove('nav--opened');
+      
+    }
   }
 });
 
 document.addEventListener('click', function (event) {
   
   let userNav = document.querySelector('.user-menu--bottom');
-  if (!userNav.classList.contains('user-menu--closed')) {
-    userNav.classList.add('user-menu--closed');
-    userNav.classList.remove('user-menu--opened');
-    
+  if ((!event.target.tagName == 'BUTTON') || (!event.target.classList.contains('user-menu__toggle'))) {
+    if (!userNav.classList.contains('user-menu--closed')) {
+      userNav.classList.add('user-menu--closed');
+      userNav.classList.remove('user-menu--opened');
+      
+    }
   }
 });
 
