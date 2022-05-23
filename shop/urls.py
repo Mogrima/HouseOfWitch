@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, re_path
+from django.views.generic import TemplateView
 
 from .views import *
 
@@ -32,4 +33,15 @@ urlpatterns = [
     path('search/', SearchResultsView.as_view(), name='search_results'),
     path('policy/', PolicyView.as_view(), name='policy'),
     path('delivery/', DeliveryView.as_view(), name='delivery'),
+        path(
+        'invalid_verify/',
+        TemplateView.as_view(template_name='shop/invalid_verify.html'),
+        name='invalid_verify'
+    ),
+
+    path(
+        'verify_email/<uidb64>/<token>/',
+        EmailVerify.as_view(),
+        name='verify_email',
+    ),
 ]

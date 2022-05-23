@@ -11,6 +11,10 @@ from django.contrib.auth import login
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from .utils.recalc_cart import recalc_cart, recalc_count
+from .utils.users import *
+from django.views import View
+from django.core.exceptions import ValidationError
+from django.utils.http import urlsafe_base64_decode
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 from django.db import transaction
@@ -343,6 +347,9 @@ class RegisterUser(DataMixin, views.View):
             )
             user = authenticate(
                 username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+
+            send_email_for_verify(request, user)
+
             login(request, user)
             return HttpResponseRedirect('/')
         title = 'Регистрация'
@@ -353,8 +360,31 @@ class RegisterUser(DataMixin, views.View):
         'title': title
         }
         return render(request, 'shop/registration.html', context)
+class EmailVerify(View):
 
+    def get(self, request, uidb64, token):
+        user = self.get_user(uidb64)
+        
 
+        # if user is not None and token_generator.check_token(user, token):
+            
+        login(request, user)
+        customer = Customer.objects.get(user=request.user)
+        customer.in_active = True
+        customer.save()
+        return redirect('home')
+        # return redirect('invalid_verify')
+
+    @staticmethod
+    def get_user(uidb64):
+        try:
+            # urlsafe_base64_decode() decodes to bytestring
+            uid = urlsafe_base64_decode(uidb64).decode()
+            user = User.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError,
+                User.DoesNotExist, ValidationError):
+            user = None
+        return user
 class LoginUser(DataMixin, views.View):
 
     def get(self, request, *args, **kwargs):
