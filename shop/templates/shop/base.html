@@ -114,6 +114,10 @@
       
       <!-- Блок контента -->
       <div class="wrapper__container">
+        {% if user.customer.in_active == False  %}
+        <div class="warning-text">На ваш электронный адрес - {{user.email}} выслано письмо с 
+          подтверждением регистрации. Пожалуйста, подтвердите адрес электронной почты!</div>
+        {% endif %}
       {% block content %}
       {% endblock %}
       {% if page_obj.has_other_pages %}
